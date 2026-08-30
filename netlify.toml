@@ -1,0 +1,41 @@
+# Netlify config for the landing page.
+#
+# The site is plain HTML — there is no build step, so `command` stays empty
+# and Netlify just publishes the folder.
+#
+# To point an existing Netlify site at this repo: Site configuration →
+# Build & deploy → link the repository. These settings are then picked up
+# from here, so the site deploys on every push to main and site/ becomes
+# the single source of truth.
+
+[build]
+  publish = "site"
+  command = ""
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Long cache for fingerprint-free assets is wrong here — filenames are not
+# hashed, so a redeploy must be able to invalidate them. One hour is a
+# reasonable middle ground for images that rarely change.
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# The vendored library is version-pinned in its filename usage and never
+# edited in place, so it can be cached hard.
+[[headers]]
+  for = "/assets/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    # The page loads only its own assets plus Google Fonts. Locking this
+    # down means an injected script has nowhere to phone home to.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'none'"

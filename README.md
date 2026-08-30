@@ -37,13 +37,19 @@ build system, and that has consequences you can check rather than take on trust.
 **Reproducible.** `python build.py --offline` rebuilds every pack from the
 committed lockfiles with no network access and produces **byte-identical**
 files — on any operating system. [`SHA256SUMS`](SHA256SUMS) holds the hash of
-every pack, and CI checks the Linux build against those committed hashes on
-every push, so the claim is verified continuously rather than asserted in a
-readme. Verify a download yourself:
+each pack as this repository builds it, and CI verifies the Linux build against
+those hashes (committed from Windows) on every push, so the claim has a guard
+that can actually fail rather than being asserted in a readme.
 
 ```bash
-sha256sum --check SHA256SUMS
+python build.py --offline --out dist
+cd dist && sha256sum --check ../SHA256SUMS
 ```
+
+These hashes describe what the build system produces. A release published from
+this repository can be checked against them; a `.mrpack` exported by hand from a
+launcher cannot, because it carries whatever else was sitting in that instance's
+config folder.
 
 **Auditable.** [`lock/`](lock) pins the exact version, file size and SHA-512 of
 every single file in a release. You can see precisely what a pack contains, and
