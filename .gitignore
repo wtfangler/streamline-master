@@ -1,0 +1,14 @@
+# Build output. Releases are published to Modrinth, not committed here —
+# anyone can reproduce them with `python build.py --offline`.
+dist/
+
+__pycache__/
+*.pyc
+
+# OS noise
+Thumbs.db
+.DS_Store
+
+# NOTE: lock/*.json is deliberately NOT ignored. The lockfiles pin the exact
+# mod version and sha512 of every file in a release, which is what makes a
+# build auditable and reproducible.

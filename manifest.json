@@ -1,0 +1,269 @@
+{
+  "name": "Streamline Master",
+  "slug": "slm",
+  "summary": "Performance-first Fabric pack tuned for low-end and integrated-GPU machines.",
+  "author": "Oliwier Koda",
+  "packVersion": "1.5.1",
+  "loader": "fabric",
+  "targets": [
+    {
+      "minecraft": "26.2",
+      "packVersion": "1.5.1",
+      "allowPrerelease": true
+    },
+    {
+      "minecraft": "26.1.2",
+      "packVersion": "1.4.1",
+      "allowPrerelease": true
+    },
+    {
+      "minecraft": "1.21.11",
+      "packVersion": "1.3.1",
+      "allowPrerelease": true
+    }
+  ],
+  "mods": [
+    {
+      "slug": "sodium",
+      "group": "render",
+      "env": "client"
+    },
+    {
+      "slug": "sodium-extra",
+      "group": "render",
+      "env": "client"
+    },
+    {
+      "slug": "reeses-sodium-options",
+      "group": "render",
+      "env": "client"
+    },
+    {
+      "slug": "chloride",
+      "group": "render",
+      "env": "client"
+    },
+    {
+      "slug": "iris",
+      "group": "render",
+      "env": "client",
+      "skipTargets": ["1.21.11"]
+    },
+    {
+      "slug": "immediatelyfast",
+      "group": "render",
+      "env": "client"
+    },
+    {
+      "slug": "better-block-entities",
+      "group": "render",
+      "env": "client"
+    },
+    {
+      "slug": "sodium-shadowy-path-blocks",
+      "group": "render",
+      "env": "client"
+    },
+    {
+      "slug": "continuity",
+      "group": "render",
+      "env": "client"
+    },
+    {
+      "slug": "exordium",
+      "group": "render",
+      "env": "client",
+      "optional": true
+    },
+    {
+      "slug": "entityculling",
+      "group": "culling",
+      "env": "client"
+    },
+    {
+      "slug": "moreculling",
+      "group": "culling",
+      "env": "client"
+    },
+    {
+      "slug": "particle-core",
+      "group": "culling",
+      "env": "client"
+    },
+    {
+      "slug": "lithium",
+      "group": "logic",
+      "env": "both"
+    },
+    {
+      "slug": "ferrite-core",
+      "group": "memory",
+      "env": "both"
+    },
+    {
+      "slug": "modernfix-mvus",
+      "group": "memory",
+      "env": "both"
+    },
+    {
+      "slug": "scalablelux",
+      "group": "logic",
+      "env": "both"
+    },
+    {
+      "slug": "badoptimizations",
+      "group": "logic",
+      "env": "client"
+    },
+    {
+      "slug": "c2me-fabric",
+      "group": "logic",
+      "env": "both",
+      "skipTargets": ["1.21.11"]
+    },
+    {
+      "slug": "vmp-fabric",
+      "group": "logic",
+      "env": "both"
+    },
+    {
+      "slug": "lmd",
+      "group": "logic",
+      "env": "both"
+    },
+    {
+      "slug": "threadtweak",
+      "group": "logic",
+      "env": "both",
+      "optional": true
+    },
+    {
+      "slug": "krypton",
+      "group": "network",
+      "env": "both"
+    },
+    {
+      "slug": "packet-fixer",
+      "group": "network",
+      "env": "both"
+    },
+    {
+      "slug": "fast-ip-ping",
+      "group": "network",
+      "env": "client"
+    },
+    {
+      "slug": "dynamic-fps",
+      "group": "power",
+      "env": "client"
+    },
+    {
+      "slug": "ixeris",
+      "group": "power",
+      "env": "client"
+    },
+    {
+      "slug": "fastquit",
+      "group": "qol",
+      "env": "client"
+    },
+    {
+      "slug": "rrls",
+      "group": "qol",
+      "env": "client",
+      "skipTargets": ["1.21.11"]
+    },
+    {
+      "slug": "debugify",
+      "group": "qol",
+      "env": "both"
+    },
+    {
+      "slug": "language-reload",
+      "group": "qol",
+      "env": "client"
+    },
+    {
+      "slug": "zoomify",
+      "group": "qol",
+      "env": "client"
+    },
+    {
+      "slug": "main-menu-credits",
+      "group": "branding",
+      "env": "client"
+    },
+    {
+      "slug": "smooth-gui",
+      "group": "interface",
+      "env": "client",
+      "optional": true
+    },
+    {
+      "slug": "smooth-scroll",
+      "group": "interface",
+      "env": "client",
+      "optional": true
+    },
+    {
+      "slug": "smooth-swapping",
+      "group": "interface",
+      "env": "client",
+      "optional": true
+    },
+    {
+      "slug": "fast-better-grass",
+      "group": "resourcepack",
+      "env": "client",
+      "path": "resourcepacks"
+    },
+    {
+      "slug": "qraftys-capitalized-font",
+      "group": "resourcepack",
+      "env": "client",
+      "path": "resourcepacks"
+    },
+    {
+      "slug": "recolourful-containers-gui-hud-dark",
+      "group": "resourcepack",
+      "env": "client",
+      "path": "resourcepacks",
+      "optional": true
+    },
+    {
+      "slug": "modmenu",
+      "group": "library",
+      "env": "client"
+    },
+    {
+      "slug": "fabric-api",
+      "group": "library",
+      "env": "both"
+    },
+    {
+      "slug": "cloth-config",
+      "group": "library",
+      "env": "both"
+    },
+    {
+      "slug": "yacl",
+      "group": "library",
+      "env": "client"
+    },
+    {
+      "slug": "fabric-language-kotlin",
+      "group": "library",
+      "env": "both"
+    },
+    {
+      "slug": "fzzy-config",
+      "group": "library",
+      "env": "both"
+    },
+    {
+      "slug": "almanac",
+      "group": "library",
+      "env": "both"
+    }
+  ]
+}

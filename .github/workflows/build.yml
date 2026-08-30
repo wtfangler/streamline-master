@@ -1,0 +1,77 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Rebuilds every pack from the committed lockfiles with no network access,
+  # then rebuilds them a second time and compares hashes. This is the claim
+  # the project makes about itself, checked on every push rather than trusted.
+  reproducible:
+    name: reproducible offline build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build from lockfiles (offline)
+        run: python build.py --offline --out out-a
+
+      - name: Build again
+        run: python build.py --offline --out out-b
+
+      - name: Packs must be byte-identical
+        run: |
+          set -e
+          for f in out-a/*.mrpack; do
+            name=$(basename "$f")
+            a=$(sha256sum "$f" | cut -d' ' -f1)
+            b=$(sha256sum "out-b/$name" | cut -d' ' -f1)
+            if [ "$a" != "$b" ]; then
+              echo "::error::$name is not reproducible ($a vs $b)"
+              exit 1
+            fi
+            echo "$name  $a"
+          done
+
+      - name: Validate pack structure
+        run: python validate.py "out-a/*.mrpack"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mrpacks
+          path: out-a/*.mrpack
+          if-no-files-found: error
+
+  # The offline job above proves the lockfiles still build. This one asks
+  # Modrinth whether every pinned file is still downloadable and still
+  # supports its target game version — it catches a mod being pulled or
+  # re-uploaded upstream, which no local check can see.
+  upstream:
+    name: verify against Modrinth
+    runs-on: ubuntu-latest
+    # Only where a network round trip is warranted; keeps PR runs fast and
+    # avoids hammering the API on every push.
+    if: github.event_name != 'pull_request'
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build from lockfiles
+        run: python build.py --offline --out out
+
+      - name: Validate against the Modrinth API
+        run: python validate.py "out/*.mrpack" --online

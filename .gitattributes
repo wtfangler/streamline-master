@@ -1,0 +1,24 @@
+# Normalise to LF in the repository. The CI runner is Linux and the workflow
+# contains a shell script — CRLF there fails with "\r: command not found".
+* text=auto eol=lf
+
+# Windows batch files must keep CRLF or cmd.exe mis-parses them.
+*.cmd text eol=crlf
+
+# Minecraft config formats: keep them LF so a diff is a real diff.
+*.properties text eol=lf
+*.toml       text eol=lf
+*.json       text eol=lf
+*.json5      text eol=lf
+*.tmpl       text eol=lf
+
+# Never touched.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.zip  binary
+*.mrpack binary
+
+# Vendored library — keep it out of diffs and language stats.
+site/assets/vendor/* linguist-vendored

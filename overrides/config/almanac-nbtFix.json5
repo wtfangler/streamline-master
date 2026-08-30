@@ -1,0 +1,12 @@
+{
+	"items": {
+		"enableNbtFix": false,
+		"blacklistItems": [
+			"alexscaves:sack_of_sating",
+			"hexerei:*",
+			"spelunkery:*",
+			"minecraft:spyglass",
+			"technicalcores:*"
+		]
+	}
+}

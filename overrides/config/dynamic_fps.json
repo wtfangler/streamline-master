@@ -1,0 +1,1 @@
+{"idle":{"condition":"none"},"battery_tracker":{"notifications":false},"download_natives":false,"states":{"unfocused":{"frame_rate_target":10,"run_garbage_collector":true},"invisible":{"frame_rate_target":1,"run_garbage_collector":true},"unplugged":{"frame_rate_target":-1}}}
