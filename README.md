@@ -78,6 +78,7 @@ python build.py            # resolve against Modrinth, write lock/ and dist/
 python build.py --offline  # rebuild from lockfiles, no network, reproducible
 python build.py --survey   # table of which mod resolves to what on each version
 python validate.py "dist/*.mrpack" --online
+python whatsnew.py         # newer Minecraft versions, and how ready the mods are
 ```
 
 On Windows, double-clicking `build.cmd` does the build and validation in one
@@ -97,6 +98,28 @@ lock/<mc>.json         resolved versions and hashes (committed on purpose)
 site/                  the landing page
 docs/                  audit, comparison, benchmark protocol, tuning notes
 ```
+
+## Adding a new Minecraft version
+
+A Minecraft release is not the signal to act — the mod ecosystem catching up is.
+Without Sodium there is no performance pack, and Fabric API gates most of the
+rest. `whatsnew.py` measures that instead of guessing:
+
+```
+minecraft          type      released    fabric  mods      verdict
+26.3-snapshot-10   snapshot  2026-08-25  yes     4/46 9%   wait - no sodium, lithium
+```
+
+It takes three HTTP requests: Mojang for what exists, Fabric for whether the
+loader runs on it, Modrinth for how many of the manifest's mods have builds.
+A scheduled workflow runs it weekly and opens an issue once a version reaches
+90% coverage with Sodium, Lithium and Fabric API present — snapshots essentially
+never do, which is the point.
+
+When one does, confirm with `python build.py --survey` (the weekly figure is an
+estimate; a project's advertised game versions aggregate every loader), then add
+the target to `manifest.json` with its own `packVersion` and an
+`overrides-<mc>/options.txt.tmpl`.
 
 ## How versions work
 

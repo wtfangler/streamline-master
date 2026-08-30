@@ -1,0 +1,65 @@
+name: watch for new Minecraft versions
+
+# A new Minecraft version is not by itself actionable — the mods have to catch
+# up first, and for snapshots they usually never do. This runs weekly and only
+# opens an issue once a version is actually worth building.
+
+on:
+  schedule:
+    - cron: "0 9 * * 1" # Mondays, 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Report what is newer than the current targets
+        run: |
+          python whatsnew.py | tee summary.txt
+          {
+            echo "## Version watch"
+            echo
+            echo '```'
+            cat summary.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open an issue for anything ready to build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          python whatsnew.py --ready-only > ready.txt
+          if [ ! -s ready.txt ]; then
+            echo "Nothing ready to build. No issue opened."
+            exit 0
+          fi
+
+          while IFS= read -r mc; do
+            [ -z "$mc" ] && continue
+            title="Add a target for Minecraft $mc"
+
+            # One issue per version, ever — including closed ones, so a
+            # decision not to support a version is not undone next Monday.
+            existing=$(gh issue list --state all --search "$title in:title" \
+                         --json title --jq '.[].title' || true)
+            if printf '%s\n' "$existing" | grep -Fxq "$title"; then
+              echo "Issue already exists for $mc"
+              continue
+            fi
+
+            python whatsnew.py --issue-body "$mc" > body.md
+            gh issue create --title "$title" --body-file body.md
+            echo "Opened issue for $mc"
+          done < ready.txt
