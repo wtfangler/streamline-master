@@ -18,11 +18,18 @@ Install through the [Modrinth App](https://modrinth.com/app) or Prism Launcher
 and you get update notifications and a clean instance. Direct `.mrpack` files
 live on the [project page](https://modrinth.com/modpack/slm).
 
+These are the targets this repository builds:
+
 | Minecraft | Pack | Files |
 | --------- | ---- | ----- |
 | 26.2      | 1.5.1 | 44 |
 | 26.1.2    | 1.4.1 | 45 |
 | 1.21.11   | 1.3.1 | 43 |
+
+The project goes back further than that. Twenty versions are published, reaching
+Minecraft 1.18.2 in April 2024 — see [`CHANGELOG.md`](CHANGELOG.md) for the full
+list. Releases up to 1.2 predate this build system and cannot be rebuilt from
+here; they stay on Modrinth as they were published.
 
 Requires **Java 21 or newer** (Minecraft 1.20.5+). 3–4 GB of allocated RAM is
 plenty; the pack is tuned to need less, not more. Install as a **new instance** —
@@ -114,6 +121,9 @@ and does no cross-mod compatibility checking, so conflicts like these are found
 by launching the game, not by the build.
 
 ## Documentation
+
+[`CHANGELOG.md`](CHANGELOG.md) covers the release history, including what the
+1.5.1 / 1.4.1 / 1.3.1 generation fixed and which mods are excluded where.
 
 The notes in [`docs/`](docs) are written in Polish:
 

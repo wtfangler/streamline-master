@@ -1027,6 +1027,26 @@ code {
   background: var(--border);
 }
 
+.v-more {
+  margin-top: var(--sp-3);
+  padding-inline: 0.2rem;
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+.v-more a {
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--accent-line);
+  transition: color var(--dur) var(--ease);
+}
+
+.v-more a:hover {
+  color: var(--accent-hi);
+}
+
 /* --- side panel --- */
 .panel {
   padding: var(--sp-4);
