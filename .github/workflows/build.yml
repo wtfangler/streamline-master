@@ -29,7 +29,7 @@ jobs:
       - name: Build again
         run: python build.py --offline --out out-b
 
-      - name: Packs must be byte-identical
+      - name: Two builds on this runner must match
         run: |
           set -e
           for f in out-a/*.mrpack; do
@@ -42,6 +42,14 @@ jobs:
             fi
             echo "$name  $a"
           done
+
+      # The check above only proves two builds on one machine agree. This one
+      # compares against hashes committed from a different OS, which is what
+      # actually guards the "reproducible anywhere" claim — it caught
+      # create_system leaking sys.platform into every zip entry header.
+      - name: Match the committed checksums
+        working-directory: out-a
+        run: sha256sum --check --strict "${GITHUB_WORKSPACE}/SHA256SUMS"
 
       - name: Validate pack structure
         run: python validate.py "out-a/*.mrpack"

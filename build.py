@@ -294,16 +294,23 @@ def index_json(manifest, lock):
 
 
 def add_entry(z, name, data):
-    """Write one zip entry with a fixed timestamp and fixed permissions.
+    """Write one zip entry with fixed metadata so builds are reproducible.
 
-    zipfile stamps entries with the current local time by default, which makes
-    every build produce a different file even when the contents are identical.
-    Pinning the timestamp is what lets `--offline` actually reproduce a release
-    byte for byte, so a published .mrpack can be checked against a rebuild.
-    ZIP_EPOCH is the earliest date the zip format can store.
+    Three fields would otherwise vary between runs or between machines:
+
+    * date_time  - zipfile stamps the current local time, so every build
+      differed. ZIP_EPOCH is the earliest date the format can store.
+    * create_system - derived from sys.platform (0 on Windows, 3 elsewhere),
+      which made a Windows build and a Linux build differ by one byte per
+      entry even with identical contents. Pinned to 3 (Unix).
+    * external_attr - the permission bits, which are platform-dependent too.
+
+    With these pinned, `--offline` reproduces a published .mrpack byte for
+    byte on any OS, so a release can be verified against a rebuild.
     """
     info = zipfile.ZipInfo(name, date_time=ZIP_EPOCH)
     info.compress_type = zipfile.ZIP_DEFLATED
+    info.create_system = 3
     info.external_attr = 0o644 << 16
     if isinstance(data, str):
         data = data.encode("utf-8")

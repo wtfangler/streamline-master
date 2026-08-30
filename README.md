@@ -35,9 +35,15 @@ Most modpacks are a folder of jars someone assembled by hand. This one is a
 build system, and that has consequences you can check rather than take on trust.
 
 **Reproducible.** `python build.py --offline` rebuilds every pack from the
-committed lockfiles with no network access, and produces **byte-identical**
-files. CI runs the build twice on every push and fails if the hashes differ, so
-the claim is verified continuously instead of asserted in a readme.
+committed lockfiles with no network access and produces **byte-identical**
+files — on any operating system. [`SHA256SUMS`](SHA256SUMS) holds the hash of
+every pack, and CI checks the Linux build against those committed hashes on
+every push, so the claim is verified continuously rather than asserted in a
+readme. Verify a download yourself:
+
+```bash
+sha256sum --check SHA256SUMS
+```
 
 **Auditable.** [`lock/`](lock) pins the exact version, file size and SHA-512 of
 every single file in a release. You can see precisely what a pack contains, and
