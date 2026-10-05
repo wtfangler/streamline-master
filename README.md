@@ -1,7 +1,7 @@
 # Streamline Master
 
 A performance-first Fabric modpack for Minecraft, built from a single manifest
-for three game versions. No new blocks, no new mobs, no quests — every mod in
+for four game versions. No new blocks, no new mobs, no quests — every mod in
 the pack exists to give back frames, memory or load time.
 
 [![build](https://github.com/wtfangler/streamline-master/actions/workflows/build.yml/badge.svg)](https://github.com/wtfangler/streamline-master/actions/workflows/build.yml)
@@ -22,6 +22,7 @@ These are the targets this repository builds:
 
 | Minecraft | Pack | Files |
 | --------- | ---- | ----- |
+| 26.3      | 1.6.1 | 56 |
 | 26.2      | 1.5.1 | 44 |
 | 26.1.2    | 1.4.1 | 45 |
 | 1.21.11   | 1.3.1 | 43 |
@@ -139,14 +140,19 @@ on Minecraft 1.21.11:
 - **Remove Reloading Screen** — its only Fabric builds for 1.21.11 hard-require
   Forge Config API Port.
 
-All three ship normally on 26.x. `build.py` resolves each target independently
+All three ship normally on 26.x. On Minecraft 26.3, **Chloride** and **Particle Core**
+are excluded instead: neither has a 26.3 build yet. The 26.3 pack also carries
+fourteen mods the older packs do not (HUD, particle, sound and loading-time
+optimisations plus their libraries); they are `skipTargets`-ed everywhere else, so
+the 26.2, 26.1.2 and 1.21.11 builds stay byte-for-byte what they were.
+`build.py` resolves each target independently
 and does no cross-mod compatibility checking, so conflicts like these are found
 by launching the game, not by the build.
 
 ## Documentation
 
 [`CHANGELOG.md`](CHANGELOG.md) covers the release history, including what the
-1.5.1 / 1.4.1 / 1.3.1 generation fixed and which mods are excluded where.
+1.6.1 / 1.5.1 / 1.4.1 / 1.3.1 releases fixed and which mods are excluded where.
 
 The notes in [`docs/`](docs) are written in Polish:
 

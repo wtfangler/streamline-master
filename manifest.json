@@ -3,9 +3,14 @@
   "slug": "slm",
   "summary": "Performance-first Fabric pack tuned for low-end and integrated-GPU machines.",
   "author": "Oliwier Koda",
-  "packVersion": "1.5.1",
+  "packVersion": "1.6.1",
   "loader": "fabric",
   "targets": [
+    {
+      "minecraft": "26.3",
+      "packVersion": "1.6.1",
+      "allowPrerelease": true
+    },
     {
       "minecraft": "26.2",
       "packVersion": "1.5.1",
@@ -41,7 +46,8 @@
     {
       "slug": "chloride",
       "group": "render",
-      "env": "client"
+      "env": "client",
+      "skipTargets": ["26.3"]
     },
     {
       "slug": "iris",
@@ -88,7 +94,8 @@
     {
       "slug": "particle-core",
       "group": "culling",
-      "env": "client"
+      "env": "client",
+      "skipTargets": ["26.3"]
     },
     {
       "slug": "lithium",
@@ -210,6 +217,90 @@
       "group": "interface",
       "env": "client",
       "optional": true
+    },
+    {
+      "slug": "gnetum",
+      "group": "render",
+      "env": "client",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "smart-particles",
+      "group": "culling",
+      "env": "client",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "entity-view-distance",
+      "group": "culling",
+      "env": "client",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "ksyxis",
+      "group": "logic",
+      "env": "both",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "alternate-current",
+      "group": "logic",
+      "env": "both",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "zfastnoise",
+      "group": "logic",
+      "env": "both",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "clumps",
+      "group": "logic",
+      "env": "both",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "audiothrottle",
+      "group": "qol",
+      "env": "client",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "rsls",
+      "group": "qol",
+      "env": "client",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "asynclogger",
+      "group": "qol",
+      "env": "client",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "forcecloseworldloadingscreen",
+      "group": "qol",
+      "env": "client",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "quick-pack",
+      "group": "qol",
+      "env": "both",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "placeholder-api",
+      "group": "library",
+      "env": "client",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+    },
+    {
+      "slug": "zconfig",
+      "group": "library",
+      "env": "both",
+      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
     },
     {
       "slug": "fast-better-grass",

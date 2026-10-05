@@ -6,15 +6,39 @@ independently, which is why 1.3.1, 1.4.1 and 1.5.1 are the *same* generation of 
 pack for three different games.
 
 **What this repository can rebuild.** The manifest and lockfiles here cover
-Minecraft **26.2, 26.1.2 and 1.21.11** only. Releases up to and including 1.2 were
+Minecraft **26.3, 26.2, 26.1.2 and 1.21.11** only. Releases up to and including 1.2 were
 assembled before this build system existed and cannot be reproduced from this
 repository — they remain downloadable on Modrinth, unchanged.
 
 ---
 
+## 1.6.1 — 2026-10-05
+
+Minecraft 26.3. First working release for that game version.
+
+- **Excluded: Chloride and Particle Core.** Neither has a 26.3 build; they return
+  when one is published. Smart Particles covers the particle side in the meantime.
+- **New on 26.3:** Gnetum, Smart Particles, Entity View Distance, Ksyxis, Alternate
+  Current, Fast Noise, Clumps, AudioThrottle, Raise Sound Limit Simplified, Async
+  Logger, Force Close World Loading Screen and Quick Pack, plus the libraries Text
+  Placeholder API (required by Mod Menu 21) and ZConfig (required by Fast Noise).
+- **Sodium is 0.9.2, not 0.9.3-alpha.** Reese's Sodium Options 2.2.5 requires exactly
+  0.9.2+mc26.3, so the alpha makes Fabric Loader stop with "Incompatible mods found".
+- **Cull Fewer Leaves is not included.** It was evaluated and rejected: More Culling
+  declares it as a hard conflict (`breaks`), which the Modrinth API does not expose
+  and which only shows up when the game starts.
+- Still prerelease upstream, so the least settled part of the pack: C2ME, VMP,
+  ScalableLux, Remove Reloading Screen and Smooth Swapping.
+
+**1.6.0 (26.3, alpha) is superseded and should not be used.** It shipped Sodium
+0.9.3-alpha.1 against Reese's Sodium Options 2.2.5 and omitted Text Placeholder API,
+so it did not start. Both are fixed in 1.6.1.
+
+---
+
 ## 1.5.1 · 1.4.1 · 1.3.1 — 2026-08-29
 
-Current. Minecraft 26.2, 26.1.2 and 1.21.11.
+Latest for Minecraft 26.2, 26.1.2 and 1.21.11.
 
 - **1.3.1 fixes a launch failure on 1.21.11.** Fabric Loader refused to start with
   "Incompatible mods found". Three mods had to go on that game version, and only
