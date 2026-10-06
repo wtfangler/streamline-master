@@ -98,21 +98,6 @@
       "url": "https://cdn.modrinth.com/data/ONZm0H7Y/versions/9VvhfLcA/bbe-fabric-1.3.9%2Bmc26.3-mod.jar"
     },
     {
-      "slug": "c2me-fabric",
-      "group": "logic",
-      "env": "both",
-      "path": "mods",
-      "projectId": "VSNURh3q",
-      "versionId": "FXjQDzq7",
-      "versionNumber": "0.4.2-alpha.0.89+26.3",
-      "versionType": "alpha",
-      "filename": "c2me-fabric-mc26.3-0.4.2-alpha.0.89.jar",
-      "size": 3950208,
-      "sha1": "1aa0ea7893737a54f855b1c04ff93f2f68c1fa80",
-      "sha512": "b4fcf82bbe15bfa253e3ab6df4d6b64e800a2ccdb45d4ca2b8040da87f72033fed34f4f94016aac507596c78fddb18dba28c6642790181642cae46fae28b3a85",
-      "url": "https://cdn.modrinth.com/data/VSNURh3q/versions/FXjQDzq7/c2me-fabric-mc26.3-0.4.2-alpha.0.89.jar"
-    },
-    {
       "slug": "cloth-config",
       "group": "library",
       "env": "both",
@@ -336,21 +321,6 @@
       "sha1": "373b6365bb9f447d2810c151ec2f698ee789366f",
       "sha512": "bbf47ab921fec1215d6e59ab0d875b565c22bbf039ae985b6e64313412b66835c443006c428ac9b8ef7ba396a4e0aa2bb0d65126c95a595bc56376655cb1c9ee",
       "url": "https://cdn.modrinth.com/data/hYykXjDp/versions/YkOumqzV/fzzy_config-0.7.7%2Bfix3%2B26.3.jar"
-    },
-    {
-      "slug": "gnetum",
-      "group": "render",
-      "env": "client",
-      "path": "mods",
-      "projectId": "7MoE34WK",
-      "versionId": "ZAsnXCHy",
-      "versionNumber": "4.6.2+26.3-fabric",
-      "versionType": "release",
-      "filename": "Gnetum-4.6.2+26.3-fabric.jar",
-      "size": 97708,
-      "sha1": "942466997ff7c0cfbd65f42d1c706ad140a82267",
-      "sha512": "95c1e18bc7bd787dbeb929d7d76511191d56a5b509a3e20bcd3b0f07d3435fe692356b27fc2893c545495ebb15b6ad0d8d56ee8d3baf4862cd3d27ba8db04ca5",
-      "url": "https://cdn.modrinth.com/data/7MoE34WK/versions/ZAsnXCHy/Gnetum-4.6.2%2B26.3-fabric.jar"
     },
     {
       "slug": "immediatelyfast",
@@ -653,36 +623,6 @@
       "url": "https://cdn.modrinth.com/data/SKW62Pht/versions/2sa9UZP2/rsls-1.4.0.jar"
     },
     {
-      "slug": "scalablelux",
-      "group": "logic",
-      "env": "both",
-      "path": "mods",
-      "projectId": "Ps1zyz6x",
-      "versionId": "g4eqNSKd",
-      "versionNumber": "0.3.0-alpha.0.6+26.3",
-      "versionType": "alpha",
-      "filename": "ScalableLux-fabric-mc26.3-0.3.0-alpha.0.6-all.jar",
-      "size": 193021,
-      "sha1": "d51dcbe901452a1cb378139ca351009254e7ab0d",
-      "sha512": "ded5a939fb20ab81c1f33b147ca9b98050773dbb28dff16df939c7d567b626809522994ec8dbfb99e7f498dc6a4e62f25e141a87d18efb43f73fc5ad1569ccc9",
-      "url": "https://cdn.modrinth.com/data/Ps1zyz6x/versions/g4eqNSKd/ScalableLux-fabric-mc26.3-0.3.0-alpha.0.6-all.jar"
-    },
-    {
-      "slug": "smart-particles",
-      "group": "culling",
-      "env": "client",
-      "path": "mods",
-      "projectId": "l8rWP4Tc",
-      "versionId": "t9IobNcP",
-      "versionNumber": "1.16.0",
-      "versionType": "release",
-      "filename": "smart_particles+mc26.3-1.16.0.jar",
-      "size": 56076,
-      "sha1": "10d188cd467cde01449579496bfd798b613f0e05",
-      "sha512": "f8e4ddad9aa14339a15a9c6d70819d5045220fe56a2d03d87fd3eb3b4d312df93e24b99d892aacdc175f16de15a1024f87066478ad06d819792494f46b204594",
-      "url": "https://cdn.modrinth.com/data/l8rWP4Tc/versions/t9IobNcP/smart_particles%2Bmc26.3-1.16.0.jar"
-    },
-    {
       "slug": "smooth-gui",
       "group": "interface",
       "env": "client",
@@ -771,21 +711,6 @@
       "sha1": "9d5d153d39700683ffbf62afd0e965eb86113382",
       "sha512": "20525c70a74242ef182e48ed16077f768a0f4d6b4b4ca6fd8cffcd93866c217de7d61af0c7cfe63c7330e0fd7c8ad6bb6c6b1fcc3605a59f9229e20718f4a0ee",
       "url": "https://cdn.modrinth.com/data/EIa1eiMm/versions/gobiZrtK/sodium-shadowy-path-blocks-fabric-8.0.0.jar"
-    },
-    {
-      "slug": "vmp-fabric",
-      "group": "logic",
-      "env": "both",
-      "path": "mods",
-      "projectId": "wnEe9KBa",
-      "versionId": "2TFDVjDf",
-      "versionNumber": "0.2.0+beta.7.238+26.3",
-      "versionType": "alpha",
-      "filename": "vmp-fabric-mc26.3-0.2.0+beta.7.238-all.jar",
-      "size": 409480,
-      "sha1": "ef7581bcd175eda07e2ebff0ddfd3094aa36026b",
-      "sha512": "c8658ccf8818a258e1160a2d394c80fd52708611570dc28d6bc391671a23e193760766ef77ddc5907e1a3a757cf20f4def67ae2bc184269effa547da1f377667",
-      "url": "https://cdn.modrinth.com/data/wnEe9KBa/versions/2TFDVjDf/vmp-fabric-mc26.3-0.2.0%2Bbeta.7.238-all.jar"
     },
     {
       "slug": "yacl",

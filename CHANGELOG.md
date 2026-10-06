@@ -12,6 +12,40 @@ repository — they remain downloadable on Modrinth, unchanged.
 
 ---
 
+## 1.6.2 — 2026-10-06
+
+Minecraft 26.3. Fixes a startup crash and removes the mods that made the pack slower
+than it should be.
+
+- **Fixed: "Resource reload failed" crash on start.** ModernFix's
+  `dynamic_entity_renderers` option (the pack turned it on) replaces the entity renderer
+  map, and Entity View Distance's own mixin on `EntityRenderDispatcher` then hit a
+  `ClassCastException`, leaving every entity without a renderer. The option is back at
+  its default (off). 1.6.1 starts on some machines and not on others, so do not rely on
+  it.
+- **Removed on 26.3: C2ME, Very Many Players, ScalableLux, Gnetum and Smart Particles.**
+  Measured on an Intel UHD 620 laptop (i5-8350U, 16 GB), same world and spot, 40
+  frame-counter samples after a 100 s warm-up. The 1.6.2 build averaged about 135 FPS
+  (lowest sample 116), the same as a plain Fabulously-Optimized-style control with default
+  configs. 1.6.1 with the crash fixed, i.e. with all five still in, averaged about 121
+  and dipped to 92, in two separate runs. The remaining 1.6.1 additions (Entity View
+  Distance, Ksyxis, Alternate Current, Fast Noise, Clumps, AudioThrottle, Raise Sound
+  Limit Simplified, Async Logger, Force Close World Loading Screen, Quick Pack) cost
+  nothing measurable and stay. Other targets are unchanged.
+- **Lithium experimental mixins are off on 26.3** (they were on for every target). They did
+  not change the measured frame rate; they are simply not worth the risk.
+- **`options.txt` on 26.3:** `maxAnisotropyBit` is 1 (the old 0 is outside the game's 1–4
+  range and logged a parse error on every start) and `exclusiveFullscreen` is off, which
+  is the game's default and the setting every measurement above ran with. Exclusive
+  fullscreen was not measured.
+- **Honest limit of the measurements.** They are a stationary scene on one machine;
+  frame rate varied by roughly ±10% between identical runs, so only differences larger
+  than that mean anything. Stutter while exploring was not measured reliably.
+
+**1.6.1 (26.3, beta) is superseded.** Use 1.6.2.
+
+---
+
 ## 1.6.1 — 2026-10-05
 
 Minecraft 26.3. First working release for that game version.

@@ -29,8 +29,8 @@ Entity Culling · More Culling · Particle Core
 
 ## Engine, memory and world
 
-Lithium · FerriteCore · ModernFix · ScalableLux · BadOptimizations · C2ME (26.x) ·
-Very Many Players · Let Me Despawn · ThreadTweak (1.21.11)
+Lithium · FerriteCore · ModernFix · ScalableLux (not 26.3) · BadOptimizations · C2ME (26.1.2, 26.2) ·
+Very Many Players (not 26.3) · Let Me Despawn · ThreadTweak (1.21.11)
 
 ## Network
 

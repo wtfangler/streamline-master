@@ -206,7 +206,7 @@
                   Chunk work moves off the render thread and entity culling stops the GPU drawing
                   what you cannot see. Exploring stops hitching.
                 </p>
-                <p class="mods">C2ME, Entity Culling</p>
+                <p class="mods">C2ME <span class="tag">26.1.2, 26.2</span>, Entity Culling</p>
               </dd>
             </div>
             <div class="row">
@@ -328,10 +328,12 @@
               across game versions. The groups below describe the Minecraft&nbsp;26.2 build.
             </p>
             <p class="just aside-note">
-              Minecraft 26.3 adds Gnetum, Smart Particles, Entity View Distance, Ksyxis, Alternate
-              Current, Fast Noise, Clumps, AudioThrottle, Raise Sound Limit Simplified, Async
-              Logger, Force Close World Loading Screen and Quick Pack. It leaves out Chloride and
-              Particle Core, which have no 26.3 build yet.
+              Minecraft 26.3 adds Entity View Distance, Ksyxis, Alternate Current, Fast Noise,
+              Clumps, AudioThrottle, Raise Sound Limit Simplified, Async Logger, Force Close World
+              Loading Screen and Quick Pack. It leaves out Chloride and Particle Core, which have
+              no 26.3 build yet. It also leaves out C2ME, Very Many Players, ScalableLux, Gnetum
+              and Smart Particles: on a laptop with an integrated GPU the build with them was
+              about 10% slower and dipped below the build without them.
             </p>
           </header>
 
@@ -365,8 +367,9 @@
                   Cheaper ticks, parallel chunk work and lighting that scales across cores.
                 </p>
                 <p class="mods">
-                  Lithium, ScalableLux, BadOptimizations, C2ME <span class="tag">26.x</span>, Very
-                  Many Players, Let Me Despawn, ThreadTweak <span class="tag">1.21.11</span>
+                  Lithium, ScalableLux <span class="tag">not 26.3</span>, BadOptimizations, C2ME
+                  <span class="tag">26.1.2, 26.2</span>, Very Many Players
+                  <span class="tag">not 26.3</span>, Let Me Despawn, ThreadTweak <span class="tag">1.21.11</span>
                 </p>
               </dd>
             </div>

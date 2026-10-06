@@ -3,12 +3,12 @@
   "slug": "slm",
   "summary": "Performance-first Fabric pack tuned for low-end and integrated-GPU machines.",
   "author": "Oliwier Koda",
-  "packVersion": "1.6.1",
+  "packVersion": "1.6.2",
   "loader": "fabric",
   "targets": [
     {
       "minecraft": "26.3",
-      "packVersion": "1.6.1",
+      "packVersion": "1.6.2",
       "allowPrerelease": true
     },
     {
@@ -115,7 +115,8 @@
     {
       "slug": "scalablelux",
       "group": "logic",
-      "env": "both"
+      "env": "both",
+      "skipTargets": ["26.3"]
     },
     {
       "slug": "badoptimizations",
@@ -126,12 +127,13 @@
       "slug": "c2me-fabric",
       "group": "logic",
       "env": "both",
-      "skipTargets": ["1.21.11"]
+      "skipTargets": ["26.3", "1.21.11"]
     },
     {
       "slug": "vmp-fabric",
       "group": "logic",
-      "env": "both"
+      "env": "both",
+      "skipTargets": ["26.3"]
     },
     {
       "slug": "lmd",
@@ -222,13 +224,13 @@
       "slug": "gnetum",
       "group": "render",
       "env": "client",
-      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+      "skipTargets": ["26.3", "26.2", "26.1.2", "1.21.11"]
     },
     {
       "slug": "smart-particles",
       "group": "culling",
       "env": "client",
-      "skipTargets": ["26.2", "26.1.2", "1.21.11"]
+      "skipTargets": ["26.3", "26.2", "26.1.2", "1.21.11"]
     },
     {
       "slug": "entity-view-distance",
