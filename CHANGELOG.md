@@ -46,6 +46,27 @@ than it should be.
 
 ---
 
+## 1.5.2 · 1.4.2 · 1.3.2 — 2026-10-06
+
+Minecraft 26.2, 26.1.2 and 1.21.11. The same tuning as 1.6.2, carried back.
+
+- **Removed: C2ME, Very Many Players and ScalableLux** (on 1.21.11 only the last two were
+  present). On 26.3 the build without them was measurably smoother on a weak laptop. On 26.2 a
+  controlled A/B (two pairs, order swapped) gave opposite results, so there is no frame-rate
+  claim for the older games. They go for consistency and because C2ME and VMP are still
+  prerelease upstream.
+- **One performance counter, not two.** These builds showed Sodium Extra's
+  "FPS (avg / 1% low / 0.1% low)" and Chloride's "FPS | MIN | AVG" on top of each other.
+  Chloride's overlay is now off; Sodium Extra's stays.
+- **ModernFix `dynamic_entity_renderers` is back at its default (off)**, and Lithium's
+  experimental mixins are off.
+- **`options.txt`:** `maxAnisotropyBit` is 1 (the old 0 is outside the game's 1–4 range and
+  logged an error on every start); on 26.2 and 26.1.2 `exclusiveFullscreen` is off.
+- Each pack was imported into Prism and started, a world was loaded, and the log showed no
+  errors.
+
+---
+
 ## 1.6.1 — 2026-10-05
 
 Minecraft 26.3. First working release for that game version.

@@ -485,21 +485,6 @@
       "url": "https://cdn.modrinth.com/data/Bh37bMuy/versions/P0MH4cn0/reeses-sodium-options-fabric-2.2.3%2Bmc1.21.11.jar"
     },
     {
-      "slug": "scalablelux",
-      "group": "logic",
-      "env": "both",
-      "path": "mods",
-      "projectId": "Ps1zyz6x",
-      "versionId": "PV9KcrYQ",
-      "versionNumber": "0.1.6+fabric.c25518a",
-      "versionType": "release",
-      "filename": "ScalableLux-0.1.6+fabric.c25518a-all.jar",
-      "size": 182846,
-      "sha1": "9df93ab6442fa374c17fab6b5181fe2c215d9d5b",
-      "sha512": "729515c1e75cf8d9cd704f12b3487ddb9664cf9928e7b85b12289c8fbbc7ed82d0211e1851375cbd5b385820b4fedbc3f617038fff5e30b302047b0937042ae7",
-      "url": "https://cdn.modrinth.com/data/Ps1zyz6x/versions/PV9KcrYQ/ScalableLux-0.1.6%2Bfabric.c25518a-all.jar"
-    },
-    {
       "slug": "smooth-gui",
       "group": "interface",
       "env": "client",
@@ -603,21 +588,6 @@
       "sha1": "a9235996759e2aed144f2428c935d73e73d8c87d",
       "sha512": "cab444eaecaa108b0d00eea9aa29415c4e2664ba64de3eedba3f63228686bc2d334f7de06bda22367244cfa0a4b21b7788e924108eef04bfe077bceff1c4b34e",
       "url": "https://cdn.modrinth.com/data/vSEH1ERy/versions/9t60vZ1h/threadtweak-fabric-0.1.8%2Bmc1.21.11.jar"
-    },
-    {
-      "slug": "vmp-fabric",
-      "group": "logic",
-      "env": "both",
-      "path": "mods",
-      "projectId": "wnEe9KBa",
-      "versionId": "7Cxc2cAR",
-      "versionNumber": "0.2.0+beta.7.227+1.21.11",
-      "versionType": "alpha",
-      "filename": "vmp-fabric-mc1.21.11-0.2.0+beta.7.227-all.jar",
-      "size": 416338,
-      "sha1": "6d665e488ea4f301d639cdf9fd4abf3ffdb44e0d",
-      "sha512": "5534a5b0ec88b58f1a395753e4810dde9a8f0f97a88898f4b61e960bd219ec28ea60c6676d7ee24d5b465939a4ff9470520d9015bb9cdb10d9357ff82c36fdab",
-      "url": "https://cdn.modrinth.com/data/wnEe9KBa/versions/7Cxc2cAR/vmp-fabric-mc1.21.11-0.2.0%2Bbeta.7.227-all.jar"
     },
     {
       "slug": "yacl",

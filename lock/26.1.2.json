@@ -52,21 +52,6 @@
       "url": "https://cdn.modrinth.com/data/ONZm0H7Y/versions/n78M7IgQ/bbe-fabric-1.3.6%2Bmc26.1.2.jar"
     },
     {
-      "slug": "c2me-fabric",
-      "group": "logic",
-      "env": "both",
-      "path": "mods",
-      "projectId": "VSNURh3q",
-      "versionId": "zzYSg63u",
-      "versionNumber": "0.4.0-beta.1.0+26.1.2",
-      "versionType": "beta",
-      "filename": "c2me-fabric-mc26.1.2-0.4.0-beta.1.0.jar",
-      "size": 3777068,
-      "sha1": "ec176f4414a3455c460f9f401afb7f592b43c6d2",
-      "sha512": "eb6c9dd628da067c4ebbc4345b93cf6573c0ede3e5120e9444a1e0dad355a0b1fe53f9bc5d72148ff68d3aa2f79bdab6a017b18e659a77a7b0fa4489c9e2c7bd",
-      "url": "https://cdn.modrinth.com/data/VSNURh3q/versions/zzYSg63u/c2me-fabric-mc26.1.2-0.4.0-beta.1.0.jar"
-    },
-    {
       "slug": "chloride",
       "group": "render",
       "env": "client",
@@ -532,21 +517,6 @@
       "url": "https://cdn.modrinth.com/data/ZP7xHXtw/versions/J8aRjeWe/rrls-5.2.6%2Bmc.26.1.jar"
     },
     {
-      "slug": "scalablelux",
-      "group": "logic",
-      "env": "both",
-      "path": "mods",
-      "projectId": "Ps1zyz6x",
-      "versionId": "gYbHVCz8",
-      "versionNumber": "0.2.0+fabric.2b63825",
-      "versionType": "release",
-      "filename": "ScalableLux-0.2.0+fabric.2b63825-all.jar",
-      "size": 183504,
-      "sha1": "3875a697a9bb014c06aa3a62d72e8bec3de23160",
-      "sha512": "48565a4d8a1cbd623f0044086d971f2c0cf1c40e1d0b6636a61d41512f4c1c1ddff35879d9dba24b088a670ee254e2d5842d13a30b6d76df23706fa94ea4a58b",
-      "url": "https://cdn.modrinth.com/data/Ps1zyz6x/versions/gYbHVCz8/ScalableLux-0.2.0%2Bfabric.2b63825-all.jar"
-    },
-    {
       "slug": "smooth-gui",
       "group": "interface",
       "env": "client",
@@ -635,21 +605,6 @@
       "sha1": "1399156a64c7bfbc38fa21af935495cfb74923c3",
       "sha512": "8e8b87f5c50d0c183ff9aff5bbfc8334498b6f8da093de4adbf18773602f0c1de0d0bb71d1f5af35e7b811b3e788a55db525b67ea52ba0de6935f2e46f321a9e",
       "url": "https://cdn.modrinth.com/data/EIa1eiMm/versions/ygm51jhU/sodium-shadowy-path-blocks-fabric-7.0.0.jar"
-    },
-    {
-      "slug": "vmp-fabric",
-      "group": "logic",
-      "env": "both",
-      "path": "mods",
-      "projectId": "wnEe9KBa",
-      "versionId": "9f7J0dAp",
-      "versionNumber": "0.2.0+beta.7.234+26.1.2",
-      "versionType": "alpha",
-      "filename": "vmp-fabric-mc26.1.2-0.2.0+beta.7.234-all.jar",
-      "size": 412393,
-      "sha1": "9a7ad0973bdb06d2eb8d66827bbafd56d6af87fb",
-      "sha512": "24a0df2407893b1cfb55e27dc1c1fef008df53518d118aa3245924d37b642a27d7b6afde950fbf5d07c4111c44ac264d9ae56b8d8c6a9b55acdfb91ba0a15f16",
-      "url": "https://cdn.modrinth.com/data/wnEe9KBa/versions/9f7J0dAp/vmp-fabric-mc26.1.2-0.2.0%2Bbeta.7.234-all.jar"
     },
     {
       "slug": "yacl",

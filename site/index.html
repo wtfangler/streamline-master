@@ -203,10 +203,10 @@
               <dt>Fewer stutters</dt>
               <dd>
                 <p class="just">
-                  Chunk work moves off the render thread and entity culling stops the GPU drawing
-                  what you cannot see. Exploring stops hitching.
+                  Entity culling stops the GPU drawing what you cannot see, so busy scenes stay
+                  smooth.
                 </p>
-                <p class="mods">C2ME <span class="tag">26.1.2, 26.2</span>, Entity Culling</p>
+                <p class="mods">Entity Culling</p>
               </dd>
             </div>
             <div class="row">
@@ -331,9 +331,9 @@
               Minecraft 26.3 adds Entity View Distance, Ksyxis, Alternate Current, Fast Noise,
               Clumps, AudioThrottle, Raise Sound Limit Simplified, Async Logger, Force Close World
               Loading Screen and Quick Pack. It leaves out Chloride and Particle Core, which have
-              no 26.3 build yet. It also leaves out C2ME, Very Many Players, ScalableLux, Gnetum
-              and Smart Particles: on a laptop with an integrated GPU the build with them was
-              about 10% slower and dipped below the build without them.
+              no 26.3 build yet. No build includes C2ME, Very Many Players or ScalableLux any more, and
+              26.3 also leaves out Gnetum and Smart Particles: on a laptop with an integrated GPU
+              the 26.3 build with them was about 10% slower and dipped below the build without them.
             </p>
           </header>
 
@@ -361,15 +361,13 @@
               </dd>
             </div>
             <div class="row">
-              <dt>Game logic <span class="count">6 mods</span></dt>
+              <dt>Game logic <span class="count">4 mods</span></dt>
               <dd>
                 <p class="just">
-                  Cheaper ticks, parallel chunk work and lighting that scales across cores.
+                  Cheaper ticks and leaner mob and entity logic.
                 </p>
                 <p class="mods">
-                  Lithium, ScalableLux <span class="tag">not 26.3</span>, BadOptimizations, C2ME
-                  <span class="tag">26.1.2, 26.2</span>, Very Many Players
-                  <span class="tag">not 26.3</span>, Let Me Despawn, ThreadTweak <span class="tag">1.21.11</span>
+                  Lithium, BadOptimizations, Let Me Despawn, ThreadTweak <span class="tag">1.21.11</span>
                 </p>
               </dd>
             </div>

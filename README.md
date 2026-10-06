@@ -23,9 +23,9 @@ These are the targets this repository builds:
 | Minecraft | Pack | Files |
 | --------- | ---- | ----- |
 | 26.3      | 1.6.2 | 51 |
-| 26.2      | 1.5.1 | 44 |
-| 26.1.2    | 1.4.1 | 45 |
-| 1.21.11   | 1.3.1 | 43 |
+| 26.2      | 1.5.2 | 41 |
+| 26.1.2    | 1.4.2 | 42 |
+| 1.21.11   | 1.3.2 | 41 |
 
 The project goes back further than that. Twenty versions are published, reaching
 Minecraft 1.18.2 in April 2024 — see [`CHANGELOG.md`](CHANGELOG.md) for the full
@@ -152,7 +152,7 @@ by launching the game, not by the build.
 ## Documentation
 
 [`CHANGELOG.md`](CHANGELOG.md) covers the release history, including what the
-1.6.2 / 1.6.1 / 1.5.1 / 1.4.1 / 1.3.1 releases fixed and which mods are excluded where.
+1.6.2 / 1.6.1 / 1.5.2 / 1.4.2 / 1.3.2 / 1.5.1 / 1.4.1 / 1.3.1 releases fixed and which mods are excluded where.
 
 The notes in [`docs/`](docs) are written in Polish:
 
