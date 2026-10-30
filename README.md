@@ -24,16 +24,16 @@ These are the targets this repository builds:
 | --------- | ---- | ----- |
 | 26.3      | 1.6.3 | 52 |
 | 26.2      | 1.5.2 | 41 |
-| 26.1.2    | 1.4.2 | 42 |
+| 26.1.2    | 1.4.3 | 42 |
 | 1.21.11   | 1.3.2 | 41 |
 
-The project goes back further than that. Twenty versions are published, reaching
-Minecraft 1.18.2 in April 2024 — see [`CHANGELOG.md`](CHANGELOG.md) for the full
+The project goes back further than that. Twenty-four versions are published, reaching
+back to Minecraft 1.18.2 in April 2024 — see [`CHANGELOG.md`](CHANGELOG.md) for the full
 list. Releases up to 1.2 predate this build system and cannot be rebuilt from
 here; they stay on Modrinth as they were published.
 
-Requires **Java 21 or newer** (Minecraft 1.20.5+). 3–4 GB of allocated RAM is
-plenty; the pack is tuned to need less, not more. Install as a **new instance** —
+Requires **Java 25** for Minecraft 26.x and **Java 21** for 1.21.11; the Modrinth
+App and Prism pick the right one themselves. 3–4 GB of allocated RAM is plenty; the pack is tuned to need less, not more. Install as a **new instance** —
 most launchers skip existing config files when updating in place, which silently
 discards the pack's tuning.
 
@@ -189,32 +189,36 @@ on Minecraft 1.21.11:
 - **Iris** — Sodium 0.8.13+ declares `breaks: iris <=1.10.7`, and 1.10.7 is the
   newest Iris for that game version. Holding Sodium back was not an option:
   Sodium Extra and Chloride both require 0.8.13+.
-- **C2ME** — its `c2me-opts-natives-math` module requires Java 22+, but the
-  runtime for 1.21.11 is Java 21.
 - **Remove Reloading Screen** — its only Fabric builds for 1.21.11 hard-require
   Forge Config API Port.
 
-All three ship normally on 26.x. On Minecraft 26.3, **Chloride** is excluded
-instead: it has no 26.3 build yet (Particle Core, excluded for the same reason in
-1.6.1 and 1.6.2, is back in 1.6.3). The 26.3 pack also carries
-fourteen mods the older packs do not (HUD, particle, sound and loading-time
-optimisations plus their libraries); they are `skipTargets`-ed everywhere else, so
-the 26.2, 26.1.2 and 1.21.11 builds stay byte-for-byte what they were.
-`build.py` resolves each target independently
-and does no cross-mod compatibility checking, so conflicts like these are found
-by launching the game, not by the build.
+Both ship normally on 26.x. On Minecraft 26.3, **Chloride** is excluded instead:
+it has no 26.3 build yet (Particle Core, excluded for the same reason in 1.6.1
+and 1.6.2, is back in 1.6.3). The 26.3 pack also carries twelve mods the older
+packs do not (HUD, particle, sound, redstone, world-generation and loading-time
+optimisations plus their two libraries); they are `skipTargets`-ed everywhere
+else, so adding them never changes an older pack.
+
+C2ME, Very Many Players and ScalableLux are in the manifest but skipped on every
+target since 1.6.2 / 1.5.2 / 1.4.2 / 1.3.2 (see the changelog for the
+measurement); Gnetum and Smart Particles likewise. They stay listed so that
+bringing one back is a one-line, reviewable change.
+
+`build.py` resolves each target independently and does no cross-mod
+compatibility checking, so conflicts like these are found by launching the game
+— which the `client` workflow now does for every pack on every change.
 
 ## Documentation
 
-[`CHANGELOG.md`](CHANGELOG.md) covers the release history, including what the
-1.6.3 / 1.6.2 / 1.6.1 / 1.5.2 / 1.4.2 / 1.3.2 / 1.5.1 / 1.4.1 / 1.3.1 releases fixed and which mods are excluded where.
+[`CHANGELOG.md`](CHANGELOG.md) covers the full release history: what each release
+fixed, what it measured, and which mods are excluded where.
 
 The notes in [`docs/`](docs) are written in Polish:
 
-- [`audit.md`](docs/audit.md) — audit of the 1.3 / 1.4 / 1.5 releases
-- [`comparison.md`](docs/comparison.md) — what changed, and how it compares to Fabulously Optimized
-- [`benchmark.md`](docs/benchmark.md) — the measurement protocol
-- [`tuning.md`](docs/tuning.md) — why each default is what it is
+- [`tuning.md`](docs/tuning.md) — why each default is what it is, JVM arguments, the potato preset
+- [`benchmark.md`](docs/benchmark.md) — the measurement protocol and the benchmark mod
+- [`audit.md`](docs/audit.md) — audit of the 1.3 / 1.4 / 1.5 generation (historical)
+- [`comparison.md`](docs/comparison.md) — that generation against Fabulously Optimized (historical)
 - [`modrinth-description.md`](docs/modrinth-description.md) — the project page copy (English)
 
 ## Contributing
@@ -233,7 +237,11 @@ add features.
 [MIT](LICENSE), covering the build tooling, the manifest, the configs and the
 website.
 
-This repository ships no mod binaries. A built `.mrpack` contains only
+This repository ships no third-party mod binaries. A built `.mrpack` contains
 references to files hosted on Modrinth's CDN, and every mod remains the property
-of its own author under its own licence. Not affiliated with Mojang or
-Microsoft.
+of its own author under its own licence. The only jars in the repository are the
+project's own: Streamline Loader (`overrides-26.3/mods/`, inside the 26.3 pack)
+and the benchmark mod (`bench/jar/`, never inside a pack), both MIT and built by
+CI from the sources next to them. The loader's wordmark uses Pixelify Sans under
+the SIL Open Font License ([`loader/art/OFL.txt`](loader/art/OFL.txt)). Not
+affiliated with Mojang or Microsoft.

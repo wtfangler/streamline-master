@@ -1,5 +1,8 @@
 # Audyt Streamline Master 1.3 / 1.4 / 1.5
 
+> **Dokument historyczny.** Opisuje stan z 28.08.2026 (generacja 1.3 / 1.4 / 1.5). Część
+> ustaleń doprowadziła do wydań 1.3.1–1.5.2; bieżący stan paczki jest w `CHANGELOG.md`.
+
 Podstawa: trzy pliki `.mrpack` wydane 28.08.2026 (1.21.11, 26.1.2, 26.2).
 
 ## Wniosek nadrzędny

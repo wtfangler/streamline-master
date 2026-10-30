@@ -1,5 +1,9 @@
 # Streamline Master 2.0 — co się zmieniło
 
+> **Dokument historyczny.** „2.0” to robocza nazwa z czasu tego porównania — wersji o tym
+> numerze nigdy nie wydano, a opisane tu zmiany trafiły do kolejnych wydań 1.x. Bieżący skład paczki i jej
+> porównanie z Fabulously Optimized: `CHANGELOG.md` i `ci-results/26.3/compare.md`.
+
 Dwa punkty odniesienia: własne wydania 1.3 / 1.4 / 1.5 z 28.08.2026 (audyt w `audit.md`)
 oraz Fabulously Optimized 14.0.0-beta.4 (26.2) i 12.2.2 (1.21.11).
 

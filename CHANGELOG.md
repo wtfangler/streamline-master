@@ -15,8 +15,8 @@ repository — they remain downloadable on Modrinth, unchanged.
 ## 1.6.3 — unreleased
 
 Minecraft 26.3. Picks up the upstream fixes released since 1.6.2 that matter for frame
-rate and memory, and brings Particle Core back. Every other file is the same as in 1.6.2,
-and the other targets are unchanged.
+rate and memory, brings Particle Core back, and adds the pack's own loading screen.
+Every other mod is the same as in 1.6.2.
 
 - **Particle Core is back on 26.3** (0.3.3+fix1). It was left out of 1.6.1 and 1.6.2
   only because there was no 26.3 build; the one published on 2026-10-10 lists 26.3 and
@@ -32,6 +32,11 @@ and the other targets are unchanged.
   Same Fabric Loader requirement (≥0.19.5).
 - **Smooth Scrolling 3.0.0 → 3.0.2.** Bug fixes only: chat position at non-100% chat
   scale, and bundle scrolling moving the creative screen.
+- **Own loading screen: Streamline Loader 1.0.0** (`overrides/mods`, 8 KB, no Fabric API
+  needed). The start-up and resource-reload screen, the world loading screen and the
+  "Saving world" screen get the pack's dark violet, its wordmark and a thin progress line
+  that follows the game's real progress. It only draws while the game is loading, and if
+  anything about it fails the vanilla screen stays.
 - **New tools: `tune.py` / `tune.cmd` and `bench.py`.** The pack cannot carry JVM
   arguments, heap size or the GPU choice, and on a weak laptop those matter more than
   any mod. `tune` writes them into a Prism instance (heap from the machine's RAM, the
@@ -49,10 +54,33 @@ and the other targets are unchanged.
   - Zoomify 2.17.0 adds a new required library, Almanac/Let Me Despawn 1.26.10.2
     move to a new config system, and Fabric API, Fabric Language Kotlin, Ixeris, Ksyxis,
     Async Logger, Fast Noise and Smooth Gui had updates with nothing for performance.
-- **Not yet launched or measured.** The versions were checked against the
-  requirements in each mod's source, not by starting the game. Before release:
-  import into Prism, load a world, check the log, and repeat the 1.6.2 measurement
-  (same scene, 40 samples after 100 s). Only a difference above ~10% counts.
+- **More tools around the pack** (none of them change a `.mrpack`): `tune.py --preset
+  potato` for hardware below a UHD 620; `server/build_server.py`, which turns any pack
+  into a Fabric server with only its server-side mods; `release.py` and a release
+  workflow for Modrinth; and a benchmark mod with `bench_setup.py`, which runs the same
+  fixed route in this pack and in any other and compares the recordings.
+- **Started in CI, not yet measured on real hardware.** The `client` workflow installs
+  the pack like a launcher, generates a world, starts the game, joins and quits; it
+  passes (world ready after 26 s, 327 MB kept after a full GC, software rendering). A
+  server built from the pack starts in 18 s. Before release: repeat the 1.6.2
+  measurement on the UHD 620 laptop, or run the benchmark mod; only a difference above
+  ~10% counts.
+- **Found while testing, not changed by this pack:** when Minecraft 26.3 cannot open an
+  OpenGL window it falls back to its new Vulkan backend, and there Iris 1.11.7 calls
+  OpenGL during start-up and the JVM aborts. Players whose OpenGL works never take that
+  path. In CI, SDL3's GLX path could not open the window with the pack installed while
+  vanilla could; over EGL the pack starts. Linux players on X11 who see "Failed to create
+  window for OpenGL context" can try `SDL_VIDEO_FORCE_EGL=1`.
+
+---
+
+## 1.4.3 — unreleased
+
+Minecraft 26.1.2. One fix: Exordium (2.1.1, the same version as on 1.21.11) is in this
+pack, but its config only shipped with the 1.21.11 pack, so here it ran on its defaults.
+The same `config/exordium.json` now ships with 26.1.2 too (UI redrawn at up to 60 FPS,
+and the key that acknowledges the mod is no longer actively developed). Nothing else
+changes; CI starts the pack and a server built from it.
 
 ---
 

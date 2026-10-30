@@ -2,21 +2,45 @@
 
 Cel: liczba, którą da się powtórzyć i obronić. Bez tego „lepsze od FO" jest opinią.
 
-## Zasada
+## Najprościej: mod benchmarku (Minecraft 26.3)
+
+`bench/` zawiera mod, który robi cały przebieg sam i identycznie w każdej paczce:
+otwiera (przy pierwszym uruchomieniu tworzy) świat „SLM Benchmark” ze stałego ziarna,
+ustawia gracza w trybie obserwatora na stałej wysokości nad spawnem, a potem:
+20 s rozgrzewki, 30 s sceny statycznej i 60 s przelotu po linii prostej z prędkością
+10 bloków/s (budowanie chunków — scena, która decyduje o przycięciach). Czasy każdej
+klatki zapisuje do `slm-bench/*.csv` i sam zamyka grę. Nie działa, dopóki w folderze gry
+nie ma `slm-bench.txt`, więc w normalnej grze nic nie robi.
+
+```
+python bench_setup.py install <instancja SLM> --label SLM
+python bench_setup.py install <instancja FO> --label FO
+```
+
+Uruchom każdą instancję raz (ok. 2 minut, gra zamyka się sama), potem:
+
+```
+python bench_setup.py compare <instancja SLM> <instancja FO>
+python bench_setup.py remove <instancja SLM>
+```
+
+`compare` bierze najnowsze nagranie każdej sceny z obu instancji i liczy je `bench.py`
+(avg FPS, 1% i 0,1% low, przycięcia na minutę, werdykt z progami niżej). Warunki brzegowe
+z tej strony obowiązują tak samo — mod usuwa zmienność trasy i świata, nie temperatury.
+
+## Zasada (pomiar ręczny)
 
 Dwie instancje w Prism Launcherze, ta sama wersja MC, ten sam świat, ten sam sprzęt,
 ta sama sesja systemu. Zmienna jest jedna: paczka.
 
-- `BENCH-15` — Streamline Master 1.5, tak jak jest wydany
-- `BENCH-20` — Streamline Master 2.0
+- `BENCH-SLM` — Streamline Master w bieżącej wersji, tak jak jest wydany
 - `BENCH-FO` — Fabulously Optimized na tę samą wersję MC
+- opcjonalnie `BENCH-PREV` — poprzednia wersja SLM, jeśli pytasz, ile dała ostatnia zmiana
 
-Trzy instancje, nie dwie. `BENCH-15` kontra `BENCH-20` odpowiada na pytanie, ile dały
-poprawki configów; `BENCH-20` kontra `BENCH-FO` na pytanie, czy paczka wygrywa z FO.
-
-Wszystkie trzy instancje dostają identyczne argumenty JVM i identyczne `options.txt`.
-Skopiuj plik z SLM 2.0 do pozostałych dwóch. Bez tego mierzysz różnicę ustawień, a nie
-różnicę paczek — dokładnie tak, jak wyszło przy pierwszym porównaniu (`audit.md`).
+Wszystkie instancje dostają identyczne argumenty JVM (`tune.py`) i identyczne
+`options.txt` — skopiuj plik z instancji SLM do pozostałych. Bez tego mierzysz różnicę
+ustawień, a nie różnicę paczek — dokładnie tak, jak wyszło przy pierwszym porównaniu
+(`audit.md`).
 
 ## Warunki brzegowe
 
@@ -65,7 +89,7 @@ decyduje o tym, czy gra „stoi".
 
 Na Windowsie: nakładka wydajności w Xbox Game Bar (Win+G) albo PresentMon / CapFrameX.
 Obie dają średnią i 1% low bez ingerencji w grę i działają tak samo w obu instancjach.
-Licznik FPS z Chloride jest tylko w SLM 2.0 — nie używaj go do porównania.
+Liczniki FPS w grze (Sodium Extra, Chloride) są tylko w SLM — nie używaj ich do porównania.
 
 Do zapisu:
 

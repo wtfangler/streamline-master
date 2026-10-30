@@ -67,6 +67,7 @@
         <nav class="site-nav" aria-label="Sections">
           <a href="#features">What changes</a>
           <a href="#benchmark">Benchmark</a>
+          <a href="#tested">Testing</a>
           <a href="#inside">Mod list</a>
           <a href="#download">Download</a>
         </nav>
@@ -127,14 +128,14 @@
             </p>
 
             <!-- Styled after the F3 debug screen. Every figure is from the
-                 benchmark below or from the build manifest. -->
+                 benchmark below, the CI results or the build manifest. -->
             <div class="f3" role="group" aria-label="Summary in the style of the Minecraft debug screen">
               <p style="--i: 0"><span>Streamline Master (Fabric)</span></p>
               <p style="--i: 1"><span>Minecraft: 26.3, 26.2, 26.1.2, 1.21.11</span></p>
               <p style="--i: 2">
-                <span>FPS: <b class="f3-good">1571</b> (Fabulously Optimized: 1171)</span>
+                <span>FPS: <b class="f3-good">1571</b> (Fabulously Optimized: 1171, one scene)</span>
               </p>
-              <p style="--i: 3"><span>Gain in the same scene: <b class="f3-good">+34%</b></span></p>
+              <p style="--i: 3"><span>Packs started by CI: <b class="f3-good">4/4</b></span></p>
               <p style="--i: 4"><span>Content added: none</span></p>
             </div>
           </div>
@@ -203,30 +204,31 @@
               <dt>Fewer stutters</dt>
               <dd>
                 <p class="just">
-                  Entity culling stops the GPU drawing what you cannot see, so busy scenes stay
-                  smooth.
+                  Culling stops the GPU drawing entities, block faces and particles you cannot
+                  see, so busy scenes stay smooth.
                 </p>
-                <p class="mods">Entity Culling</p>
+                <p class="mods">Entity Culling, More Culling, Particle Core</p>
               </dd>
             </div>
             <div class="row">
               <dt>Faster startup</dt>
               <dd>
                 <p class="just">
-                  ModernFix defers work the game does eagerly at launch, so both the client and
-                  world loading get out of the way sooner.
+                  ModernFix defers work the game does eagerly at launch; on 26.3 Ksyxis skips
+                  loading spawn chunks nobody is standing in, and logging moves off the main thread.
                 </p>
-                <p class="mods">ModernFix</p>
+                <p class="mods">ModernFix, Ksyxis, Async Logger</p>
               </dd>
             </div>
             <div class="row">
               <dt>Better on servers</dt>
               <dd>
                 <p class="just">
-                  Krypton and Very Many Players reduce the cost of crowded worlds, so a busy spawn
-                  stops dragging the whole client down.
+                  Krypton trims network overhead; Lithium, Clumps and Alternate Current cut what a
+                  server spends per tick. The repository turns any of the packs into a server
+                  with only its server-side mods.
                 </p>
-                <p class="mods">Krypton, Very Many Players</p>
+                <p class="mods">Krypton, Lithium, Clumps, Alternate Current</p>
               </dd>
             </div>
             <div class="row">
@@ -310,11 +312,88 @@
           </div>
 
           <p class="bench-note just">
-            <strong>+34%</strong> in this scene. Measured on a Ryzen&nbsp;7 5700X with a Radeon
-            RX&nbsp;6600, deliberately headroom-rich hardware, so the difference reflects CPU and
-            render overhead rather than a GPU bottleneck. On an integrated GPU the absolute numbers
-            are far lower and the practical win shows up more as frame consistency than as peak FPS.
+            <strong>+34%</strong> in this one scene, on a Ryzen&nbsp;7 5700X with a Radeon
+            RX&nbsp;6600: headroom-rich hardware, so the difference reflects CPU and render
+            overhead rather than a GPU bottleneck. It is one viewpoint, not an average.
           </p>
+          <p class="bench-note just">
+            On the hardware the pack is tuned for, an i5-8350U with Intel UHD&nbsp;620, the
+            honest result is a tie: the 26.3 build averaged about 135&nbsp;FPS, the same as a
+            Fabulously-Optimized-style control with default configs, after five mods that made it
+            about 10% slower were taken out. On a 15&nbsp;W laptop the useful gains are steadier
+            frames, less memory and settings that suit the machine, so that is what the pack
+            measures, and why it ships a benchmark you can run in any pack on your own hardware.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ TESTING AND TOOLS ============ -->
+      <section class="block" id="tested">
+        <div class="wrap split">
+          <header class="split-head">
+            <h2>Started, measured, reproducible</h2>
+            <p class="just">
+              A modpack is a set of claims about other people's mods. These are the checks that
+              make the claims something you can verify instead of trust.
+            </p>
+          </header>
+
+          <dl class="rows">
+            <div class="row">
+              <dt>Every pack is started</dt>
+              <dd>
+                <p class="just">
+                  On every change, CI installs each pack the way a launcher does, with every mod
+                  checked against its hash, starts the real game, joins a world and quits, for
+                  all four game versions. It then builds a server from the same pack and starts
+                  that too. Logs and screenshots are committed next to the code.
+                </p>
+              </dd>
+            </div>
+            <div class="row">
+              <dt>Rebuilds byte for byte</dt>
+              <dd>
+                <p class="just">
+                  Lockfiles pin the version and SHA-512 of every file. Rebuilding from them gives
+                  the same <code>.mrpack</code> on any operating system, checked against committed
+                  hashes on every push.
+                </p>
+              </dd>
+            </div>
+            <div class="row">
+              <dt>A benchmark you can run</dt>
+              <dd>
+                <p class="just">
+                  A small mod drives a fixed route through a fixed-seed world and records every
+                  frame. Drop it into this pack and into any other, and one command compares
+                  average FPS, 1% lows and stutters per minute, with a noise threshold.
+                </p>
+                <p class="mods">bench_setup.py, bench.py</p>
+              </dd>
+            </div>
+            <div class="row">
+              <dt>What a modpack cannot carry</dt>
+              <dd>
+                <p class="just">
+                  JVM arguments, heap size and which GPU Windows gives the game decide more on a
+                  weak laptop than any mod. One script sets them in a Prism instance, and a
+                  potato preset lowers the graphics further for hardware below a UHD&nbsp;620.
+                </p>
+                <p class="mods">tune.py, tune.cmd</p>
+              </dd>
+            </div>
+            <div class="row">
+              <dt>Its own loading screen</dt>
+              <dd>
+                <p class="just">
+                  On 26.3 the start-up, world loading and saving screens carry the pack's own
+                  wordmark and a progress line that follows the game's real progress. It draws only
+                  while the game loads, so it costs nothing in play.
+                </p>
+                <p class="mods">Streamline Loader</p>
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 
@@ -325,49 +404,53 @@
             <h2>Every mod has a job</h2>
             <p class="just">
               Each build resolves its own mod versions against Modrinth, so nothing is shimmed
-              across game versions. The groups below describe the Minecraft&nbsp;26.2 build.
+              across game versions. The groups below describe the Minecraft&nbsp;26.3 build; a tag
+              marks a mod that only some versions carry.
             </p>
             <p class="just aside-note">
-              Minecraft 26.3 adds Entity View Distance, Ksyxis, Alternate Current, Fast Noise,
-              Clumps, AudioThrottle, Raise Sound Limit Simplified, Async Logger, Force Close World
-              Loading Screen and Quick Pack. It leaves out Chloride, which has no 26.3 build
-              yet. No build includes C2ME, Very Many Players or ScalableLux any more, and
-              26.3 also leaves out Gnetum and Smart Particles: on a laptop with an integrated GPU
-              the 26.3 build with them was about 10% slower and dipped below the build without them.
+              No build includes C2ME, Very Many Players, ScalableLux, Gnetum or Smart Particles
+              any more: on a laptop with an integrated GPU the 26.3 build with them was about 10%
+              slower and dipped below the build without them.
             </p>
           </header>
 
           <dl class="rows groups">
             <div class="row">
-              <dt>Rendering <span class="count">9 mods</span></dt>
+              <dt>Rendering <span class="count">8 mods</span></dt>
               <dd>
                 <p class="just">
                   The bulk of the win. Sodium replaces the chunk renderer; the rest build on it.
                 </p>
                 <p class="mods">
-                  Sodium, Sodium Extra, Reese's Sodium Options, Chloride, Iris
-                  <span class="tag">26.x</span>, ImmediatelyFast, Better Block Entities, Shadowy
-                  Path Blocks, Continuity, Exordium <span class="tag">1.21.11</span>
+                  Sodium, Sodium Extra, Reese's Sodium Options, Iris <span class="tag">26.x</span>,
+                  ImmediatelyFast, Better Block Entities, Shadowy Path Blocks, Continuity, Chloride
+                  <span class="tag">26.2 and older</span>, Exordium
+                  <span class="tag">26.1.2, 1.21.11</span>
                 </p>
               </dd>
             </div>
             <div class="row">
-              <dt>Culling <span class="count">3 mods</span></dt>
+              <dt>Culling <span class="count">4 mods</span></dt>
               <dd>
                 <p class="just">
                   Stops the GPU drawing entities, blocks and particles that are out of sight.
                 </p>
-                <p class="mods">Entity Culling, More Culling, Particle Core</p>
+                <p class="mods">
+                  Entity Culling, More Culling, Particle Core, Entity View Distance
+                  <span class="tag">26.3</span>
+                </p>
               </dd>
             </div>
             <div class="row">
-              <dt>Game logic <span class="count">4 mods</span></dt>
+              <dt>Game logic <span class="count">7 mods</span></dt>
               <dd>
                 <p class="just">
-                  Cheaper ticks and leaner mob and entity logic.
+                  Cheaper ticks, faster redstone and world generation, leaner mob and item logic.
                 </p>
                 <p class="mods">
-                  Lithium, BadOptimizations, Let Me Despawn, ThreadTweak <span class="tag">1.21.11</span>
+                  Lithium, BadOptimizations, Let Me Despawn, Alternate Current, Fast Noise, Clumps,
+                  Ksyxis <span class="tag">last four 26.3</span>, ThreadTweak
+                  <span class="tag">1.21.11</span>
                 </p>
               </dd>
             </div>
@@ -399,14 +482,17 @@
               </dd>
             </div>
             <div class="row">
-              <dt>Quality of life <span class="count">6 mods</span></dt>
+              <dt>Quality of life <span class="count">11 mods</span></dt>
               <dd>
                 <p class="just">
-                  Small friction removed. Nothing here touches gameplay or world data.
+                  Small friction removed, quicker start and exit, sound handled off the hot path.
+                  Nothing here touches gameplay or world data.
                 </p>
                 <p class="mods">
-                  FastQuit, Debugify, Language Reload, Zoomify, Remove Reloading Screen
-                  <span class="tag">26.x</span>, Main Menu Credits
+                  FastQuit, Debugify, Language Reload, Zoomify, Main Menu Credits, Remove Reloading
+                  Screen <span class="tag">26.x</span>, AudioThrottle, Raise Sound Limit
+                  Simplified, Async Logger, Force Close World Loading Screen, Quick Pack
+                  <span class="tag">last five 26.3</span>
                 </p>
               </dd>
             </div>
@@ -433,8 +519,8 @@
 
         <div class="wrap">
           <p class="inside-note just">
-            Plus 7 shared libraries (Fabric API, Mod Menu, Cloth Config, YACL and friends) that the
-            mods above depend on. The full resolved list with exact versions and hashes ships inside
+            Plus shared libraries (Fabric API, Mod Menu, Cloth Config, YACL and friends: 7, and 9
+            on 26.3) that the mods above depend on, and on 26.3 the pack's own Streamline Loader. The full resolved list with exact versions and hashes ships inside
             every&nbsp;<code>.mrpack</code>.
           </p>
         </div>
@@ -606,8 +692,8 @@
               <h3>Before you install</h3>
               <ul class="req">
                 <li>
-                  <strong>Java 21 or newer.</strong> Required by Minecraft 1.20.5+. Modern
-                  launchers install it for you.
+                  <strong>Java 25 for 26.x, Java 21 for 1.21.11.</strong> The Modrinth App and
+                  Prism install the right one for you.
                 </li>
                 <li>
                   <strong>3–4&nbsp;GB allocated RAM.</strong> More is not better here; the pack is
@@ -628,8 +714,8 @@
                 >
               </p>
               <p class="panel-note">
-                Every pack is built from an open manifest and rebuilds byte-for-byte from its
-                lockfile.
+                Every pack is built from an open manifest, rebuilds byte-for-byte from its lockfile,
+                and is started by CI before it is published.
                 <a
                   href="https://github.com/wtfangler/streamline-master"
                   target="_blank"
@@ -654,6 +740,7 @@
           <a href="#download">Downloads</a>
           <a href="#inside">Mod list</a>
           <a href="#benchmark">Benchmark</a>
+          <a href="#tested">Testing</a>
         </nav>
 
         <p class="footer-legal">

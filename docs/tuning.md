@@ -20,7 +20,7 @@ Prism — przy wyjściu nadpisuje `instance.cfg`. Aplikacji Modrinth skrypt nie 
 Argumenty w `tune.py` są tymi samymi co poniżej, bez `-Xms`/`-Xmx` — Prism podaje
 je sam z pól pamięci, a podwójne wpisanie zostawia kolejności argumentów, który wygra.
 
-Java 21 lub nowsza jest wymagana dla 1.20.5+.
+Java: **25** dla Minecrafta 26.x, **21** dla 1.21.11. Aplikacja Modrinth i Prism dobierają ją same.
 
 16 GB RAM w laptopie:
 
@@ -42,8 +42,12 @@ bezpośrednio od Intela, nie ten z Windows Update ani z HP.
 
 ## Ustawienia okna
 
-- Pełny ekran, nie borderless. Chloride ma borderless włączalny — na Intelu zostaw
-  wyłączony poza sytuacjami, gdy potrzebujesz szybkiego alt-tab.
+- Paczka startuje w pełnym ekranie bez trybu wyłącznego (`exclusiveFullscreen:false`,
+  domyślne ustawienie gry) i na tym ustawieniu robione były pomiary z CHANGELOG. Tryb
+  wyłączny może na Intelu oszczędzić przejście przez kompozytor okien, ale nie był mierzony —
+  włącz go w ustawieniach wideo i sprawdź `bench_setup.py`, zanim go zostawisz.
+- Chloride (26.2 i starsze) ma swój przełącznik borderless — na Intelu zostaw go
+  wyłączonego, chyba że potrzebujesz szybkiego alt-tab.
 - Jeżeli po wszystkim nadal jest za wolno, zejdź z rozdzielczości okna do 1280×720.
   Fill rate jest tu wąskim gardłem i to działa mocniej niż jakikolwiek mod.
 
@@ -77,20 +81,20 @@ pliku grozi resetem ustawień:
 Zostaw wyłączone: **Fast Models** (dubluje Better Block Entities) i **Leaves Culling**
 (dubluje MoreCulling).
 
-## Powrót do ustawień z 1.5
+## Powrót do cięższych ustawień z 1.5
 
-Domyślne `options.txt` w 2.0 jest jeden do jednego z FO, żeby porównanie miało sens.
-Wersja 1.5 szła na cięższych ustawieniach — jeżeli po pomiarze chcesz je z powrotem,
-oto one, w kolejności od najdroższej:
+Obecne `options.txt` jest lżejsze niż w wydaniach 1.3 / 1.4 / 1.5 z 28.08.2026 (audyt
+w `audit.md`). Jeżeli po pomiarze chcesz któreś z tamtych ustawień z powrotem, oto one,
+w kolejności od najdroższego:
 
-| Klucz | 2.0 | 1.5 | Koszt amortyzuje |
+| Klucz | teraz | 1.5 | Koszt amortyzuje |
 |---|---|---|---|
-| `renderDistance` | 8 | 12 | MoreCulling, Entity Culling, Chloride, C2ME |
+| `renderDistance` | 8 | 12 | MoreCulling, Entity Culling, Chloride / Entity View Distance |
 | `renderClouds` / `cloudRange` | "fast" / 32 | "true" / 128 | MoreCulling `cloudCulling` |
 | `particles` | 1 | 0 | Particle Core |
 | `mipmapLevels` | 2 | 4 | nic — to czysty koszt na iGPU |
-| `maxAnisotropyBit` | 0 | 2 | nic — to czysty koszt na iGPU |
-| `entityDistanceScaling` | 0.75 | 1.0 | Chloride Entity Distance Culling |
+| `maxAnisotropyBit` | 1 | 2 | nic — to czysty koszt na iGPU (1 to minimum gry) |
+| `entityDistanceScaling` | 0.75 | 1.0 | Chloride Entity Distance Culling / Entity View Distance |
 | `entityShadows` | false | true | nic |
 | `biomeBlendRadius` | 1 | 2 | nic — koszt przy budowie chunka |
 
@@ -104,7 +108,7 @@ amortyzować i to od nich zacząłbym rezygnować.
 | `maxFps:60` | limit klatek; na 15 W CPU stabilizuje temperaturę i podnosi 1% low |
 | `simulationDistance:4` | jeszcze mniejszy promień tickowania niż domyślne 5 |
 | `mipmapLevels:0` | ostrzejsze, ale migoczące tekstury w oddali |
-| Exordium `maxFps:30` | HUD i ekwipunek odświeżane 30 razy na sekundę zamiast 60 |
+| Exordium `maxFps:30` (26.1.2, 1.21.11) | HUD i ekwipunek odświeżane 30 razy na sekundę zamiast 60 |
 
 `simulationDistance` odciąża wątek serwera zintegrowanego — czyli to, co czuć w grze
 ze znajomymi przez Essential, gdzie to Twój laptop jest hostem. Paczka wysyła 5,
@@ -171,23 +175,17 @@ oficjalny ModernFix (`nmDcB62a`) kończy buildy fabricowe na 26.1.2, a fork mVUS
 - **Nvidium** — tylko NVIDIA.
 - **AsyncParticles** — pokrywa się z Particle Core, renderowanie cząstek po GPU jest
   ryzykowne na sterownikach Intela.
-- **ThreadTweak** i **Exordium** — w paczce, ale tylko na 1.21.11; na 26.x nie mają
-  buildów. Oznaczone w manifeście jako `optional`, więc build na 26.x je pomija zamiast
-  się wywalić.
+- **ThreadTweak** (tylko 1.21.11) i **Exordium** (26.1.2 i 1.21.11) — w paczce tam, gdzie
+  mają buildy; nowsze wersje gry ich nie mają. Oznaczone w manifeście jako `optional`,
+  więc build bez nich je pomija zamiast się wywalić.
 
-## C2ME
+## C2ME, Very Many Players, ScalableLux
 
-Tylko na 26.x. Na 1.21.11 każdy build C2ME (release, beta, alpha) wymaga w module
-`c2me-opts-natives-math` Javy 22 lub nowszej, a instancja 1.21.11 w aplikacji Modrinth
-dostaje Javę 21 — Fabric Loader przerywa start. W manifeście `c2me-fabric` ma
-`skipTargets: ["1.21.11"]`. Kto na 1.21.11 ustawi ręcznie runtime Java 22+, może dorzucić
-mod z osobna.
+Od 1.6.2 / 1.5.2 / 1.4.2 / 1.3.2 nie ma ich w żadnej paczce. Na 26.3 build z nimi był na
+laptopie z UHD 620 o ok. 10% wolniejszy i miał głębsze spadki (szczegóły w CHANGELOG);
+na 26.2 kontrolowane A/B dało sprzeczne wyniki, więc tam odpadły dla spójności i dlatego,
+że C2ME i VMP są wciąż w wersjach przedpremierowych. W manifeście zostają z `skipTargets`
+na wszystkich wersjach — powrót to jedna linijka, ale tylko z pomiarem, który go uzasadni.
 
-Config `c2me.toml` leży w `overrides-26.2/` i `overrides-26.1.2/` (nie w `overrides/`),
-z jedną zmianą względem 1.5: `gcFreeChunkSerializer` wraca na `false`. Dokumentacja moda
-opisuje tę opcję jako eksperymentalną zmianę sposobu zapisu chunków, wymagającą regularnych
-backupów świata. W paczce, którą pobierają obcy ludzie, to nie jest ustawienie, które można
-zostawić włączone.
-
-`maxConcurrentChunkLoads = 2` zostaje bez zmian — na czterech rdzeniach throttling
-równoległych ładowań realnie zmniejsza przycięcia przy eksploracji.
+Na 1.21.11 C2ME i tak nie dałoby się użyć: moduł `c2me-opts-natives-math` wymaga Javy 22+,
+a 1.21.11 działa na Javie 21.
