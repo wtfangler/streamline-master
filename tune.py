@@ -7,6 +7,9 @@ decide more than any mod does (see docs/tuning.md). This script writes them:
 * Prism Launcher instance (instance.cfg): heap size from the machine's RAM,
   and the G1 arguments from docs/tuning.md. A backup of instance.cfg is
   written next to it first.
+* options.txt, with --preset potato: lower view and simulation distance, no
+  mipmaps, a 60 FPS cap and the cheapest particles and clouds, for hardware
+  below the UHD 620 the defaults are tuned on. Works for the Modrinth App too.
 * Windows, with --gpu: marks the instance's java.exe / javaw.exe as
   "High performance" in Settings > Display > Graphics, the same registry value
   that page writes. On a laptop with a second GPU this is the difference
@@ -37,6 +40,20 @@ G1_ARGS = (
     "-XX:-OmitStackTraceInFastThrow"
 )
 MIN_HEAP_MB = 1024
+# docs/tuning.md, "Opcjonalne obniżenie kosztu", plus the cheapest visible settings.
+# For hardware below an UHD 620; unmeasured as a set, so it is opt-in.
+PRESETS = {
+    "potato": {
+        "renderDistance": "6",
+        "simulationDistance": "4",
+        "mipmapLevels": "0",
+        "maxFps": "60",
+        "biomeBlendRadius": "0",
+        "entityDistanceScaling": "0.5",
+        "particles": "2",
+        "renderClouds": '"false"',
+    },
+}
 GPU_KEY = r"Software\Microsoft\DirectX\UserGpuPreferences"
 GPU_HIGH = "GpuPreference=2;"
 
@@ -177,6 +194,30 @@ def set_gpu_preference(exes):
             winreg.SetValueEx(k, exe, 0, winreg.REG_SZ, GPU_HIGH)
 
 
+def find_options(path):
+    path = os.path.abspath(path)
+    for sub in ("minecraft", ".minecraft", ""):
+        f = os.path.join(path, sub, "options.txt")
+        if os.path.isfile(f):
+            return f
+    return None
+
+
+def read_options(path):
+    with open(path, encoding="utf-8") as f:
+        return f.read().splitlines()
+
+
+def set_options(lines, values):
+    out, pending = [], dict(values)
+    for line in lines:
+        k, sep, _ = line.partition(":")
+        if sep and k in pending:
+            line = "%s:%s" % (k, pending.pop(k))
+        out.append(line)
+    return out + ["%s:%s" % kv for kv in pending.items()]
+
+
 def print_manual(heap):
     print("Modrinth App: no instance.cfg here, so nothing is written.")
     print("Set it by hand in the profile: Settings > Java and memory.")
@@ -190,6 +231,7 @@ def main():
     ap.add_argument("instance", help="Prism instance folder (the one holding instance.cfg) or its .minecraft")
     ap.add_argument("--heap", type=int, help="max heap in MB instead of the RAM-based default")
     ap.add_argument("--gpu", action="store_true", help="Windows: run this instance's Java on the high-performance GPU")
+    ap.add_argument("--preset", choices=sorted(PRESETS), help="also lower options.txt for weaker hardware (backup kept)")
     ap.add_argument("--yes", action="store_true", help="apply without asking")
     ap.add_argument("--dry-run", action="store_true", help="show what would change and stop")
     args = ap.parse_args()
@@ -206,23 +248,39 @@ def main():
         print("         above 6 GB: on four cores a larger heap means longer GC pauses, not fewer")
     print("")
 
+    opt_path, opt_lines, opt_changes = None, [], []
+    if args.preset:
+        opt_path = find_options(args.instance)
+        if opt_path is None:
+            print("--preset: no options.txt yet; start the instance once, then run this again")
+        else:
+            opt_lines = read_options(opt_path)
+            current = {}
+            for line in opt_lines:
+                k, sep, v = line.partition(":")
+                if sep:
+                    current[k] = v
+            opt_changes = [(k, current.get(k), v) for k, v in PRESETS[args.preset].items() if current.get(k) != v]
+
     cfg = find_instance_cfg(args.instance)
     if cfg is None:
         print_manual(heap)
-        return 0
+        if not opt_changes:
+            return 0
+        print("")
 
-    lines = read_ini(cfg)
+    lines = read_ini(cfg) if cfg else []
     values = {
         "OverrideMemory": "true",
         "MinMemAlloc": str(MIN_HEAP_MB),
         "MaxMemAlloc": str(heap),
         "OverrideJavaArgs": "true",
         "JvmArgs": G1_ARGS,
-    }
+    } if cfg else {}
     changes = [(k, get_key(lines, k), v) for k, v in values.items() if get_key(lines, k) != v]
 
     exes = []
-    if args.gpu:
+    if args.gpu and cfg:
         if sys.platform != "win32":
             print("--gpu only applies on Windows, skipped")
         else:
@@ -232,16 +290,21 @@ def main():
                 print("--gpu: no Java path in instance.cfg or prismlauncher.cfg; launch the")
                 print("       instance once so Prism picks one, then run this again")
 
-    print("instance %s" % cfg)
-    if not changes and not exes:
+    if not changes and not exes and not opt_changes:
         print("already tuned, nothing to change")
         return 0
+    if changes or exes:
+        print("instance %s" % cfg)
     for k, old, new in changes:
         print("  %-17s %s" % (k, new))
         if old is not None:
             print("  %-17s (was %s)" % ("", old))
     for exe in exes:
         print("  GPU high perf.    %s" % exe)
+    if opt_changes:
+        print("options  %s (preset %s)" % (opt_path, args.preset))
+        for k, old, new in opt_changes:
+            print("  %-22s %s%s" % (k, new, "" if old is None else "   (was %s)" % old))
     print("")
 
     if args.dry_run:
@@ -261,6 +324,11 @@ def main():
         with open(cfg, "w", encoding="utf-8", newline="\n") as f:
             f.write("\n".join(set_keys(lines, values)) + "\n")
         print("written, backup at %s" % backup)
+    if opt_changes:
+        shutil.copy2(opt_path, opt_path + ".bak")
+        with open(opt_path, "w", encoding="utf-8", newline="\n") as f:
+            f.write("\n".join(set_options(opt_lines, PRESETS[args.preset])) + "\n")
+        print("options.txt written, backup at %s.bak" % opt_path)
     if exes:
         set_gpu_preference(exes)
         print("GPU preference set; it applies from the next launch")

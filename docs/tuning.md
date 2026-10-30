@@ -47,7 +47,23 @@ bezpośrednio od Intela, nie ten z Windows Update ani z HP.
 - Jeżeli po wszystkim nadal jest za wolno, zejdź z rozdzielczości okna do 1280×720.
   Fill rate jest tu wąskim gardłem i to działa mocniej niż jakikolwiek mod.
 
-## Chloride
+## Minecraft 26.3
+
+Na 26.3 nie ma Chloride (brak buildu na tę wersję), więc sekcja niżej i przełącznik
+borderless z „Ustawień okna” go nie dotyczą. Jego role przejmują inne mody:
+
+- **Entity View Distance** zamiast Entity Distance Culling z Chloride — encje poza
+  dystansem nie są renderowane. Paczka nie wysyła configu, działa na domyślnych.
+- **Particle Core** (wrócił w 1.6.3) — culling cząstek i tańsze ich renderowanie,
+  na domyślnych ustawieniach, tak jak na 26.2.
+- **Licznik FPS** jest tylko jeden, z Sodium Extra.
+
+Słabszy sprzęt niż UHD 620: `python tune.py <instancja> --preset potato` obniża
+`options.txt` według tabeli „Opcjonalne obniżenie kosztu” niżej (plus zasięg 6, chmury
+i cząstki na minimum), z kopią `options.txt.bak`. Działa też dla aplikacji Modrinth.
+Ten zestaw nie był mierzony jako całość — zmierz go `bench.py`, zanim uznasz, że pomaga.
+
+## Chloride (26.2, 26.1.2, 1.21.11)
 
 Dwie rzeczy do włączenia ręcznie w menu wideo (zakładki Chloride), bo paczka nie wysyła
 configu tego moda — nazwa i schemat pliku nie są udokumentowane, a wysłanie zgadywanego

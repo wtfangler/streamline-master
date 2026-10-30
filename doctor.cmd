@@ -34,10 +34,10 @@ set /p INST=Sciezka do folderu:
 :haveinst
 if "%INST%"=="" goto :noinst
 
-set "MC=26.2"
+set "MC=26.3"
 echo.
-set /p MC=Wersja Minecrafta [26.2]: 
-if "%MC%"=="" set "MC=26.2"
+set /p MC=Wersja Minecrafta [26.3]: 
+if "%MC%"=="" set "MC=26.3"
 
 set "PACK=dist\Streamline Master %MC%.mrpack"
 if not exist "%PACK%" goto :nopack
