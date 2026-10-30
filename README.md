@@ -22,7 +22,7 @@ These are the targets this repository builds:
 
 | Minecraft | Pack | Files |
 | --------- | ---- | ----- |
-| 26.3      | 1.6.3 | 52 |
+| 26.3      | 1.6.3 | 51 |
 | 26.2      | 1.5.2 | 41 |
 | 26.1.2    | 1.4.3 | 42 |
 | 1.21.11   | 1.3.2 | 41 |
@@ -192,8 +192,10 @@ on Minecraft 1.21.11:
 - **Remove Reloading Screen** — its only Fabric builds for 1.21.11 hard-require
   Forge Config API Port.
 
-Both ship normally on 26.x. On Minecraft 26.3, **Chloride** is excluded instead:
-it has no 26.3 build yet (Particle Core, excluded for the same reason in 1.6.1
+Both ship normally on 26.2 and 26.1.2. On Minecraft 26.3, **Chloride** is excluded:
+it has no 26.3 build yet. **Remove Reloading Screen** is left out there too: its 26.3
+build is an alpha, its settings cannot be changed without Forge Config API Port, and
+it hides the start-up screen the pack's own loader draws on (Particle Core, excluded for the same reason in 1.6.1
 and 1.6.2, is back in 1.6.3). The 26.3 pack also carries twelve mods the older
 packs do not (HUD, particle, sound, redstone, world-generation and loading-time
 optimisations plus their two libraries); they are `skipTargets`-ed everywhere

@@ -41,7 +41,7 @@ Krypton · Packet Fixer · Fast IP Ping
 
 ## Client behaviour
 
-Dynamic FPS · Ixeris · FastQuit · Remove Reloading Screen (26.x) · Debugify ·
+Dynamic FPS · Ixeris · FastQuit · Remove Reloading Screen (26.2, 26.1.2) · Debugify ·
 Language Reload · Zoomify · Mod Menu · Main Menu Credits · AudioThrottle ·
 Raise Sound Limit Simplified · Async Logger · Force Close World Loading Screen ·
 Quick Pack (the last five on 26.3)
@@ -85,7 +85,8 @@ Separate builds for Minecraft 26.3, 26.2, 26.1.2 and 1.21.11. Each build resolve
 mod versions, so nothing is shimmed across game versions. Where a mod cannot be
 reconciled with a game version it is left out of that build only:
 
-- **26.3:** no Chloride (no build for 26.3 yet).
+- **26.3:** no Chloride (no build for 26.3 yet) and no Remove Reloading Screen (it would
+  hide the pack's own start-up screen, and its 26.3 build is an alpha).
 - **1.21.11:** no Iris (Sodium/Iris version clash) and no Remove Reloading Screen (its
   only 1.21.11 build hard-requires Forge Config API Port).
 

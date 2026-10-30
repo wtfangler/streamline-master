@@ -16,7 +16,7 @@ repository — they remain downloadable on Modrinth, unchanged.
 
 Minecraft 26.3. Picks up the upstream fixes released since 1.6.2 that matter for frame
 rate and memory, brings Particle Core back, and adds the pack's own loading screen.
-Every other mod is the same as in 1.6.2.
+One mod, Remove Reloading Screen, leaves; every other mod is the same as in 1.6.2.
 
 - **Particle Core is back on 26.3** (0.3.3+fix1). It was left out of 1.6.1 and 1.6.2
   only because there was no 26.3 build; the one published on 2026-10-10 lists 26.3 and
@@ -37,6 +37,11 @@ Every other mod is the same as in 1.6.2.
   "Saving world" screen get the pack's dark violet, its wordmark and a thin progress line
   that follows the game's real progress. It only draws while the game is loading, and if
   anything about it fails the vanilla screen stays.
+- **Remove Reloading Screen is out on 26.3.** With it installed the start-up screen never
+  appears at all (CI: the harness sees the loading overlay in vanilla 26.3, never with the
+  pack), so the loader's start-up screen could not show. Its 26.3 build is an alpha, and
+  without Forge Config API Port it runs on fixed defaults (`FallbackConfigImpl`). It hides
+  loading rather than shortening it. Still in the 26.2 and 26.1.2 packs.
 - **New tools: `tune.py` / `tune.cmd` and `bench.py`.** The pack cannot carry JVM
   arguments, heap size or the GPU choice, and on a weak laptop those matter more than
   any mod. `tune` writes them into a Prism instance (heap from the machine's RAM, the
