@@ -59,6 +59,10 @@ def main():
             va = [r["metrics"][key] for r in ra if key in r["metrics"]]
             vb = [r["metrics"][key] for r in rb if key in r["metrics"]]
             if not va or not vb:
+                # Say so rather than drop the row: a missing metric is a finding too (for
+                # start-up it means the harness never saw the loading overlay in that pack).
+                lines.append("| %s | %s | %s | | not measured |" % (
+                    label, "%d/%d runs" % (len(va), len(ra)), "%d/%d runs" % (len(vb), len(rb))))
                 continue
             ma, mb = statistics.median(va), statistics.median(vb)
             diff = 100.0 * (ma - mb) / mb if mb else 0.0
