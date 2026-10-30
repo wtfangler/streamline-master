@@ -109,12 +109,24 @@ jobs:
           { head -n 3 SHA256SUMS; (cd out && sha256sum -b *.mrpack); } > SHA256SUMS.new && mv SHA256SUMS.new SHA256SUMS
           python validate.py "out/*.mrpack"
 
+      - name: OpenGL as the runner offers it
+        run: |
+          mkdir -p "ci-results/$MC"
+          xvfb-run -a -s "-screen 0 1280x720x24" glxinfo -B > "ci-results/$MC/gl.txt" 2>&1 || true
+          MESA_GL_VERSION_OVERRIDE=4.6 MESA_GLSL_VERSION_OVERRIDE=460 \
+            xvfb-run -a -s "-screen 0 1280x720x24" glxinfo -B >> "ci-results/$MC/gl.txt" 2>&1 || true
+          grep -iE "version|renderer" "ci-results/$MC/gl.txt" || true
+
       - name: Start the client
         id: run
         continue-on-error: true
         env:
           LIBGL_ALWAYS_SOFTWARE: "1"
           SDL_VIDEO_DRIVER: x11
+          # 26.3 asks for a newer OpenGL context than llvmpipe advertises by default; without
+          # this it falls back to Vulkan, where Iris 1.11.7 calls OpenGL and aborts the JVM.
+          MESA_GL_VERSION_OVERRIDE: "4.6"
+          MESA_GLSL_VERSION_OVERRIDE: "460"
           # No sound card on the runner: OpenAL's null device instead of a failed open.
           ALSOFT_DRIVERS: "null"
         run: |
@@ -164,6 +176,8 @@ jobs:
       MC: "26.3"
       LIBGL_ALWAYS_SOFTWARE: "1"
       SDL_VIDEO_DRIVER: x11
+      MESA_GL_VERSION_OVERRIDE: "4.6"
+      MESA_GLSL_VERSION_OVERRIDE: "460"
       ALSOFT_DRIVERS: "null"
     steps:
       - uses: actions/checkout@v4
