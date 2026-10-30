@@ -8,7 +8,8 @@ these are CPU-side costs (loading, world join, memory), not frame rate.
 
 | metric | Streamline Master | Fabulously Optimized | diff | verdict |
 | --- | --- | --- | --- | --- |
-| start to playable world (s) | 27.59 | 32.00 | -13.8% | tie (within run-to-run spread 5.35) |
-| heap after GC in world (MB) | 320.26 | 372.91 | -14.1% | Streamline Master lower |
+| start to main menu (s) | 22.60 | 29.89 | -24.4% | Streamline Master lower |
+| start to playable world (s) | 36.78 | 44.73 | -17.8% | Streamline Master lower |
+| heap after GC in world (MB) | 308.57 | 364.12 | -15.3% | Streamline Master lower |
 
 Fabulously Optimized build used: fabulously-optimized 15.0.0-beta.2 (beta, 2026-10-20), 48 files
