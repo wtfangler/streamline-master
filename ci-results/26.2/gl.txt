@@ -15,11 +15,11 @@ Extended renderer info (GLX_MESA_query_renderer):
     Max GLES[23] profile version: 3.2
 Memory info (GL_ATI_meminfo):
     VBO free memory - total: 0 MB, largest block: 0 MB
-    VBO free aux. memory - total: 14846 MB, largest block: 14846 MB
+    VBO free aux. memory - total: 14702 MB, largest block: 14702 MB
     Texture free memory - total: 0 MB, largest block: 0 MB
-    Texture free aux. memory - total: 14846 MB, largest block: 14846 MB
+    Texture free aux. memory - total: 14702 MB, largest block: 14702 MB
     Renderbuffer free memory - total: 0 MB, largest block: 0 MB
-    Renderbuffer free aux. memory - total: 14846 MB, largest block: 14846 MB
+    Renderbuffer free aux. memory - total: 14702 MB, largest block: 14702 MB
 Memory info (GL_NVX_gpu_memory_info):
     Dedicated video memory: 0 MB
     Total available memory: 15983 MB
@@ -55,16 +55,16 @@ Extended renderer info (GLX_MESA_query_renderer):
     Max GLES1 profile version: 1.1
     Max GLES[23] profile version: 3.2
 Memory info (GL_ATI_meminfo):
-    VBO free memory - total: 31 MB, largest block: 31 MB
-    VBO free aux. memory - total: 14834 MB, largest block: 14834 MB
-    Texture free memory - total: 31 MB, largest block: 31 MB
-    Texture free aux. memory - total: 14834 MB, largest block: 14834 MB
-    Renderbuffer free memory - total: 31 MB, largest block: 31 MB
-    Renderbuffer free aux. memory - total: 14834 MB, largest block: 14834 MB
+    VBO free memory - total: 0 MB, largest block: 0 MB
+    VBO free aux. memory - total: 14686 MB, largest block: 14686 MB
+    Texture free memory - total: 0 MB, largest block: 0 MB
+    Texture free aux. memory - total: 14686 MB, largest block: 14686 MB
+    Renderbuffer free memory - total: 0 MB, largest block: 0 MB
+    Renderbuffer free aux. memory - total: 14686 MB, largest block: 14686 MB
 Memory info (GL_NVX_gpu_memory_info):
-    Dedicated video memory: 849715 MB
-    Total available memory: 865699 MB
-    Currently available dedicated video memory: 31 MB
+    Dedicated video memory: 0 MB
+    Total available memory: 15983 MB
+    Currently available dedicated video memory: 0 MB
 OpenGL vendor string: Mesa
 OpenGL renderer string: llvmpipe (LLVM 20.1.2, 256 bits)
 OpenGL core profile version string: 4.6 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4
