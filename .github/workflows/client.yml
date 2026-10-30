@@ -1,11 +1,12 @@
 name: client
 
-# Starts the real Minecraft 26.3 client on the 26.3 pack: builds the loader mod,
+# Starts the real Minecraft client on every pack this repository builds:
 # installs every mod from Modrinth (hash-checked), generates a world with the
-# vanilla server, joins it under Xvfb and takes screenshots. The results are
-# committed back to the branch in ci-results/ so they can be read without
-# downloading artifacts. Software rendering: it proves the pack starts and shows
-# the screens; the frame rate it logs is not a benchmark.
+# vanilla server, joins it under Xvfb and quits; then builds a server from the
+# same pack and starts it. On 26.3 it also builds the loader mod into the pack
+# and screenshots each loading stage. Results are committed back to the branch
+# in ci-results/<version>/ so they can be read without downloading artifacts.
+# Software rendering: it proves the packs start; the frame rate is not a benchmark.
 
 on:
   push:
@@ -14,10 +15,10 @@ on:
       - "loader/**"
       - "ci/**"
       - "server/**"
-      - "lock/26.3.json"
+      - "lock/**"
       - "manifest.json"
       - "overrides/**"
-      - "overrides-26.3/**"
+      - "overrides-*/**"
       - ".github/workflows/client.yml"
   workflow_dispatch:
 
@@ -30,11 +31,21 @@ concurrency:
 
 jobs:
   client:
-    name: start 26.3 client
+    name: start ${{ matrix.mc }} client and server
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # 26.x is unobfuscated: the harness compiles against it and drives the client.
+          - { mc: "26.3", java: "25", harness: true }
+          - { mc: "26.2", java: "25", harness: true }
+          - { mc: "26.1.2", java: "25", harness: true }
+          # 1.21.11 is obfuscated and runs on Java 21 (as launchers give it): log watching only.
+          - { mc: "1.21.11", java: "21", harness: false }
     env:
-      MC: "26.3"
+      MC: ${{ matrix.mc }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,12 +58,12 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: "25"
+          java-version: ${{ matrix.java }}
 
       - name: Xvfb and Mesa
         run: |
           sudo apt-get update -q
-          # 26.3 opens its window through SDL3, which loads these X11 libraries itself;
+          # 26.x opens its window through SDL3, which loads these X11 libraries itself;
           # without them it falls back to a driver with no window surface at all.
           sudo apt-get install -y -q xvfb libgl1-mesa-dri libglx-mesa0 libegl1 libgles2 mesa-utils \
             libx11-6 libxext6 libxcursor1 libxrandr2 libxi6 libxfixes3 libxss1 libxtst6 \
@@ -60,7 +71,7 @@ jobs:
 
       - name: Fabric Loader version from the lockfile
         id: lock
-        run: echo "loader=$(python -c "import json;print(json.load(open('lock/26.3.json'))['fabricLoader'])")" >> "$GITHUB_OUTPUT"
+        run: echo "loader=$(python -c "import json;print(json.load(open('lock/$MC.json'))['fabricLoader'])")" >> "$GITHUB_OUTPUT"
 
       - uses: actions/cache@v4
         with:
@@ -73,6 +84,7 @@ jobs:
         run: python ci/fetch_dev.py .dev --mc "$MC" --loader "${{ steps.lock.outputs.loader }}"
 
       - name: Record the loading-screen API of this Minecraft version
+        if: matrix.mc == '26.3'
         run: |
           mkdir -p "ci-results/$MC"
           cd .dev/$MC
@@ -87,6 +99,7 @@ jobs:
             > "$GITHUB_WORKSPACE/ci-results/$MC/javap.txt"
 
       - name: Build the loader mod into the pack
+        if: matrix.mc == '26.3'
         run: python loader/build.py --dev-dir .dev --install
 
       - name: Build packs, refresh checksums, validate
@@ -108,7 +121,8 @@ jobs:
           mkdir -p .mod-cache
           ln -sfn "$PWD/.mod-cache" mod-cache
           xvfb-run -a -s "-screen 0 1280x720x24" \
-            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC" --timeout 900
+            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC" \
+              --mc "$MC" --timeout 900 ${{ matrix.harness && ' ' || '--no-harness' }}
 
       - name: Start a server built from the pack
         id: server
@@ -120,11 +134,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ci-results SHA256SUMS overrides-26.3/mods
+          git add "ci-results/$MC"
+          if [ "$MC" = "26.3" ]; then git add SHA256SUMS overrides-26.3/mods; fi
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
-          git commit -m "CI: 26.3 client run (client ${{ steps.run.outcome }}, server ${{ steps.server.outcome }}) [skip ci]"
+          git commit -m "CI: $MC client run (client ${{ steps.run.outcome }}, server ${{ steps.server.outcome }}) [skip ci]"
           for i in 1 2 3 4; do
-            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
             sleep $((i * 5))
           done
           exit 1
@@ -132,3 +147,88 @@ jobs:
       - name: Fail if the client or the server did not pass
         if: steps.run.outcome != 'success' || steps.server.outcome != 'success'
         run: exit 1
+
+  # Streamline Master against Fabulously Optimized on the same Minecraft version:
+  # three alternating runs each, one world, identical JVM arguments. Software
+  # rendering, so this compares CPU-side costs (start-up, world join, retained
+  # heap), never frame rate. Runs only when the client job above passed.
+  compare:
+    name: compare with Fabulously Optimized
+    needs: client
+    # The older targets' legs may fail without saying anything about 26.3; compare.py
+    # itself refuses to judge when the 26.3 runs did not pass.
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      MC: "26.3"
+      LIBGL_ALWAYS_SOFTWARE: "1"
+      SDL_VIDEO_DRIVER: x11
+      ALSOFT_DRIVERS: "null"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - name: Xvfb and Mesa
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q xvfb libgl1-mesa-dri libglx-mesa0 libegl1 libgles2 mesa-utils \
+            libx11-6 libxext6 libxcursor1 libxrandr2 libxi6 libxfixes3 libxss1 libxtst6 \
+            libxxf86vm1 libxinerama1 libxkbcommon0 libxkbcommon-x11-0 libvulkan1 mesa-vulkan-drivers
+
+      - name: Fabric Loader version from the lockfile
+        id: lock
+        run: echo "loader=$(python -c "import json;print(json.load(open('lock/26.3.json'))['fabricLoader'])")" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            .dev
+            .mod-cache
+          key: dev-${{ env.MC }}-${{ steps.lock.outputs.loader }}-v1
+
+      - name: Fetch the game, both packs and both Fabric Loaders
+        id: fo
+        run: |
+          python ci/fetch_dev.py .dev --mc "$MC" --loader "${{ steps.lock.outputs.loader }}"
+          python ci/fetch_pack.py fabulously-optimized "$MC" fo.mrpack | tee fo.txt
+          python ci/fetch_dev.py .dev --mc "$MC" --loader "$(tail -n 1 fo.txt)" --fabric-dir fabric-fo
+          python loader/build.py --dev-dir .dev --install
+          python build.py --offline --only "$MC" --out out
+
+      - name: Three alternating runs each
+        run: |
+          mkdir -p .mod-cache && ln -sfn "$PWD/.mod-cache" mod-cache
+          for i in 1 2 3; do
+            xvfb-run -a -s "-screen 0 1280x720x24" python ci/run_client.py "out/Streamline Master $MC.mrpack" \
+              --dev .dev --game game --out "runs/slm-$i" --world-cache world --no-shots --timeout 900 || true
+            xvfb-run -a -s "-screen 0 1280x720x24" python ci/run_client.py fo.mrpack \
+              --dev .dev --fabric-dir fabric-fo --game game --out "runs/fo-$i" --world-cache world --no-shots --timeout 900 || true
+          done
+          python ci/compare.py --a "Streamline Master" runs/slm-* --b "Fabulously Optimized" runs/fo-* --out "ci-results/$MC/compare.md"
+          { echo; echo "Fabulously Optimized build used: $(head -n 1 fo.txt)"; } >> "ci-results/$MC/compare.md"
+          cat "ci-results/$MC/compare.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit the comparison
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ci-results
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "CI: 26.3 comparison with Fabulously Optimized [skip ci]"
+          for i in 1 2 3 4; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

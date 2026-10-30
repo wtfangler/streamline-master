@@ -65,6 +65,7 @@ def main():
     ap.add_argument("dir")
     ap.add_argument("--mc", default="26.3")
     ap.add_argument("--loader", default="0.19.5")
+    ap.add_argument("--fabric-dir", default="fabric", help="subfolder for this loader version (another pack may pin another)")
     args = ap.parse_args()
     root = os.path.abspath(args.dir)
     base = os.path.join(root, args.mc)
@@ -102,12 +103,13 @@ def main():
         jobs.append((ASSETS % (h[:2], h), os.path.join(base, "assets", "objects", h[:2], h), h))
 
     profile = json.loads(get(FABRIC % (args.mc, args.loader)))
-    os.makedirs(os.path.join(root, "fabric"), exist_ok=True)
-    with open(os.path.join(root, "fabric", "profile.json"), "w") as f:
+    fabric = os.path.join(root, args.fabric_dir)
+    os.makedirs(fabric, exist_ok=True)
+    with open(os.path.join(fabric, "profile.json"), "w") as f:
         json.dump(profile, f, indent=1)
     for lib in profile["libraries"]:
         url = lib.get("url", "https://maven.fabricmc.net/").rstrip("/") + "/" + maven_path(lib["name"])
-        jobs.append((url, os.path.join(root, "fabric", os.path.basename(maven_path(lib["name"]))), lib.get("sha1")))
+        jobs.append((url, os.path.join(fabric, os.path.basename(maven_path(lib["name"]))), lib.get("sha1")))
 
     with concurrent.futures.ThreadPoolExecutor(16) as pool:
         for fut in [pool.submit(fetch, *j) for j in jobs]:

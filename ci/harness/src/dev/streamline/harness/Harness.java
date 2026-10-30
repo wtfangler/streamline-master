@@ -26,6 +26,8 @@ public final class Harness {
     private static void metric(String name, double value) { log(String.format(java.util.Locale.ROOT, "metric %s %.2f", name, value)); }
 
     private static void shot(Minecraft mc, String name) {
+        // Timing runs: a screenshot costs a GPU read-back that would land inside the measured window.
+        if (new java.io.File(mc.gameDirectory, "slm-harness-noshots").exists()) return;
         Screenshot.grab(mc.gameDirectory, name + ".png", mc.gameRenderer.mainRenderTarget(), 1, c -> log("saved " + name));
     }
 

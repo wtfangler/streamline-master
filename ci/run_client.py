@@ -70,12 +70,12 @@ def install_pack(pack, game, cache):
     return idx
 
 
-def build_harness(dev, mc, game):
+def build_harness(dev, mc, game, fabric="fabric"):
     tmp = os.path.join(game, ".harness-build")
     shutil.rmtree(tmp, ignore_errors=True)
     os.makedirs(tmp)
     cp = [os.path.join(dev, mc, "client.jar")] + sorted(glob.glob(os.path.join(dev, mc, "libs", "*.jar"))) \
-        + sorted(glob.glob(os.path.join(dev, "fabric", "*.jar")))
+        + sorted(glob.glob(os.path.join(dev, fabric, "*.jar")))
     src = sorted(glob.glob(os.path.join(HERE, "harness", "src", "**", "*.java"), recursive=True))
     subprocess.run(["javac", "--release", "25", "-proc:none", "-d", tmp, "-cp", os.pathsep.join(cp)] + src, check=True)
     with zipfile.ZipFile(os.path.join(game, "mods", "slm_harness.jar"), "w", zipfile.ZIP_DEFLATED) as z:
@@ -87,9 +87,14 @@ def build_harness(dev, mc, game):
     shutil.rmtree(tmp)
 
 
-def generate_world(dev, mc, game, work):
-    """The dedicated server writes a world singleplayer can open, without any client-side world-creation API."""
-    server = os.path.join(work, "server")
+def generate_world(dev, mc, game, work, cache=None):
+    """The dedicated server writes a world singleplayer can open, without any client-side world-creation API.
+    With a cache folder the world is generated once and copied for every later run, so all runs start equal."""
+    if cache and os.path.isdir(cache):
+        shutil.copytree(cache, os.path.join(game, "saves", WORLD))
+        log("world copied from %s" % cache)
+        return
+    server = os.path.join(work, os.path.basename(game) + "-worldgen")  # never inside the repository
     shutil.rmtree(server, ignore_errors=True)
     os.makedirs(server)
     with open(os.path.join(server, "eula.txt"), "w") as f:
@@ -108,6 +113,8 @@ def generate_world(dev, mc, game, work):
             raise RuntimeError("world generation timed out")
     proc.wait(timeout=120)
     shutil.copytree(os.path.join(server, WORLD), os.path.join(game, "saves", WORLD))
+    if cache:
+        shutil.copytree(os.path.join(server, WORLD), cache, ignore=shutil.ignore_patterns("session.lock"))
     log("world generated in %.0f s" % (time.time() - start))
 
 
@@ -129,9 +136,15 @@ def lib_key(name):
     return ":".join(parts[:2] + parts[3:])
 
 
-def launch(dev, mc, game, timeout):
+JOINED = "logged in with entity id"  # the integrated server's line when the player is in the world
+CRASHED = "---- Minecraft Crash Report ----"
+
+
+def launch(dev, mc, game, timeout, fabric="fabric", watch=False):
+    """Without the harness (watch=True) nothing inside the game quits it, so the log is
+    watched instead: the player joining the world, held 20 s, counts as a pass."""
     vj = json.load(open(os.path.join(dev, mc, "version.json")))
-    profile = json.load(open(os.path.join(dev, "fabric", "profile.json")))
+    profile = json.load(open(os.path.join(dev, fabric, "profile.json")))
     libs = {}
     for lib in vj["libraries"]:
         art = (lib.get("downloads") or {}).get("artifact")
@@ -140,7 +153,7 @@ def launch(dev, mc, game, timeout):
     for lib in profile["libraries"]:
         parts = lib["name"].split(":")
         jar = "%s-%s%s.jar" % (parts[1], parts[2], "-" + parts[3] if len(parts) > 3 else "")
-        libs[lib_key(lib["name"])] = os.path.join(dev, "fabric", jar)  # Fabric's copy wins, as in a launcher
+        libs[lib_key(lib["name"])] = os.path.join(dev, fabric, jar)  # Fabric's copy wins, as in a launcher
     classpath = os.pathsep.join(list(libs.values()) + [os.path.join(dev, mc, "client.jar")])
     natives = os.path.join(game, ".natives")
     os.makedirs(natives, exist_ok=True)
@@ -175,12 +188,35 @@ def launch(dev, mc, game, timeout):
     start = time.time()
     with open(log_path, "w") as out:
         proc = subprocess.Popen(cmd, cwd=game, stdout=out, stderr=subprocess.STDOUT)
-        try:
-            code = proc.wait(timeout=timeout)
-        except subprocess.TimeoutExpired:
-            proc.kill()
-            proc.wait()
-            code = "timeout"
+        code = None
+        if watch:
+            joined_at = None
+            while proc.poll() is None and time.time() - start < timeout:
+                time.sleep(2)
+                text = open(log_path, encoding="utf-8", errors="replace").read()
+                if CRASHED in text:
+                    break
+                if joined_at is None and JOINED in text:
+                    joined_at = time.time()
+                if joined_at and time.time() - joined_at > 20:
+                    code = "joined"
+                    break
+            if proc.poll() is None:
+                proc.terminate()
+                try:
+                    proc.wait(timeout=60)
+                except subprocess.TimeoutExpired:
+                    proc.kill()
+                    proc.wait()
+            if code is None:
+                code = proc.returncode if proc.returncode is not None else "timeout"
+        else:
+            try:
+                code = proc.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+                proc.wait()
+                code = "timeout"
     log("client exited with %s after %.0f s" % (code, time.time() - start))
     return code, log_path, time.time() - start
 
@@ -199,14 +235,33 @@ def patch_options(game):
         f.write("".join("%s:%s\n" % kv for kv in values.items()))
 
 
-def summarize(out, code, log_path, seconds, idx):
+def collect_crashes(game, out):
+    """JVM fatal-error logs (native crashes) and Minecraft crash reports, plus the frame the JVM died in."""
+    found = sorted(glob.glob(os.path.join(game, "hs_err_pid*.log"))) + sorted(glob.glob(os.path.join(game, "crash-reports", "*.txt")))
+    lines = []
+    for f in found:
+        shutil.copyfile(f, os.path.join(out, os.path.basename(f)))
+        text = open(f, encoding="utf-8", errors="replace").read().splitlines()
+        keep = [l for l in text if l.startswith(("# Problematic frame", "# C  ", "# J  ", "# SIGABRT", "# SIGSEGV", "Description:", "java.", "Caused by"))]
+        nxt = [text[i + 1] for i, l in enumerate(text[:-1]) if l.startswith("# Problematic frame")]
+        lines.append("%s: %s" % (os.path.basename(f), " | ".join((keep + nxt)[:6])))
+    return lines
+
+
+def summarize(out, code, log_path, seconds, idx, game=None):
     os.makedirs(out, exist_ok=True)
     text = open(log_path, encoding="utf-8", errors="replace").read()
     shutil.copyfile(log_path, os.path.join(out, "client.log"))
+    for old in glob.glob(os.path.join(out, "hs_err_pid*.log")):
+        os.remove(old)
+    crashes = collect_crashes(game, out) if game else []
     harness = [l for l in text.splitlines() if "[SLM-HARNESS]" in l]
     noise = [l for l in text.splitlines() if NOISE.search(l) and "[SLM-HARNESS]" not in l]
     loaded = next((l for l in text.splitlines() if "Loading " in l and " mods" in l), "")
-    passed = code == 0 and any("finished" in l for l in harness) and not any("ERROR" in l for l in harness)
+    if code == "joined":  # no-harness mode: in the world, no crash report
+        passed = CRASHED not in text
+    else:
+        passed = code == 0 and any("finished" in l for l in harness) and not any("ERROR" in l for l in harness)
     metrics = {}
     for l in harness:
         m = re.search(r"metric (\w+) ([\d.]+)", l)
@@ -232,6 +287,10 @@ def summarize(out, code, log_path, seconds, idx):
         "| --- | --- |",
     ] + ["| %s | %.2f |" % kv for kv in sorted(metrics.items())] + [
         "",
+        "## Crashes",
+        "",
+    ] + (["- " + c for c in crashes] or ["none"]) + [
+        "",
         "## Harness",
         "",
         "```",
@@ -249,16 +308,31 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--mc", default="26.3")
     ap.add_argument("--timeout", type=int, default=1200)
+    ap.add_argument("--fabric-dir", default="fabric", help="Fabric Loader folder under --dev matching this pack's loader")
+    ap.add_argument("--world-cache", help="reuse (or create) the generated world here")
+    ap.add_argument("--no-harness", action="store_true",
+                    help="obfuscated versions (1.21.x): no harness mod, pass = joined the world without a crash")
+    ap.add_argument("--no-shots", action="store_true", help="skip screenshots (timing runs)")
     args = ap.parse_args()
     dev, game, out = map(os.path.abspath, (args.dev, args.game, args.out))
     shutil.rmtree(game, ignore_errors=True)
     os.makedirs(os.path.join(game, "mods"))
 
     idx = install_pack(args.pack, game, os.path.join(os.path.dirname(game), "mod-cache"))
-    build_harness(dev, args.mc, game)
+    watch = args.no_harness
+    if not watch:
+        try:
+            build_harness(dev, args.mc, game, args.fabric_dir)
+        except subprocess.CalledProcessError:
+            # The harness is written against 26.3; an older client API may not compile. The pack is still testable.
+            log("harness does not compile against %s, falling back to watching the log" % args.mc)
+            watch = True
+    if args.no_shots:
+        with open(os.path.join(game, "slm-harness-noshots"), "w"):
+            pass
     patch_options(game)
-    generate_world(dev, args.mc, game, os.path.dirname(game))
-    code, log_path, seconds = launch(dev, args.mc, game, args.timeout)
+    generate_world(dev, args.mc, game, os.path.dirname(game), args.world_cache and os.path.abspath(args.world_cache))
+    code, log_path, seconds = launch(dev, args.mc, game, args.timeout, args.fabric_dir, watch)
 
     shots = sorted(glob.glob(os.path.join(game, "screenshots", "*.png")))
     os.makedirs(out, exist_ok=True)
@@ -266,7 +340,7 @@ def main():
         os.remove(old)
     for s in shots:
         shutil.copyfile(s, os.path.join(out, os.path.basename(s)))
-    passed = summarize(out, code, log_path, seconds, idx)
+    passed = summarize(out, code, log_path, seconds, idx, game)
     log("%s, %d screenshots, results in %s" % ("PASS" if passed else "FAIL", len(shots), out))
     return 0 if passed else 1
 
