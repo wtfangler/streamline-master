@@ -1,0 +1,8 @@
+{
+  "configVersion": 3,
+  "globalSettings": {
+    "enabled": true,
+    "maxFps": 60
+  },
+  "iKnowThisIsNotAnActivelyDevelopedMod": true
+}
