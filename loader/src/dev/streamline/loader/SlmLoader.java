@@ -49,10 +49,13 @@ public final class SlmLoader {
         return (a << 24) | rgb;
     }
 
-    /** @param progress 0..1, or a negative value for an endless sweeping bar. */
-    public static void draw(Minecraft mc, GuiGraphicsExtractor g, int w, int h, float alpha, float progress) {
+    /**
+     * @param progress 0..1, or a negative value for an endless sweeping bar.
+     * @return whether the backdrop was drawn; false leaves the vanilla screen to draw itself.
+     */
+    public static boolean draw(Minecraft mc, GuiGraphicsExtractor g, int w, int h, float alpha, float progress) {
         ensureLogo(mc);
-        if (!ready || alpha <= 0.003f) return;
+        if (!ready || alpha <= 0.003f) return false;
         g.fill(0, 0, w, h, argb(BG, alpha));
         double scale = Math.max(1.0, mc.getWindow().getGuiScale());
         // 1 texel = 1 device pixel at any GUI scale, so the pixel-art wordmark stays sharp; shrink only if the window is tiny
@@ -72,5 +75,6 @@ public final class SlmLoader {
             int s0 = Math.max(0, start), s1 = Math.min(barW, start + seg);
             if (s1 > s0) g.fill(bx + s0, by, bx + s1, by + barH, argb(ACCENT, alpha));
         }
+        return true;
     }
 }

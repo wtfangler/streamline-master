@@ -207,6 +207,13 @@ def summarize(out, code, log_path, seconds, idx):
     noise = [l for l in text.splitlines() if NOISE.search(l) and "[SLM-HARNESS]" not in l]
     loaded = next((l for l in text.splitlines() if "Loading " in l and " mods" in l), "")
     passed = code == 0 and any("finished" in l for l in harness) and not any("ERROR" in l for l in harness)
+    metrics = {}
+    for l in harness:
+        m = re.search(r"metric (\w+) ([\d.]+)", l)
+        if m:
+            metrics[m.group(1)] = float(m.group(2))
+    with open(os.path.join(out, "metrics.json"), "w", encoding="utf-8") as f:
+        json.dump({"pack": idx["versionId"], "passed": passed, "metrics": metrics}, f, indent=2)
     lines = [
         "# Client run: %s" % idx["versionId"],
         "",
@@ -218,6 +225,12 @@ def summarize(out, code, log_path, seconds, idx):
         "```",
         loaded.strip(),
         "```",
+        "",
+        "## Metrics",
+        "",
+        "| metric | value |",
+        "| --- | --- |",
+    ] + ["| %s | %.2f |" % kv for kv in sorted(metrics.items())] + [
         "",
         "## Harness",
         "",

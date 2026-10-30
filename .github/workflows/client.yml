@@ -13,6 +13,7 @@ on:
     paths:
       - "loader/**"
       - "ci/**"
+      - "server/**"
       - "lock/26.3.json"
       - "manifest.json"
       - "overrides/**"
@@ -51,8 +52,11 @@ jobs:
       - name: Xvfb and Mesa
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q xvfb libgl1-mesa-dri libglx-mesa0 libegl1 mesa-utils \
-            libxcursor1 libxrandr2 libxi6 libxxf86vm1 libxinerama1
+          # 26.3 opens its window through SDL3, which loads these X11 libraries itself;
+          # without them it falls back to a driver with no window surface at all.
+          sudo apt-get install -y -q xvfb libgl1-mesa-dri libglx-mesa0 libegl1 libgles2 mesa-utils \
+            libx11-6 libxext6 libxcursor1 libxrandr2 libxi6 libxfixes3 libxss1 libxtst6 \
+            libxxf86vm1 libxinerama1 libxkbcommon0 libxkbcommon-x11-0 libvulkan1 mesa-vulkan-drivers
 
       - name: Fabric Loader version from the lockfile
         id: lock
@@ -97,11 +101,19 @@ jobs:
         continue-on-error: true
         env:
           LIBGL_ALWAYS_SOFTWARE: "1"
+          SDL_VIDEO_DRIVER: x11
+          # No sound card on the runner: OpenAL's null device instead of a failed open.
+          ALSOFT_DRIVERS: "null"
         run: |
           mkdir -p .mod-cache
           ln -sfn "$PWD/.mod-cache" mod-cache
           xvfb-run -a -s "-screen 0 1280x720x24" \
-            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC"
+            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC" --timeout 900
+
+      - name: Start a server built from the pack
+        id: server
+        continue-on-error: true
+        run: python ci/run_server.py "out/Streamline Master $MC.mrpack" --work srv --out "ci-results/$MC"
 
       - name: Commit results back to the branch
         if: always()
@@ -110,13 +122,13 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ci-results SHA256SUMS overrides-26.3/mods
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
-          git commit -m "CI: 26.3 client run (${{ steps.run.outcome }}) [skip ci]"
+          git commit -m "CI: 26.3 client run (client ${{ steps.run.outcome }}, server ${{ steps.server.outcome }}) [skip ci]"
           for i in 1 2 3 4; do
             git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
             sleep $((i * 5))
           done
           exit 1
 
-      - name: Fail if the client did not pass
-        if: steps.run.outcome != 'success'
+      - name: Fail if the client or the server did not pass
+        if: steps.run.outcome != 'success' || steps.server.outcome != 'success'
         run: exit 1
