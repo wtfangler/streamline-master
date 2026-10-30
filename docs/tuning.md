@@ -116,8 +116,9 @@ czyli mniej niż FO (8); niżej schodź tylko wtedy, gdy nie masz farm w pobliż
 
 ## Resourcepacki
 
-Paczka wysyła dwa i oba włącza w `options.txt`: **Fast Better Grass** i
-**qrafty's Capitalized Font**.
+Paczka wysyła trzy i wszystkie włącza w `options.txt`: **Fast Better Grass**,
+**qrafty's Capitalized Font** i **Recolourful Containers Dark** (ten ostatni ma osobną
+sekcję niżej, bo dotyka shaderów rdzeniowych).
 
 Font to bitmapowy pack 16x, 236 kB — podmienia istniejące tekstury glifów, nie dodaje
 nowych. Atlas czcionki ma te same wymiary co w vanilli, liczba draw calli się nie zmienia,
