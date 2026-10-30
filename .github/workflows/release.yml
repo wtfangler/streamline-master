@@ -1,0 +1,57 @@
+name: release
+
+# Publishes one pack to Modrinth. Run it from the Actions tab ("Run workflow").
+# It is a dry run unless "publish" is ticked, and publishing needs the
+# repository secret MODRINTH_TOKEN (a Modrinth personal access token with the
+# "Create versions" scope). release.py refuses a pack that does not match
+# SHA256SUMS, fails validation, has no dated CHANGELOG section, or already
+# exists on Modrinth.
+
+on:
+  workflow_dispatch:
+    inputs:
+      minecraft:
+        description: Minecraft version
+        type: choice
+        options: ["26.3", "26.2", "26.1.2", "1.21.11"]
+        default: "26.3"
+      channel:
+        description: Modrinth channel
+        type: choice
+        options: [release, beta, alpha]
+        default: beta
+      publish:
+        description: Upload for real (otherwise a dry run)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build from lockfiles
+        run: python build.py --offline --only "${{ inputs.minecraft }}" --out dist
+
+      - name: Validate against Modrinth
+        run: python validate.py "dist/*.mrpack" --online
+
+      - name: Publish (or dry run)
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        run: |
+          python release.py "${{ inputs.minecraft }}" --channel "${{ inputs.channel }}" --dist dist \
+            ${{ inputs.publish && '--publish' || '' }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mrpack-${{ inputs.minecraft }}
+          path: dist/*.mrpack
