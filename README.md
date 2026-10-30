@@ -70,6 +70,33 @@ that must never ship (`sodium-fingerprint.json`), and config files shipped
 without the mod they belong to. With `--online` it also asks Modrinth whether
 every pinned file still exists and still supports its target game version.
 
+**Started, not just built.** The [`client`](.github/workflows/client.yml) workflow
+installs each pack the way a launcher does (every mod downloaded from Modrinth
+and checked against its SHA-512), generates a world with the vanilla server,
+starts the real game under Xvfb, joins the world and quits — for all four game
+versions. It then builds a server from the same pack and starts that too. Logs,
+crash reports and screenshots land in [`ci-results/`](ci-results). A pack that
+does not start fails the build, which is how 1.6.0 should have been caught.
+
+**Measured against Fabulously Optimized.** The same workflow runs the newest
+Fabulously Optimized for 26.3 next to this pack — three alternating runs each,
+one world, identical JVM arguments — and compares time to the main menu, time to
+a playable world and the heap kept after a full GC
+([`ci-results/26.3/compare.md`](ci-results/26.3/compare.md)). It reports a
+difference only when it is larger than the spread between runs. The runner has
+no GPU, so this covers loading and memory, never frame rate; frame rate needs
+your hardware and [`bench.py`](bench.py).
+
+## Own loading screen
+
+On Minecraft 26.3 the pack ships one mod of its own, Streamline Loader
+([`loader/`](loader)): the start-up and resource-reload screen, the world loading
+screen and the "Saving world" screen get the pack's dark violet, its wordmark and
+a thin progress line instead of the Mojang logo. It draws only while the game is
+loading, so it costs nothing in play, and if anything about it fails the vanilla
+screen stays. It is built with plain `javac` against the unobfuscated client
+(no Gradle) into a reproducible jar, and needs no Fabric API.
+
 ## Build it yourself
 
 Python 3.9+, no third-party dependencies.
@@ -81,8 +108,24 @@ python build.py --survey   # table of which mod resolves to what on each version
 python validate.py "dist/*.mrpack" --online
 python whatsnew.py         # newer Minecraft versions, and how ready the mods are
 python tune.py <instance> --gpu      # JVM args, heap and GPU for a Prism instance
+python tune.py <instance> --preset potato   # lower options.txt for weaker hardware
 python bench.py a.csv --vs b.csv     # avg / 1% low / stutter from PresentMon captures
+python server/build_server.py "dist/Streamline Master 26.3.mrpack" my_server --ram 4G
+python release.py 26.3 --channel beta       # dry run of a Modrinth release
 ```
+
+`server/build_server.py` turns any of the packs into a Fabric server folder:
+only the server-side mods (Lithium, FerriteCore, Krypton, Clumps, Alternate
+Current, …), each checked against the pack's hash, the official Fabric server
+launcher, and start scripts with the same G1 arguments as `tune.py`. It never
+writes into a world. Accept the EULA in `eula.txt`, then run `start.bat` or
+`start.sh`.
+
+Releases go out through the [`release`](.github/workflows/release.yml) workflow
+(Actions → release → Run workflow). It is a dry run unless "publish" is ticked,
+needs the `MODRINTH_TOKEN` secret, and refuses a pack that does not match
+`SHA256SUMS`, fails validation, has an undated CHANGELOG section, or is already
+on Modrinth.
 
 On Windows, double-clicking `build.cmd` does the build and validation in one
 step. `doctor.cmd` compares an installed instance against a pack and reports
@@ -97,8 +140,13 @@ manifest.json          mod list, targets, pack metadata — the single source of
 build.py               Modrinth version resolver + .mrpack generator
 validate.py            structural and online validation of built packs
 doctor.py              compares an installed instance against a pack
-tune.py                JVM arguments, heap and GPU preference for a Prism instance
+tune.py                JVM arguments, heap, GPU preference and the potato preset
 bench.py               frame-time statistics from PresentMon / CapFrameX captures
+release.py             publishes one pack to Modrinth (used by the release workflow)
+loader/                Streamline Loader, the pack's own loading-screen mod (26.3)
+server/                server builder and its templates
+ci/                    the client/server start test, harness mod and FO comparison
+ci-results/<mc>/       what the last CI run saw: summary, logs, screenshots
 overrides/             configs shared by every game version
 overrides-<mc>/        version-specific configs, layered over the above
 lock/<mc>.json         resolved versions and hashes (committed on purpose)
