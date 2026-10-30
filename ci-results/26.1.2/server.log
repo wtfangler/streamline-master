@@ -1,0 +1,299 @@
+Downloading Minecraft server
+Installing Fabric Loader 0.19.3(26.1.2) on the server
+Downloading required files
+Downloading library org.ow2.asm:asm:9.10.1
+Downloading library org.ow2.asm:asm-analysis:9.10.1
+Downloading library org.ow2.asm:asm-commons:9.10.1
+Downloading library org.ow2.asm:asm-tree:9.10.1
+Downloading library org.ow2.asm:asm-util:9.10.1
+Downloading library net.fabricmc:sponge-mixin:0.17.3+mixin.0.8.7
+Downloading library net.fabricmc:fabric-loader:0.19.3
+Generating server launch JAR
+Unpacking 26.1.2/server-26.1.2.jar (versions:26.1.2) to versions/26.1.2/server-26.1.2.jar
+Unpacking at/yawk/lz4/lz4-java/1.10.1/lz4-java-1.10.1.jar (libraries:at.yawk.lz4:lz4-java:1.10.1) to libraries/at/yawk/lz4/lz4-java/1.10.1/lz4-java-1.10.1.jar
+Unpacking com/azure/azure-json/1.4.0/azure-json-1.4.0.jar (libraries:com.azure:azure-json:1.4.0) to libraries/com/azure/azure-json/1.4.0/azure-json-1.4.0.jar
+Unpacking com/github/oshi/oshi-core/6.9.0/oshi-core-6.9.0.jar (libraries:com.github.oshi:oshi-core:6.9.0) to libraries/com/github/oshi/oshi-core/6.9.0/oshi-core-6.9.0.jar
+Unpacking com/google/code/gson/gson/2.13.2/gson-2.13.2.jar (libraries:com.google.code.gson:gson:2.13.2) to libraries/com/google/code/gson/gson/2.13.2/gson-2.13.2.jar
+Unpacking com/google/guava/failureaccess/1.0.3/failureaccess-1.0.3.jar (libraries:com.google.guava:failureaccess:1.0.3) to libraries/com/google/guava/failureaccess/1.0.3/failureaccess-1.0.3.jar
+Unpacking com/google/guava/guava/33.5.0-jre/guava-33.5.0-jre.jar (libraries:com.google.guava:guava:33.5.0-jre) to libraries/com/google/guava/guava/33.5.0-jre/guava-33.5.0-jre.jar
+Unpacking com/microsoft/azure/msal4j/1.23.1/msal4j-1.23.1.jar (libraries:com.microsoft.azure:msal4j:1.23.1) to libraries/com/microsoft/azure/msal4j/1.23.1/msal4j-1.23.1.jar
+Unpacking com/mojang/authlib/7.0.63/authlib-7.0.63.jar (libraries:com.mojang:authlib:7.0.63) to libraries/com/mojang/authlib/7.0.63/authlib-7.0.63.jar
+Unpacking com/mojang/brigadier/1.3.10/brigadier-1.3.10.jar (libraries:com.mojang:brigadier:1.3.10) to libraries/com/mojang/brigadier/1.3.10/brigadier-1.3.10.jar
+Unpacking com/mojang/datafixerupper/9.0.19/datafixerupper-9.0.19.jar (libraries:com.mojang:datafixerupper:9.0.19) to libraries/com/mojang/datafixerupper/9.0.19/datafixerupper-9.0.19.jar
+Unpacking com/mojang/jtracy/1.0.37/jtracy-1.0.37.jar (libraries:com.mojang:jtracy:1.0.37) to libraries/com/mojang/jtracy/1.0.37/jtracy-1.0.37.jar
+Unpacking com/mojang/logging/1.6.11/logging-1.6.11.jar (libraries:com.mojang:logging:1.6.11) to libraries/com/mojang/logging/1.6.11/logging-1.6.11.jar
+Unpacking commons-io/commons-io/2.20.0/commons-io-2.20.0.jar (libraries:commons-io:commons-io:2.20.0) to libraries/commons-io/commons-io/2.20.0/commons-io-2.20.0.jar
+Unpacking io/netty/netty-buffer/4.2.7.Final/netty-buffer-4.2.7.Final.jar (libraries:io.netty:netty-buffer:4.2.7.Final) to libraries/io/netty/netty-buffer/4.2.7.Final/netty-buffer-4.2.7.Final.jar
+Unpacking io/netty/netty-codec-base/4.2.7.Final/netty-codec-base-4.2.7.Final.jar (libraries:io.netty:netty-codec-base:4.2.7.Final) to libraries/io/netty/netty-codec-base/4.2.7.Final/netty-codec-base-4.2.7.Final.jar
+Unpacking io/netty/netty-codec-compression/4.2.7.Final/netty-codec-compression-4.2.7.Final.jar (libraries:io.netty:netty-codec-compression:4.2.7.Final) to libraries/io/netty/netty-codec-compression/4.2.7.Final/netty-codec-compression-4.2.7.Final.jar
+Unpacking io/netty/netty-codec-http/4.2.7.Final/netty-codec-http-4.2.7.Final.jar (libraries:io.netty:netty-codec-http:4.2.7.Final) to libraries/io/netty/netty-codec-http/4.2.7.Final/netty-codec-http-4.2.7.Final.jar
+Unpacking io/netty/netty-common/4.2.7.Final/netty-common-4.2.7.Final.jar (libraries:io.netty:netty-common:4.2.7.Final) to libraries/io/netty/netty-common/4.2.7.Final/netty-common-4.2.7.Final.jar
+Unpacking io/netty/netty-handler/4.2.7.Final/netty-handler-4.2.7.Final.jar (libraries:io.netty:netty-handler:4.2.7.Final) to libraries/io/netty/netty-handler/4.2.7.Final/netty-handler-4.2.7.Final.jar
+Unpacking io/netty/netty-resolver/4.2.7.Final/netty-resolver-4.2.7.Final.jar (libraries:io.netty:netty-resolver:4.2.7.Final) to libraries/io/netty/netty-resolver/4.2.7.Final/netty-resolver-4.2.7.Final.jar
+Unpacking io/netty/netty-transport/4.2.7.Final/netty-transport-4.2.7.Final.jar (libraries:io.netty:netty-transport:4.2.7.Final) to libraries/io/netty/netty-transport/4.2.7.Final/netty-transport-4.2.7.Final.jar
+Unpacking io/netty/netty-transport-classes-epoll/4.2.7.Final/netty-transport-classes-epoll-4.2.7.Final.jar (libraries:io.netty:netty-transport-classes-epoll:4.2.7.Final) to libraries/io/netty/netty-transport-classes-epoll/4.2.7.Final/netty-transport-classes-epoll-4.2.7.Final.jar
+Unpacking io/netty/netty-transport-classes-kqueue/4.2.7.Final/netty-transport-classes-kqueue-4.2.7.Final.jar (libraries:io.netty:netty-transport-classes-kqueue:4.2.7.Final) to libraries/io/netty/netty-transport-classes-kqueue/4.2.7.Final/netty-transport-classes-kqueue-4.2.7.Final.jar
+Unpacking io/netty/netty-transport-native-epoll/4.2.7.Final/netty-transport-native-epoll-4.2.7.Final-linux-x86_64.jar (libraries:io.netty:netty-transport-native-epoll:4.2.7.Final:linux-x86_64) to libraries/io/netty/netty-transport-native-epoll/4.2.7.Final/netty-transport-native-epoll-4.2.7.Final-linux-x86_64.jar
+Unpacking io/netty/netty-transport-native-epoll/4.2.7.Final/netty-transport-native-epoll-4.2.7.Final-linux-aarch_64.jar (libraries:io.netty:netty-transport-native-epoll:4.2.7.Final:linux-aarch_64) to libraries/io/netty/netty-transport-native-epoll/4.2.7.Final/netty-transport-native-epoll-4.2.7.Final-linux-aarch_64.jar
+Unpacking io/netty/netty-transport-native-kqueue/4.2.7.Final/netty-transport-native-kqueue-4.2.7.Final-osx-x86_64.jar (libraries:io.netty:netty-transport-native-kqueue:4.2.7.Final:osx-x86_64) to libraries/io/netty/netty-transport-native-kqueue/4.2.7.Final/netty-transport-native-kqueue-4.2.7.Final-osx-x86_64.jar
+Unpacking io/netty/netty-transport-native-kqueue/4.2.7.Final/netty-transport-native-kqueue-4.2.7.Final-osx-aarch_64.jar (libraries:io.netty:netty-transport-native-kqueue:4.2.7.Final:osx-aarch_64) to libraries/io/netty/netty-transport-native-kqueue/4.2.7.Final/netty-transport-native-kqueue-4.2.7.Final-osx-aarch_64.jar
+Unpacking io/netty/netty-transport-native-unix-common/4.2.7.Final/netty-transport-native-unix-common-4.2.7.Final.jar (libraries:io.netty:netty-transport-native-unix-common:4.2.7.Final) to libraries/io/netty/netty-transport-native-unix-common/4.2.7.Final/netty-transport-native-unix-common-4.2.7.Final.jar
+Unpacking it/unimi/dsi/fastutil/8.5.18/fastutil-8.5.18.jar (libraries:it.unimi.dsi:fastutil:8.5.18) to libraries/it/unimi/dsi/fastutil/8.5.18/fastutil-8.5.18.jar
+Unpacking net/java/dev/jna/jna/5.17.0/jna-5.17.0.jar (libraries:net.java.dev.jna:jna:5.17.0) to libraries/net/java/dev/jna/jna/5.17.0/jna-5.17.0.jar
+Unpacking net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar (libraries:net.java.dev.jna:jna-platform:5.17.0) to libraries/net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar
+Unpacking net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar (libraries:net.sf.jopt-simple:jopt-simple:5.0.4) to libraries/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar
+Unpacking org/apache/commons/commons-lang3/3.19.0/commons-lang3-3.19.0.jar (libraries:org.apache.commons:commons-lang3:3.19.0) to libraries/org/apache/commons/commons-lang3/3.19.0/commons-lang3-3.19.0.jar
+Unpacking org/apache/logging/log4j/log4j-api/2.25.2/log4j-api-2.25.2.jar (libraries:org.apache.logging.log4j:log4j-api:2.25.2) to libraries/org/apache/logging/log4j/log4j-api/2.25.2/log4j-api-2.25.2.jar
+Unpacking org/apache/logging/log4j/log4j-core/2.25.2/log4j-core-2.25.2.jar (libraries:org.apache.logging.log4j:log4j-core:2.25.2) to libraries/org/apache/logging/log4j/log4j-core/2.25.2/log4j-core-2.25.2.jar
+Unpacking org/apache/logging/log4j/log4j-slf4j2-impl/2.25.2/log4j-slf4j2-impl-2.25.2.jar (libraries:org.apache.logging.log4j:log4j-slf4j2-impl:2.25.2) to libraries/org/apache/logging/log4j/log4j-slf4j2-impl/2.25.2/log4j-slf4j2-impl-2.25.2.jar
+Unpacking org/joml/joml/1.10.8/joml-1.10.8.jar (libraries:org.joml:joml:1.10.8) to libraries/org/joml/joml/1.10.8/joml-1.10.8.jar
+Unpacking org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar (libraries:org.jspecify:jspecify:1.0.0) to libraries/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar
+Unpacking org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar (libraries:org.slf4j:slf4j-api:2.0.17) to libraries/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar
+Starting net.fabricmc.loader.impl.game.minecraft.BundlerClassPathCapture
+[11:30:59] [main/INFO]: Loading Minecraft 26.1.2 with Fabric Loader 0.19.3
+[11:30:59] [main/INFO]: Mappings not present!
+[11:30:59] [main/WARN]: Warnings were found!
+ - Mod 'Debugify' (debugify) 26.1.2.2 recommends any version of yet_another_config_lib_v3, which is missing!
+	 - You should install any version of yet_another_config_lib_v3 for the optimal experience.
+ - Mod 'Debugify' (debugify) 26.1.2.2 recommends any version of modmenu, which is missing!
+	 - You should install any version of modmenu for the optimal experience.
+[11:30:59] [main/INFO]: Loading 70 mods:
+	- almanac 1.6.2
+	- cloth-config 26.1.154
+	   \-- cloth-basic-math 0.6.1
+	- debugify 26.1.2.2
+	- fabric-api 0.155.2+26.1.2
+	   |-- fabric-api-base 2.0.3+ece063234c
+	   |-- fabric-api-lookup-api-v1 2.0.12+d5a053b64c
+	   |-- fabric-biome-api-v1 18.0.5+2fa62b4e4c
+	   |-- fabric-block-api-v1 3.0.2+ec56b6014c
+	   |-- fabric-block-getter-api-v2 2.0.6+ec56b6014c
+	   |-- fabric-command-api-v2 3.0.5+e2bdee784c
+	   |-- fabric-content-registries-v0 11.3.0+0082c9664c
+	   |-- fabric-convention-tags-v2 4.6.2+4f11f7994c
+	   |-- fabric-crash-report-info-v1 1.0.3+9f78a5a84c
+	   |-- fabric-creative-tab-api-v1 5.0.11+d871b99e4c
+	   |-- fabric-data-attachment-api-v1 2.2.9+44a0bd1d4c
+	   |-- fabric-data-generation-api-v1 24.3.3+cda368334c
+	   |-- fabric-debug-api-v1 1.0.1+c792624d4c
+	   |-- fabric-dimensions-v1 5.1.7+ad343a8d4c
+	   |-- fabric-entity-events-v1 5.0.2+e2bdee784c
+	   |-- fabric-events-interaction-v0 5.2.2+07b380be4c
+	   |-- fabric-game-rule-api-v1 4.0.5+d871b99e4c
+	   |-- fabric-item-api-v1 14.3.0+6d1aaa724c
+	   |-- fabric-key-mapping-api-v1 2.0.4+e2bdee784c
+	   |-- fabric-lifecycle-events-v1 4.1.1+df84eb3d4c
+	   |-- fabric-loot-api-v3 3.0.12+00a1fba64c
+	   |-- fabric-menu-api-v1 2.0.14+d871b99e4c
+	   |-- fabric-message-api-v1 7.0.5+dae8ce3e4c
+	   |-- fabric-model-loading-api-v1 8.0.11+c80601bb4c
+	   |-- fabric-networking-api-v1 6.3.1+554860db4c
+	   |-- fabric-object-builder-api-v1 23.1.0+abb459f14c
+	   |-- fabric-particles-v1 5.0.15+b61fef434c
+	   |-- fabric-permission-api-v1 1.0.2+7437387b4c
+	   |-- fabric-recipe-api-v1 9.0.16+be4b75ae4c
+	   |-- fabric-registry-sync-v0 7.1.0+2fa62b4e4c
+	   |-- fabric-renderer-api-v1 13.0.8+c80601bb4c
+	   |-- fabric-renderer-indigo 8.1.5+1403e82c4c
+	   |-- fabric-rendering-fluids-v1 6.0.1+d871b99e4c
+	   |-- fabric-rendering-v1 23.3.1+e9207d814c
+	   |-- fabric-resource-conditions-api-v1 6.1.0+83dd0ba34c
+	   |-- fabric-resource-loader-v0 3.3.17+4fc5413f4c
+	   |-- fabric-resource-loader-v1 2.0.10+7c44c7324c
+	   |-- fabric-screen-api-v1 5.1.0+981dd9b24c
+	   |-- fabric-serialization-api-v1 2.0.3+11a26f314c
+	   |-- fabric-sound-api-v1 2.0.4+11a26f314c
+	   |-- fabric-tag-api-v1 2.1.1+371cf5db4c
+	   |-- fabric-transfer-api-v1 8.0.6+357ea7334c
+	   \-- fabric-transitive-access-wideners-v1 8.1.3+3ff549fb4c
+	- fabric-language-kotlin 1.13.13+kotlin.2.4.10
+	   |-- org_jetbrains_kotlin_kotlin-reflect 2.4.10
+	   |-- org_jetbrains_kotlin_kotlin-stdlib 2.4.10
+	   |-- org_jetbrains_kotlin_kotlin-stdlib-jdk7 2.4.10
+	   |-- org_jetbrains_kotlin_kotlin-stdlib-jdk8 2.4.10
+	   |-- org_jetbrains_kotlinx_atomicfu-jvm 0.33.0
+	   |-- org_jetbrains_kotlinx_kotlinx-coroutines-core-jvm 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-coroutines-jdk8 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-datetime-jvm 0.8.0
+	   |-- org_jetbrains_kotlinx_kotlinx-io-bytestring-jvm 0.9.1
+	   |-- org_jetbrains_kotlinx_kotlinx-io-core-jvm 0.9.1
+	   |-- org_jetbrains_kotlinx_kotlinx-serialization-cbor-jvm 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-serialization-core-jvm 1.11.0
+	   \-- org_jetbrains_kotlinx_kotlinx-serialization-json-jvm 1.11.0
+	- fabricloader 0.19.3
+	   \-- mixinextras 0.5.4
+	- ferritecore 9.0.0
+	- fzzy_config 0.7.6+26.1
+	   |-- blue_endless_jankson 1.2.3
+	   |-- fabric-permissions-api-v0 0.7.0-SNAPSHOT
+	   \-- net_peanuuutz_tomlkt_tomlkt-jvm 0.3.7
+	- java 25
+	- krypton 0.3.0
+	   \-- com_velocitypowered_velocity-native 3.4.0-SNAPSHOT
+	- letmedespawn 1.6.2
+	- lithium 0.24.7+mc26.1.2
+	- minecraft 26.1.2
+	- modernfix 5.27.19-build.1
+	- packetfixer 3.3.5
+[11:30:59] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/streamline-master/streamline-master/srv/libraries/net/fabricmc/sponge-mixin/0.17.3+mixin.0.8.7/sponge-mixin-0.17.3+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+[11:30:59] [main/INFO]: Compatibility level set to JAVA_25
+[11:30:59] [main/INFO]: Loaded configuration file for Lithium: 171 options available, 0 override(s) found.
+[11:30:59] [main/INFO]: Loaded configuration file for ModernFix 5.27.19-build.1: 68 options available, 3 override(s) found
+[11:30:59] [main/WARN]: Option 'mixin.perf.clear_mixin_classinfo' overriden (by user configuration) to 'true'
+[11:30:59] [main/WARN]: Option 'mixin.perf.deduplicate_location' overriden (by user configuration) to 'true'
+[11:30:59] [main/WARN]: Option 'mixin.bugfix.missing_block_entities' overriden (by user configuration) to 'true'
+[11:30:59] [main/INFO]: Applying Nashorn fix
+[11:30:59] [main/WARN]: Reference map 'modernfix.refmap.json' for modernfix-fabric.mixins.json could not be read. If this is a development environment you can ignore this message
+[11:30:59] [main/WARN]: Reference map 'modernfix.refmap.json' for modernfix-common.mixins.json could not be read. If this is a development environment you can ignore this message
+[11:31:00] [main/WARN]: Mixin malte0811.ferritecore.mixin.threaddetec.PalettedContainerMixin is disabled automatically as lithium is installed
+[11:31:00] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.4).
+[11:31:00] [main/INFO]: ModernFix reached bootstrap stage (3.804 s after launch)
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.joml.MemUtil$MemUtilUnsafe (file:/home/runner/work/streamline-master/streamline-master/srv/libraries/org/joml/joml/1.10.8/joml-1.10.8.jar)
+WARNING: Please consider reporting this to the maintainers of class org.joml.MemUtil$MemUtilUnsafe
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[11:31:01] [main/WARN]: Method overwrite conflict for getTemperature in modernfix-common.mixins.json:perf.remove_biome_temperature_cache.BiomeMixin from mod modernfix, previously written by net.caffeinemc.mods.lithium.mixin.world.temperature_cache.BiomeMixin. Skipping method.
+[11:31:04] [main/INFO]: Vanilla bootstrap took 3403 milliseconds
+[11:31:04] [main/INFO]: Almanac Fabric config reloaded, cache cleared
+[11:31:04] [main/INFO]: Almanac Fabric config initialized
+[11:31:04] [main/INFO]: Almanac initialized
+[11:31:04] [main/INFO]: Enabled 58 bug fixes: [MC-7569, MC-8187, MC-30391, MC-44654, MC-82263, MC-84661, MC-88371, MC-89146, MC-93018, MC-94054, MC-100991, MC-119754, MC-121706, MC-121903, MC-123450, MC-129909, MC-131562, MC-132878, MC-133218, MC-134110, MC-136249, MC-139041, MC-147659, MC-153010, MC-155509, MC-158900, MC-159283, MC-160095, MC-168573, MC-170462, MC-176806, MC-177381, MC-179072, MC-183990, MC-187100, MC-200418, MC-201374, MC-202637, MC-206922, MC-215530, MC-221257, MC-223153, MC-224729, MC-226961, MC-227008, MC-227337, MC-231743, MC-232869, MC-245394, MC-263999, MC-264285, MC-264979, MC-267125, MC-268617, MC-271899, MC-272431, MC-297837, MC-298066]
+[11:31:04] [main/INFO]: Successfully Debugify'd your game!
+[11:31:04] [main/INFO]: Compression will use libdeflate (Linux x86_64), encryption will use OpenSSL 3.x.x (Linux x86_64)
+[11:31:04] [main/INFO]: Packet Fixer 3.3.5 Fabric has been initialized!
+[11:31:04] [main/INFO]: Krypton is now accelerating your Minecraft server's networking stack 🚀
+[11:31:04] [main/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[11:31:05] [Worker-Main-3/INFO]: No existing world data, creating new world
+[11:31:05] [main/INFO]: Loaded 1515 recipes
+[11:31:05] [main/INFO]: Loaded 1617 advancements
+[11:31:05] [main/WARN]: Initial datapack load took 983.6 ms
+[11:31:05] [main/INFO]: Applied 0 biome modifications to 0 of 65 new biomes in 1.256 ms
+[11:31:05] [Server thread/INFO]: Starting minecraft server version 26.1.2
+[11:31:05] [Server thread/INFO]: Loading properties
+[11:31:05] [Server thread/INFO]: Default game type: SURVIVAL
+[11:31:05] [Server thread/INFO]: Generating keypair
+[11:31:06] [Server thread/INFO]: Starting Minecraft server on *:25565
+[11:31:06] [Server thread/INFO]: Preparing level "world"
+[11:31:06] [Server thread/INFO]: Selecting global world spawn...
+[11:31:09] [Server thread/INFO]: Loading 0 persistent chunks...
+[11:31:09] [Server thread/INFO]: Preparing spawn area: 100%
+[11:31:09] [Server thread/INFO]: Time elapsed: 3146 ms
+[11:31:09] [Server thread/INFO]: Done (3.505s)! For help, type "help"
+[11:31:09] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[11:31:10] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[11:31:10] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[11:31:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[11:31:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[11:31:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[11:31:10] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[11:31:10] [Server thread/WARN]: Dedicated server took 13.119 seconds to load
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Listener
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.SmithingTransformRecipeBuilder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.network.config.SynchronizeRegistriesTask
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.CompressionDecoder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.RecipeProvider
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.chunk.LevelChunkSection$1BlockCounter
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.protocol.configuration.ServerboundSelectKnownPacks
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.block.ComposterBlock$InputContainer
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.Swim
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.LongJumpToRandomPos
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.packs.resources.ProfiledReloadInstance
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.Utf8String
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.network.ServerLoginPacketListenerImpl
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.Connection$1
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.commands.execution.CommandQueueEntry
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.gametest.framework.GameTestServer
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.chunk.LevelChunk$RebindableTickingBlockEntityWrapper
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.core.RegistrySynchronization
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.tags.TagAppender$2
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.CompoundContainer
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.Varint21FrameDecoder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.tags.TagAppender$1
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.PacketEncoder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.SimpleCookingRecipeBuilder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.SpecialRecipeBuilder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.ShapedRecipeBuilder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.ServerExplosion
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.memory.MemorySlot
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.util.ClassInstanceMultiMap
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.packs.FilePackResources$SharedZipFileAccess
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.PacketDecoder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.ShapelessRecipeBuilder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.item.enchantment.EnchantmentHelper
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.registries.VanillaRegistries
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.GiveGiftToHero
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.entity.EntitySection
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.loot.BlockLootSubProvider
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.core.dispenser.EquipmentDispenseItemBehavior
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.registries.RegistryPatchGenerator
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.level.ChunkMap$TrackedEntity
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.GateBehavior$RunningPolicy$2
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.GateBehavior$RunningPolicy$1
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.block.SculkSpreader
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.HashCache$ProviderCache
+[11:31:10] [Server thread/INFO]: Stopping the server
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.block.piston.PistonStructureResolver
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.pathfinder.PathfindingContext
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.ShufflingList
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.SmithingTrimRecipeBuilder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.SingleItemRecipeBuilder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.PlayerAdvancements
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.util.datafix.fixes.BlockStateData
+[11:31:10] [Server thread/INFO]: Stopping server
+[11:31:10] [Server thread/INFO]: Saving players
+[11:31:10] [Server thread/INFO]: Saving worlds
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.network.ServerHandshakePacketListenerImpl
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.projectile.ProjectileUtil
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.advancements.Advancement$Builder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.VillagerGoalPackages
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.boss.enderdragon.phases.DragonLandingPhase
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.commands.DebugConfigCommand
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.pathfinder.WalkNodeEvaluator
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.storage.loot.LootPool$Builder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.util.SortedArraySet
+[11:31:10] [Worker-ResourceReload-0/WARN]: Method overwrite conflict for removeIf in modernfix-common.mixins.json:bugfix.paper_chunk_patches.SortedArraySetMixin from mod modernfix, previously written by net.caffeinemc.mods.lithium.mixin.collections.chunk_tickets.SortedArraySetMixin. Skipping method.
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.TransmuteRecipeBuilder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.chunk.LevelChunk$BoundTickingBlockEntity
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.tags.TagAppender
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.attributes.AttributeMap
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.GateBehavior
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.network.LegacyQueryHandler
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.Behavior
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.entity.PersistentEntitySectionManager$Callback
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.Varint21LengthFieldPrepender
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.protocol.BundlePacket
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.fabricmc.fabric.impl.networking.payload.PayloadHelper
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.util.ParticleUtils
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.tags.TagsProvider
+[11:31:10] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.level.ServerEntity
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.block.ComposterBlock$EmptyContainer
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.tags.TagBuilder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.material.FlowingFluid$BlockStatePairKey
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.protocol.login.ServerboundCustomQueryAnswerPacket
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.AcquirePoi
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.recipes.RecipeOutput
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.LocateHidingPlace
+[11:31:10] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.ClipContext
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket
+[11:31:10] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.EntityBasedExplosionDamageCalculator
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.PathNavigationRegion
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.commands.execution.tasks.BuildContexts
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.ai.behavior.WorkAtComposter
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.HashCache
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.level.block.ComposterBlock$OutputContainer
+[11:31:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.server.network.PlayerChunkSender
+[11:31:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[11:31:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[11:31:10] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.VarLong
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.CompressionEncoder
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.world.entity.InsideBlockEffectApplier$StepBasedCollector
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class com.mojang.brigadier.context.ContextChain
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.network.codec.IdDispatchCodec
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.DataProvider
+[11:31:10] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.data.loot.EntityLootSubProvider
