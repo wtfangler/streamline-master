@@ -52,6 +52,10 @@ jobs:
       SDL_VIDEO_DRIVER: x11
       MESA_GL_VERSION_OVERRIDE: "4.6"
       MESA_GLSL_VERSION_OVERRIDE: "460"
+      # With the pack installed, SDL3's GLX path cannot create the 26.3 window on this
+      # runner while vanilla 26.3 can (run 6); over EGL the pack starts. The GLX
+      # diagnostics below narrow down which mod is involved.
+      SDL_VIDEO_FORCE_EGL: "1"
       # No sound card on the runner: OpenAL's null device instead of a failed open.
       ALSOFT_DRIVERS: "null"
     steps:
@@ -136,25 +140,29 @@ jobs:
             python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC" \
               --mc "$MC" --timeout 900 ${{ matrix.harness && ' ' || '--no-harness' }}
 
-      # When 26.3 fails: is it the pack or the runner? A vanilla control (Fabric Loader and the
-      # harness, no pack mods), then the full pack with SDL3 on EGL instead of GLX.
-      - name: Diagnostic - vanilla 26.3 on this runner
-        if: matrix.mc == '26.3' && steps.run.outcome == 'failure'
+      # 26.3 over GLX: the full pack fails there while vanilla passes. Which mod? Each
+      # control changes one thing; SDL_VIDEO_FORCE_EGL is unset so they take the GLX path.
+      - name: GLX diagnostic - full pack
+        if: matrix.mc == '26.3'
         continue-on-error: true
         run: |
-          xvfb-run -a -s "-screen 0 1280x720x24" \
-            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC/diag-vanilla" \
-              --mc "$MC" --timeout 600 --no-shots --drop-mod ""
+          env -u SDL_VIDEO_FORCE_EGL xvfb-run -a -s "-screen 0 1280x720x24" python ci/run_client.py "out/Streamline Master $MC.mrpack" \
+            --dev .dev --game game --out "ci-results/$MC/glx-pack" --mc "$MC" --timeout 300 --no-shots
 
-      - name: Diagnostic - full pack, SDL3 on EGL
-        if: matrix.mc == '26.3' && steps.run.outcome == 'failure'
+      - name: GLX diagnostic - without Ixeris
+        if: matrix.mc == '26.3'
         continue-on-error: true
-        env:
-          SDL_VIDEO_FORCE_EGL: "1"
         run: |
-          xvfb-run -a -s "-screen 0 1280x720x24" \
-            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC/diag-egl" \
-              --mc "$MC" --timeout 600 --no-shots
+          env -u SDL_VIDEO_FORCE_EGL xvfb-run -a -s "-screen 0 1280x720x24" python ci/run_client.py "out/Streamline Master $MC.mrpack" \
+            --dev .dev --game game --out "ci-results/$MC/glx-no-ixeris" --mc "$MC" --timeout 300 --no-shots --drop-mod Ixeris
+
+      - name: GLX diagnostic - Sodium without the no-error context
+        if: matrix.mc == '26.3'
+        continue-on-error: true
+        run: |
+          env -u SDL_VIDEO_FORCE_EGL xvfb-run -a -s "-screen 0 1280x720x24" python ci/run_client.py "out/Streamline Master $MC.mrpack" \
+            --dev .dev --game game --out "ci-results/$MC/glx-sodium-error-ctx" --mc "$MC" --timeout 300 --no-shots \
+            --json-set "config/sodium-options.json:performance.use_no_error_g_l_context=false"
 
       - name: Start a server built from the pack
         id: server
@@ -211,6 +219,7 @@ jobs:
       MC: "26.3"
       LIBGL_ALWAYS_SOFTWARE: "1"
       SDL_VIDEO_DRIVER: x11
+      SDL_VIDEO_FORCE_EGL: "1"
       MESA_GL_VERSION_OVERRIDE: "4.6"
       MESA_GLSL_VERSION_OVERRIDE: "460"
       ALSOFT_DRIVERS: "null"

@@ -314,6 +314,9 @@ def main():
                     help="obfuscated versions (1.21.x): no harness mod, pass = joined the world without a crash")
     ap.add_argument("--drop-mod", action="append", default=[], metavar="PREFIX",
                     help="diagnostics: delete installed mod jars whose name starts with PREFIX")
+    ap.add_argument("--json-set", action="append", default=[], metavar="FILE:dotted.key=json",
+                    help="diagnostics: change one value in an installed JSON config, e.g. "
+                         "config/sodium-options.json:performance.use_no_error_g_l_context=false")
     ap.add_argument("--bench", metavar="JAR", help="run the benchmark mod instead of the harness; pass = it finishes and writes its CSVs")
     ap.add_argument("--no-shots", action="store_true", help="skip screenshots (timing runs)")
     args = ap.parse_args()
@@ -322,6 +325,19 @@ def main():
     os.makedirs(os.path.join(game, "mods"))
 
     idx = install_pack(args.pack, game, os.path.join(os.path.dirname(game), "mod-cache"))
+    for spec in args.json_set:
+        rel, _, assign = spec.partition(":")
+        key, _, value = assign.partition("=")
+        path = os.path.join(game, rel)
+        data = json.load(open(path, encoding="utf-8"))
+        node = data
+        parts = key.split(".")
+        for k in parts[:-1]:
+            node = node.setdefault(k, {})
+        node[parts[-1]] = json.loads(value)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+        log("diagnostic run with %s %s = %s" % (rel, key, value))
     for prefix in args.drop_mod:
         for jar in glob.glob(os.path.join(game, "mods", prefix + "*.jar")):
             os.remove(jar)
