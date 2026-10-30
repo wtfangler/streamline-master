@@ -1,0 +1,8 @@
+{
+  "pack": "1.6.3+26.3",
+  "passed": true,
+  "metrics": {
+    "world_ready_s": 25.95,
+    "heap_after_gc_mb": 326.6
+  }
+}
