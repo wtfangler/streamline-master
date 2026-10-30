@@ -26,7 +26,7 @@ and the other targets are unchanged.
 - **Entity Culling 1.11.2 → 1.11.3.** Fixes frustum culling ignoring its whitelist and
   using the uninflated hitbox, which caused entities to pop in and out when turning
   the camera, and fixes a leak where leaving a world could keep the whole level in
-  memory (with Fabric API and TRansition, both of which the pack ships).
+  memory (upstream traced it to Fabric API together with tr7zw's TRansition library).
 - **Lithium 0.26.2 → 0.26.3.** Fixes a player memory leak through maps in item frames
   (and stops sending map data packets that are not needed), plus two correctness fixes.
   Same Fabric Loader requirement (≥0.19.5).
