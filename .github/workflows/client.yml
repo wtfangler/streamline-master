@@ -72,8 +72,13 @@ jobs:
         run: |
           mkdir -p "ci-results/$MC"
           cd .dev/$MC
-          jar tf client.jar | grep -E '^net/minecraft/client/gui/screens/.*(Loading|Progress|Receiving|Message|Connect).*\.class$' \
-            | grep -v '\$' | sed 's/\.class$//; s#/#.#g' > classes.txt
+          { jar tf client.jar | grep -E '^net/minecraft/client/gui/screens/.*(Loading|Progress|Receiving|Message|Connect).*\.class$' \
+              | grep -v '\$' | sed 's/\.class$//; s#/#.#g'
+            # what the benchmark mod needs: opening/creating a world from code, and the camera/player API
+            printf '%s\n' net.minecraft.client.gui.screens.worldselection.WorldOpenFlows \
+              net.minecraft.world.level.levelgen.presets.WorldPresets net.minecraft.world.level.LevelSettings \
+              net.minecraft.world.level.levelgen.WorldOptions net.minecraft.client.Minecraft \
+              net.minecraft.client.gui.Gui net.minecraft.world.level.storage.LevelStorageSource; } > classes.txt
           { echo "# classes"; cat classes.txt; echo; while read -r c; do javap -p -cp client.jar "$c"; echo; done < classes.txt; } \
             > "$GITHUB_WORKSPACE/ci-results/$MC/javap.txt"
 
