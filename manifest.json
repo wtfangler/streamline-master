@@ -3,12 +3,12 @@
   "slug": "slm",
   "summary": "Performance-first Fabric pack tuned for low-end and integrated-GPU machines.",
   "author": "Oliwier Koda",
-  "packVersion": "1.6.2",
+  "packVersion": "1.6.3",
   "loader": "fabric",
   "targets": [
     {
       "minecraft": "26.3",
-      "packVersion": "1.6.2",
+      "packVersion": "1.6.3",
       "allowPrerelease": true
     },
     {
@@ -94,8 +94,7 @@
     {
       "slug": "particle-core",
       "group": "culling",
-      "env": "client",
-      "skipTargets": ["26.3"]
+      "env": "client"
     },
     {
       "slug": "lithium",

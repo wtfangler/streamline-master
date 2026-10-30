@@ -12,6 +12,42 @@ repository — they remain downloadable on Modrinth, unchanged.
 
 ---
 
+## 1.6.3 — unreleased
+
+Minecraft 26.3. Picks up the upstream fixes released since 1.6.2 that matter for frame
+rate and memory, and brings Particle Core back. Every other file is the same as in 1.6.2,
+and the other targets are unchanged.
+
+- **Particle Core is back on 26.3** (0.3.3+fix1). It was left out of 1.6.1 and 1.6.2
+  only because there was no 26.3 build; the one published on 2026-10-10 lists 26.3 and
+  its requirements (Fabric Loader ≥0.19.2, Fabric Language Kotlin ≥1.13.9, Fzzy Config
+  ≥0.7.6) are all met by the pack. It is the same mod the 26.2 pack ships, and it covers
+  the particle side that Smart Particles covered in 1.6.1.
+- **Entity Culling 1.11.2 → 1.11.3.** Fixes frustum culling ignoring its whitelist and
+  using the uninflated hitbox, which caused entities to pop in and out when turning
+  the camera, and fixes a leak where leaving a world could keep the whole level in
+  memory (with Fabric API and TRansition, both of which the pack ships).
+- **Lithium 0.26.2 → 0.26.3.** Fixes a player memory leak through maps in item frames
+  (and stops sending map data packets that are not needed), plus two correctness fixes.
+  Same Fabric Loader requirement (≥0.19.5).
+- **Smooth Scrolling 3.0.0 → 3.0.2.** Bug fixes only: chat position at non-100% chat
+  scale, and bundle scrolling moving the creative screen.
+- **Held back on purpose:**
+  - Sodium 0.9.3-beta.1 and everything that follows it (Better Block Entities 1.4.0
+    requires that exact build, and Reese's Sodium Options 2.2.5 requires exactly
+    0.9.2). This is the chain that kept 1.6.0 from starting.
+  - Sodium Extra 0.9.5 requires Fabric Loader 0.20.1; the pack is on 0.19.5, and
+    the release has no changelog to weigh against a loader bump.
+  - Zoomify 2.17.0 adds a new required library, Almanac/Let Me Despawn 1.26.10.2
+    move to a new config system, and Fabric API, Fabric Language Kotlin, Ixeris, Ksyxis,
+    Async Logger, Fast Noise and Smooth Gui had updates with nothing for performance.
+- **Not yet launched or measured.** The versions were checked against the
+  requirements in each mod's source, not by starting the game. Before release:
+  import into Prism, load a world, check the log, and repeat the 1.6.2 measurement
+  (same scene, 40 samples after 100 s). Only a difference above ~10% counts.
+
+---
+
 ## 1.6.2 — 2026-10-06
 
 Minecraft 26.3. Fixes a startup crash and removes the mods that made the pack slower

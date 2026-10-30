@@ -22,7 +22,7 @@ These are the targets this repository builds:
 
 | Minecraft | Pack | Files |
 | --------- | ---- | ----- |
-| 26.3      | 1.6.2 | 51 |
+| 26.3      | 1.6.3 | 52 |
 | 26.2      | 1.5.2 | 41 |
 | 26.1.2    | 1.4.2 | 42 |
 | 1.21.11   | 1.3.2 | 41 |
@@ -140,8 +140,9 @@ on Minecraft 1.21.11:
 - **Remove Reloading Screen** — its only Fabric builds for 1.21.11 hard-require
   Forge Config API Port.
 
-All three ship normally on 26.x. On Minecraft 26.3, **Chloride** and **Particle Core**
-are excluded instead: neither has a 26.3 build yet. The 26.3 pack also carries
+All three ship normally on 26.x. On Minecraft 26.3, **Chloride** is excluded
+instead: it has no 26.3 build yet (Particle Core, excluded for the same reason in
+1.6.1 and 1.6.2, is back in 1.6.3). The 26.3 pack also carries
 fourteen mods the older packs do not (HUD, particle, sound and loading-time
 optimisations plus their libraries); they are `skipTargets`-ed everywhere else, so
 the 26.2, 26.1.2 and 1.21.11 builds stay byte-for-byte what they were.
@@ -152,7 +153,7 @@ by launching the game, not by the build.
 ## Documentation
 
 [`CHANGELOG.md`](CHANGELOG.md) covers the release history, including what the
-1.6.2 / 1.6.1 / 1.5.2 / 1.4.2 / 1.3.2 / 1.5.1 / 1.4.1 / 1.3.1 releases fixed and which mods are excluded where.
+1.6.3 / 1.6.2 / 1.6.1 / 1.5.2 / 1.4.2 / 1.3.2 / 1.5.1 / 1.4.1 / 1.3.1 releases fixed and which mods are excluded where.
 
 The notes in [`docs/`](docs) are written in Polish:
 
