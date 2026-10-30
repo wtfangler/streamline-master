@@ -80,11 +80,15 @@ python build.py --offline  # rebuild from lockfiles, no network, reproducible
 python build.py --survey   # table of which mod resolves to what on each version
 python validate.py "dist/*.mrpack" --online
 python whatsnew.py         # newer Minecraft versions, and how ready the mods are
+python tune.py <instance> --gpu      # JVM args, heap and GPU for a Prism instance
+python bench.py a.csv --vs b.csv     # avg / 1% low / stutter from PresentMon captures
 ```
 
 On Windows, double-clicking `build.cmd` does the build and validation in one
 step. `doctor.cmd` compares an installed instance against a pack and reports
-which files the launcher failed to write.
+which files the launcher failed to write. `tune.cmd` applies the launcher-side
+tuning a `.mrpack` cannot carry: heap size, G1 arguments and, on Windows, the
+high-performance GPU for the instance's Java.
 
 ## Layout
 
@@ -93,6 +97,8 @@ manifest.json          mod list, targets, pack metadata — the single source of
 build.py               Modrinth version resolver + .mrpack generator
 validate.py            structural and online validation of built packs
 doctor.py              compares an installed instance against a pack
+tune.py                JVM arguments, heap and GPU preference for a Prism instance
+bench.py               frame-time statistics from PresentMon / CapFrameX captures
 overrides/             configs shared by every game version
 overrides-<mc>/        version-specific configs, layered over the above
 lock/<mc>.json         resolved versions and hashes (committed on purpose)

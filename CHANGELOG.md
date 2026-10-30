@@ -32,6 +32,14 @@ and the other targets are unchanged.
   Same Fabric Loader requirement (≥0.19.5).
 - **Smooth Scrolling 3.0.0 → 3.0.2.** Bug fixes only: chat position at non-100% chat
   scale, and bundle scrolling moving the creative screen.
+- **New tools: `tune.py` / `tune.cmd` and `bench.py`.** The pack cannot carry JVM
+  arguments, heap size or the GPU choice, and on a weak laptop those matter more than
+  any mod. `tune` writes them into a Prism instance (heap from the machine's RAM, the
+  G1 arguments from `docs/tuning.md`, and on Windows the high-performance GPU for the
+  instance's Java; a backup of `instance.cfg` first). `bench` turns PresentMon or
+  CapFrameX captures into avg FPS, 1% / 0.1% lows and stutters per minute, and says
+  whether a difference against another pack clears the noise thresholds in
+  `docs/benchmark.md`. Neither changes the `.mrpack`.
 - **Held back on purpose:**
   - Sodium 0.9.3-beta.1 and everything that follows it (Better Block Entities 1.4.0
     requires that exact build, and Reese's Sodium Options 2.2.5 requires exactly

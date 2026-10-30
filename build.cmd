@@ -40,7 +40,8 @@ echo Co dalej:
 echo   1. Otworz launcher (Prism albo aplikacja Modrinth)
 echo   2. Dodaj instancje z pliku .mrpack - jako NOWA instancje,
 echo      nie aktualizuj starej
-echo   3. W ustawieniach instancji wklej argumenty JVM z docs\tuning.md
+echo   3. Zamknij launcher i uruchom tune.cmd - ustawi argumenty JVM,
+echo      pamiec i karte graficzna dla tej instancji
 echo.
 start "" explorer "%CD%\dist"
 pause

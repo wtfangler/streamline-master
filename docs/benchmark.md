@@ -77,6 +77,19 @@ Do zapisu:
 | czas do menu głównego | stoper, od kliknięcia Launch |
 | czas ładowania świata | stoper, od kliknięcia świata do zniknięcia ekranu ładowania |
 
+Logi CSV z PresentMon albo CapFrameX liczy `bench.py` — zawsze tą samą metodą,
+z progami z sekcji „Kiedy uznać wynik za przewagę”:
+
+```
+python bench.py slm-2.csv slm-3.csv --vs fo-2.csv fo-3.csv
+```
+
+Dla każdej strony bierze medianę z przebiegów i podaje avg FPS (klatki / czas, nie
+średnią z chwilowych FPS), 1% low i 0.1% low (1000 / średnia z najwolniejszego 1% i 0,1%
+klatek) oraz przycięcia na minutę (klatki dłuższe niż 2,5× mediana). Na końcu werdykt:
+przewaga, remis albo wynik mieszany. Porównuj tylko logi z tego samego narzędzia —
+każde liczy „1% low” trochę inaczej.
+
 ## Przebieg
 
 3 przebiegi na scenę na paczkę. Odrzuć pierwszy (ładowanie chunków, kompilacja shaderów

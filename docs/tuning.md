@@ -8,6 +8,18 @@ Profil sprzętowy, pod który ustawione są domyślne: HP EliteBook x360, i5-835
 Największy pojedynczy lever w całym projekcie, a `.mrpack` go nie przenosi — trzeba
 ustawić go w instancji Prism Launchera: Edit Instance → Settings → Java.
 
+Robi to za Ciebie `tune.cmd` (albo `python tune.py <folder instancji> --gpu`): dobiera
+`-Xmx` do RAM-u maszyny według tabeli niżej, wpisuje argumenty G1 do `instance.cfg`
+(z kopią `instance.cfg.bak`) i na Windowsie ustawia Javę tej instancji na kartę
+„Wysoka wydajność” — ten sam wpis, który robi Ustawienia → Ekran → Grafika. Na laptopie
+z dwiema kartami to jest różnica między iGPU a dedykowaną, większa niż cokolwiek w paczce;
+na laptopie z jedną kartą (jak UHD 620) nic nie zmienia. Przed uruchomieniem zamknij
+Prism — przy wyjściu nadpisuje `instance.cfg`. Aplikacji Modrinth skrypt nie edytuje
+(trzyma ustawienia w bazie danych), tylko wypisuje wartości do wklejenia.
+
+Argumenty w `tune.py` są tymi samymi co poniżej, bez `-Xms`/`-Xmx` — Prism podaje
+je sam z pól pamięci, a podwójne wpisanie zostawia kolejności argumentów, który wygra.
+
 Java 21 lub nowsza jest wymagana dla 1.20.5+.
 
 16 GB RAM w laptopie:
