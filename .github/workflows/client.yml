@@ -15,6 +15,7 @@ on:
       - "loader/**"
       - "ci/**"
       - "server/**"
+      - "bench/**"
       - "lock/**"
       - "manifest.json"
       - "overrides/**"
@@ -94,7 +95,8 @@ jobs:
             printf '%s\n' net.minecraft.client.gui.screens.worldselection.WorldOpenFlows \
               net.minecraft.world.level.levelgen.presets.WorldPresets net.minecraft.world.level.LevelSettings \
               net.minecraft.world.level.levelgen.WorldOptions net.minecraft.client.Minecraft \
-              net.minecraft.client.gui.Gui net.minecraft.world.level.storage.LevelStorageSource; } > classes.txt
+              net.minecraft.client.gui.Gui net.minecraft.world.level.storage.LevelStorageSource \
+              'net.minecraft.world.level.LevelSettings$DifficultySettings'; } > classes.txt
           { echo "# classes"; cat classes.txt; echo; while read -r c; do javap -p -cp client.jar "$c"; echo; done < classes.txt; } \
             > "$GITHUB_WORKSPACE/ci-results/$MC/javap.txt"
 
@@ -136,6 +138,15 @@ jobs:
             python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC" \
               --mc "$MC" --timeout 900 ${{ matrix.harness && ' ' || '--no-harness' }}
 
+      - name: Diagnostic re-run without Ixeris (26.3 only, if the client failed)
+        id: noixeris
+        if: matrix.mc == '26.3' && steps.run.outcome == 'failure'
+        continue-on-error: true
+        run: |
+          xvfb-run -a -s "-screen 0 1280x720x24" \
+            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC/without-ixeris" \
+              --mc "$MC" --timeout 600 --no-shots --drop-mod Ixeris
+
       - name: Start a server built from the pack
         id: server
         continue-on-error: true
@@ -147,7 +158,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "ci-results/$MC"
-          if [ "$MC" = "26.3" ]; then git add SHA256SUMS overrides-26.3/mods; fi
+          if [ "$MC" = "26.3" ]; then git add SHA256SUMS overrides-26.3/mods bench/jar; fi
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
           git commit -m "CI: $MC client run (client ${{ steps.run.outcome }}, server ${{ steps.server.outcome }}) [skip ci]"
           for i in 1 2 3 4; do
@@ -155,6 +166,22 @@ jobs:
             sleep $((i * 5))
           done
           exit 1
+
+      - name: Build the benchmark mod
+        id: benchbuild
+        if: matrix.mc == '26.3'
+        continue-on-error: true
+        run: python bench/build.py --dev-dir .dev --install
+
+      - name: Run the benchmark mod end to end
+        id: bench
+        if: matrix.mc == '26.3' && steps.benchbuild.outcome == 'success'
+        continue-on-error: true
+        run: |
+          xvfb-run -a -s "-screen 0 1280x720x24" \
+            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC/bench" \
+              --mc "$MC" --timeout 900 --bench bench/jar/slm_bench-*.jar \
+              ${{ steps.run.outcome == 'failure' && '--drop-mod Ixeris' || '' }}
 
       - name: Fail if the client or the server did not pass
         if: steps.run.outcome != 'success' || steps.server.outcome != 'success'

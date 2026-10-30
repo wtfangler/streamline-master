@@ -140,7 +140,7 @@ JOINED = "logged in with entity id"  # the integrated server's line when the pla
 CRASHED = "---- Minecraft Crash Report ----"
 
 
-def launch(dev, mc, game, timeout, fabric="fabric", watch=False):
+def launch(dev, mc, game, timeout, fabric="fabric", watch=False, quickplay=True):
     """Without the harness (watch=True) nothing inside the game quits it, so the log is
     watched instead: the player joining the world, held 20 s, counts as a pass."""
     vj = json.load(open(os.path.join(dev, mc, "version.json")))
@@ -183,7 +183,7 @@ def launch(dev, mc, game, timeout, fabric="fabric", watch=False):
     jvm = args_of(vj["arguments"]["jvm"]) + args_of(profile.get("arguments", {}).get("jvm", []))
     game_args = args_of(vj["arguments"]["game"]) + args_of(profile.get("arguments", {}).get("game", []))
     cmd = ["java", "-Xms1G", "-Xmx3G"] + G1_ARGS.split() + jvm + [profile["mainClass"]] + game_args \
-        + ["--width", "1280", "--height", "720", "--quickPlaySingleplayer", WORLD]
+        + ["--width", "1280", "--height", "720"] + (["--quickPlaySingleplayer", WORLD] if quickplay else [])
     log_path = os.path.join(game, "client.out")
     start = time.time()
     with open(log_path, "w") as out:
@@ -312,6 +312,9 @@ def main():
     ap.add_argument("--world-cache", help="reuse (or create) the generated world here")
     ap.add_argument("--no-harness", action="store_true",
                     help="obfuscated versions (1.21.x): no harness mod, pass = joined the world without a crash")
+    ap.add_argument("--drop-mod", action="append", default=[], metavar="PREFIX",
+                    help="diagnostics: delete installed mod jars whose name starts with PREFIX")
+    ap.add_argument("--bench", metavar="JAR", help="run the benchmark mod instead of the harness; pass = it finishes and writes its CSVs")
     ap.add_argument("--no-shots", action="store_true", help="skip screenshots (timing runs)")
     args = ap.parse_args()
     dev, game, out = map(os.path.abspath, (args.dev, args.game, args.out))
@@ -319,8 +322,16 @@ def main():
     os.makedirs(os.path.join(game, "mods"))
 
     idx = install_pack(args.pack, game, os.path.join(os.path.dirname(game), "mod-cache"))
+    for prefix in args.drop_mod:
+        for jar in glob.glob(os.path.join(game, "mods", prefix + "*.jar")):
+            os.remove(jar)
+            log("diagnostic run without %s" % os.path.basename(jar))
     watch = args.no_harness
-    if not watch:
+    if args.bench:
+        shutil.copyfile(args.bench, os.path.join(game, "mods", os.path.basename(args.bench)))
+        with open(os.path.join(game, "slm-bench.txt"), "w") as f:
+            f.write("CI\n")
+    elif not watch:
         try:
             build_harness(dev, args.mc, game, args.fabric_dir)
         except subprocess.CalledProcessError:
@@ -331,8 +342,24 @@ def main():
         with open(os.path.join(game, "slm-harness-noshots"), "w"):
             pass
     patch_options(game)
-    generate_world(dev, args.mc, game, os.path.dirname(game), args.world_cache and os.path.abspath(args.world_cache))
-    code, log_path, seconds = launch(dev, args.mc, game, args.timeout, args.fabric_dir, watch)
+    if not args.bench:  # the benchmark creates its own world from its fixed seed
+        generate_world(dev, args.mc, game, os.path.dirname(game), args.world_cache and os.path.abspath(args.world_cache))
+    code, log_path, seconds = launch(dev, args.mc, game, args.timeout, args.fabric_dir, watch, quickplay=not args.bench)
+    if args.bench:
+        os.makedirs(out, exist_ok=True)
+        csvs = sorted(glob.glob(os.path.join(game, "slm-bench", "*.csv")))
+        for c in csvs:
+            shutil.copyfile(c, os.path.join(out, os.path.basename(c)))
+        text = open(log_path, encoding="utf-8", errors="replace").read()
+        shutil.copyfile(log_path, os.path.join(out, "bench.log"))
+        lines = [l for l in text.splitlines() if "[SLM-BENCH]" in l]
+        passed = code == 0 and len(csvs) == 2 and not any("ERROR" in l for l in lines)
+        with open(os.path.join(out, "bench.md"), "w", encoding="utf-8") as f:
+            f.write("# Benchmark mod in CI\n\n**%s** — exit %s, %d CSV file(s)\n\nSoftware rendering: this checks the\n"
+                    "benchmark runs end to end; its numbers are not a result.\n\n```\n%s\n```\n"
+                    % ("PASS" if passed else "FAIL", code, len(csvs), "\n".join(lines)))
+        log("benchmark %s, %d CSV file(s)" % ("PASS" if passed else "FAIL", len(csvs)))
+        return 0 if passed else 1
 
     shots = sorted(glob.glob(os.path.join(game, "screenshots", "*.png")))
     os.makedirs(out, exist_ok=True)
