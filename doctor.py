@@ -63,7 +63,8 @@ def main():
         on_disk = listdir(os.path.join(root, folder))
         want = expected[folder]
         missing = sorted(set(want) - on_disk)
-        extra = sorted(n for n in on_disk - set(want) if n.lower().endswith((".jar", ".zip")))
+        shipped = {rel.split("/", 1)[1] for rel in overrides if rel.startswith(folder + "/")}
+        extra = sorted(n for n in on_disk - set(want) - shipped if n.lower().endswith((".jar", ".zip")))
         print("%s: %d expected, %d present" % (folder, len(want), len(want) - len(missing)))
         for n in missing:
             print("   MISSING  %s" % n)

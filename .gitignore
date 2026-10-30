@@ -12,3 +12,10 @@ Thumbs.db
 # NOTE: lock/*.json is deliberately NOT ignored. The lockfiles pin the exact
 # mod version and sha512 of every file in a release, which is what makes a
 # build auditable and reproducible.
+
+# CI client run (ci/run_client.py): downloaded game files and the test instance.
+.dev/
+.mod-cache/
+mod-cache
+game/
+out/

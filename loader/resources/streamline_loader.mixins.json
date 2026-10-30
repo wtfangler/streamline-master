@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "package": "dev.streamline.loader.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "LoadingOverlayMixin",
+    "GenericMessageScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

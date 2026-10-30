@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "streamline_loader",
+  "version": "${version}",
+  "name": "Streamline Loader",
+  "description": "The Streamline Master loading screen: start-up, resource reload, world loading and saving. Draws only while the game is loading.",
+  "authors": ["Oliwier Koda"],
+  "contact": { "homepage": "https://modrinth.com/modpack/slm", "sources": "https://github.com/wtfangler/streamline-master" },
+  "license": "MIT",
+  "icon": "assets/streamline_loader/icon.png",
+  "environment": "client",
+  "mixins": [
+    { "config": "streamline_loader.mixins.json", "environment": "client" }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "${minecraft}"
+  }
+}

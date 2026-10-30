@@ -247,10 +247,12 @@ def collect_overrides(mc):
 
 
 def render_override(path, subs, packs):
+    if not path.endswith(TEMPLATE_SUFFIX):
+        # As stored, byte for byte: overrides can hold a jar (the pack's own loader mod).
+        with open(path, "rb") as f:
+            return f.read()
     with open(path, encoding="utf-8") as f:
         body = f.read()
-    if not path.endswith(TEMPLATE_SUFFIX):
-        return body.encode("utf-8")
     for k, v in subs.items():
         body = body.replace("{{%s}}" % k, str(v))
 

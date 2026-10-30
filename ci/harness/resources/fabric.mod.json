@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "id": "slm_harness",
+  "version": "0.0.1",
+  "name": "SLM CI harness",
+  "environment": "client",
+  "mixins": [ { "config": "slm_harness.mixins.json", "environment": "client" } ]
+}
