@@ -51,14 +51,14 @@ Unpacking org/joml/joml/1.10.8/joml-1.10.8.jar (libraries:org.joml:joml:1.10.8) 
 Unpacking org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar (libraries:org.jspecify:jspecify:1.0.0) to libraries/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar
 Unpacking org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar (libraries:org.slf4j:slf4j-api:2.0.17) to libraries/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar
 Starting net.fabricmc.loader.impl.game.minecraft.BundlerClassPathCapture
-[12:18:50] [main/INFO]: Loading Minecraft 1.21.11 with Fabric Loader 0.19.3
-[12:18:50] [main/INFO]: Fabric is preparing JARs on first launch, this may take a few seconds...
-[12:18:50] [main/WARN]: Warnings were found!
+[12:24:35] [main/INFO]: Loading Minecraft 1.21.11 with Fabric Loader 0.19.3
+[12:24:35] [main/INFO]: Fabric is preparing JARs on first launch, this may take a few seconds...
+[12:24:35] [main/WARN]: Warnings were found!
  - Mod 'Debugify' (debugify) 1.21.11+1.1 recommends any version of yet_another_config_lib_v3, which is missing!
 	 - You should install any version of yet_another_config_lib_v3 for the optimal experience.
  - Mod 'Debugify' (debugify) 1.21.11+1.1 recommends any version of modmenu, which is missing!
 	 - You should install any version of modmenu for the optimal experience.
-[12:18:50] [main/INFO]: Loading 71 mods:
+[12:24:35] [main/INFO]: Loading 71 mods:
 	- almanac 1.6.2
 	- cloth-config 21.11.153
 	   \-- cloth-basic-math 0.6.1
@@ -137,148 +137,150 @@ Starting net.fabricmc.loader.impl.game.minecraft.BundlerClassPathCapture
 	- modernfix 5.26.3-build.1
 	- packetfixer 3.3.5
 	- threadtweak 0.1.8+mc1.21.11
-[12:18:50] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/streamline-master/streamline-master/srv/libraries/net/fabricmc/sponge-mixin/0.17.3+mixin.0.8.7/sponge-mixin-0.17.3+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
-[12:18:50] [main/INFO]: Compatibility level set to JAVA_21
-[12:18:50] [main/INFO]: Loaded configuration file for Lithium: 171 options available, 0 override(s) found.
-[12:18:50] [main/WARN]: Option 'mixin.perf.thread_priorities' already disabled by a mod. Ignoring user configuration
-[12:18:50] [main/INFO]: Loaded configuration file for ModernFix 5.26.3-build.1: 60 options available, 4 override(s) found
-[12:18:50] [main/WARN]: Option 'mixin.perf.clear_mixin_classinfo' overriden (by user configuration) to 'true'
-[12:18:50] [main/WARN]: Option 'mixin.perf.deduplicate_location' overriden (by user configuration) to 'true'
-[12:18:50] [main/WARN]: Option 'mixin.bugfix.missing_block_entities' overriden (by user configuration) to 'true'
-[12:18:50] [main/WARN]: Option 'mixin.perf.thread_priorities' overriden (by mods [threadtweak]) to 'false'
-[12:18:50] [main/INFO]: Applying Nashorn fix
-[12:18:51] [main/WARN]: Mixin malte0811.ferritecore.mixin.threaddetec.PalettedContainerMixin is disabled automatically as lithium is installed
-[12:18:51] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.4).
-[12:18:51] [main/INFO]: ThreadTweak config initialized
-[12:18:53] [main/WARN]: Method overwrite conflict for method_21740 in modernfix-common.mixins.json:perf.remove_biome_temperature_cache.BiomeMixin from mod modernfix, previously written by net.caffeinemc.mods.lithium.mixin.world.temperature_cache.BiomeMixin. Skipping method.
-[12:18:55] [main/INFO]: Vanilla bootstrap took 3300 milliseconds
-[12:18:55] [main/INFO]: Almanac Fabric config reloaded, cache cleared
-[12:18:55] [main/INFO]: Almanac Fabric config initialized
-[12:18:55] [main/INFO]: Almanac initialized
-[12:18:55] [main/INFO]: Enabled 60 bug fixes: [MC-7569, MC-8187, MC-30391, MC-44654, MC-82263, MC-84661, MC-88371, MC-89146, MC-93018, MC-94054, MC-100991, MC-119754, MC-121706, MC-121903, MC-123450, MC-123605, MC-129909, MC-131562, MC-132878, MC-133218, MC-134110, MC-136249, MC-139041, MC-147659, MC-153010, MC-155509, MC-158900, MC-159283, MC-160095, MC-168573, MC-170462, MC-176806, MC-177381, MC-179072, MC-183990, MC-187100, MC-200418, MC-201374, MC-202637, MC-206922, MC-215530, MC-219981, MC-221257, MC-223153, MC-224729, MC-226961, MC-227008, MC-227337, MC-231743, MC-232869, MC-245394, MC-263999, MC-264285, MC-264979, MC-267125, MC-268617, MC-271899, MC-272431, MC-297837, MC-298066]
-[12:18:55] [main/INFO]: Successfully Debugify'd your game!
-[12:18:55] [main/INFO]: Compression will use libdeflate (Linux x86_64), encryption will use OpenSSL 3.x.x (Linux x86_64)
-[12:18:55] [main/INFO]: Packet Fixer 3.3.5 Fabric has been initialized!
-[12:18:55] [main/INFO]: Krypton is now accelerating your Minecraft server's networking stack 🚀
-[12:18:55] [main/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
-[12:18:56] [main/INFO]: No existing world data, creating new world
-[12:18:56] [main/INFO]: Loaded 1470 recipes
-[12:18:56] [main/INFO]: Loaded 1584 advancements
-[12:18:56] [main/WARN]: Initial datapack load took 1.002 s
-[12:18:56] [main/INFO]: Applied 0 biome modifications to 0 of 65 new biomes in 1.100 ms
-[12:18:56] [Server thread/INFO]: Starting minecraft server version 1.21.11
-[12:18:56] [Server thread/INFO]: Loading properties
-[12:18:56] [Server thread/INFO]: Default game type: SURVIVAL
-[12:18:56] [Server thread/INFO]: Generating keypair
-[12:18:56] [Server thread/INFO]: Starting Minecraft server on *:25565
-[12:18:57] [Server thread/INFO]: Preparing level "world"
-[12:18:57] [Server thread/INFO]: Selecting global world spawn...
-[12:19:00] [Server thread/INFO]: Loading 0 persistent chunks...
-[12:19:00] [Server thread/INFO]: Preparing spawn area: 100%
-[12:19:00] [Server thread/INFO]: Time elapsed: 3533 ms
-[12:19:00] [Server thread/INFO]: Done (3.837s)! For help, type "help"
-[12:19:00] [Server thread/WARN]: Dedicated server took 16.723 seconds to load
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2450
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_7788
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_7789
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3898$class_3208
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5361
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8076
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2899
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2456
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_7782
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2534
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2454
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_55$class_56
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2532
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3981
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8038
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_11389
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1518
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2408
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4706
-[12:19:00] [Worker-ResourceReload-0/WARN]: Method overwrite conflict for removeIf in modernfix-common.mixins.json:bugfix.paper_chunk_patches.SortedArraySetMixin from mod modernfix, previously written by net.caffeinemc.mods.lithium.mixin.collections.chunk_tickets.SortedArraySetMixin. Skipping method.
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2405
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8790
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8074
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3853$class_4162
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4103$class_4216$1
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_10774$class_10775
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4103$class_4216$2
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2535$1
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3231
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4243
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1890
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5572
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6306
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5131
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8847
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3244$1
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8608
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_9892
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4129
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2985
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2545
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1258
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3238
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_9136
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2543
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2826$class_6869
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8600
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4246
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_10243
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3962$class_3963
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3509
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.fabricmc.fabric.impl.networking.payload.PayloadHelper
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_10205
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3962$class_3964
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2658
-[12:19:00] [Server thread/INFO]: Stopping the server
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3962$class_3925
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3609$class_2249
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8931
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2550
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4010
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_11389$1
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4097
-[12:19:00] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_11389$2
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8858
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4096
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4095
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6030
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5945
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_9220
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3248
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_9223
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6032
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2674
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2474
-[12:19:01] [Server thread/INFO]: Stopping server
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2552
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3959
-[12:19:01] [Server thread/INFO]: Saving players
-[12:19:01] [Server thread/INFO]: Saving worlds
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_11362
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8514$class_8516
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2408$class_7405
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3495
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8702
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6603
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8704
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2447
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5579$class_5580
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1950
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1675
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4983
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4103
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2913
-[12:19:01] [Worker-ResourceReload-0/INFO]: Force-loading class com.mojang.brigadier.context.ContextChain
-[12:19:01] [Worker-ResourceReload-0/WARN]: Cleared mixin data structures
-[12:19:01] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
-[12:19:01] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
-[12:19:01] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
-[12:19:01] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
-[12:19:01] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[12:19:01] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[12:19:01] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[12:24:35] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/streamline-master/streamline-master/srv/libraries/net/fabricmc/sponge-mixin/0.17.3+mixin.0.8.7/sponge-mixin-0.17.3+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+[12:24:35] [main/INFO]: Compatibility level set to JAVA_21
+[12:24:35] [main/INFO]: Loaded configuration file for Lithium: 171 options available, 0 override(s) found.
+[12:24:35] [main/WARN]: Option 'mixin.perf.thread_priorities' already disabled by a mod. Ignoring user configuration
+[12:24:35] [main/INFO]: Loaded configuration file for ModernFix 5.26.3-build.1: 60 options available, 4 override(s) found
+[12:24:35] [main/WARN]: Option 'mixin.perf.clear_mixin_classinfo' overriden (by user configuration) to 'true'
+[12:24:35] [main/WARN]: Option 'mixin.perf.deduplicate_location' overriden (by user configuration) to 'true'
+[12:24:35] [main/WARN]: Option 'mixin.bugfix.missing_block_entities' overriden (by user configuration) to 'true'
+[12:24:35] [main/WARN]: Option 'mixin.perf.thread_priorities' overriden (by mods [threadtweak]) to 'false'
+[12:24:35] [main/INFO]: Applying Nashorn fix
+[12:24:36] [main/WARN]: Mixin malte0811.ferritecore.mixin.threaddetec.PalettedContainerMixin is disabled automatically as lithium is installed
+[12:24:36] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.4).
+[12:24:36] [main/INFO]: ThreadTweak config initialized
+[12:24:37] [main/WARN]: Method overwrite conflict for method_21740 in modernfix-common.mixins.json:perf.remove_biome_temperature_cache.BiomeMixin from mod modernfix, previously written by net.caffeinemc.mods.lithium.mixin.world.temperature_cache.BiomeMixin. Skipping method.
+[12:24:40] [main/INFO]: Vanilla bootstrap took 3046 milliseconds
+[12:24:40] [main/INFO]: Almanac Fabric config reloaded, cache cleared
+[12:24:40] [main/INFO]: Almanac Fabric config initialized
+[12:24:40] [main/INFO]: Almanac initialized
+[12:24:40] [main/INFO]: Enabled 60 bug fixes: [MC-7569, MC-8187, MC-30391, MC-44654, MC-82263, MC-84661, MC-88371, MC-89146, MC-93018, MC-94054, MC-100991, MC-119754, MC-121706, MC-121903, MC-123450, MC-123605, MC-129909, MC-131562, MC-132878, MC-133218, MC-134110, MC-136249, MC-139041, MC-147659, MC-153010, MC-155509, MC-158900, MC-159283, MC-160095, MC-168573, MC-170462, MC-176806, MC-177381, MC-179072, MC-183990, MC-187100, MC-200418, MC-201374, MC-202637, MC-206922, MC-215530, MC-219981, MC-221257, MC-223153, MC-224729, MC-226961, MC-227008, MC-227337, MC-231743, MC-232869, MC-245394, MC-263999, MC-264285, MC-264979, MC-267125, MC-268617, MC-271899, MC-272431, MC-297837, MC-298066]
+[12:24:40] [main/INFO]: Successfully Debugify'd your game!
+[12:24:40] [main/INFO]: Compression will use libdeflate (Linux x86_64), encryption will use OpenSSL 3.x.x (Linux x86_64)
+[12:24:40] [main/INFO]: Packet Fixer 3.3.5 Fabric has been initialized!
+[12:24:40] [main/INFO]: Krypton is now accelerating your Minecraft server's networking stack 🚀
+[12:24:40] [main/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[12:24:41] [main/INFO]: No existing world data, creating new world
+[12:24:41] [main/INFO]: Loaded 1470 recipes
+[12:24:41] [main/INFO]: Loaded 1584 advancements
+[12:24:41] [main/WARN]: Initial datapack load took 1.033 s
+[12:24:41] [main/INFO]: Applied 0 biome modifications to 0 of 65 new biomes in 1.126 ms
+[12:24:41] [Server thread/INFO]: Starting minecraft server version 1.21.11
+[12:24:41] [Server thread/INFO]: Loading properties
+[12:24:41] [Server thread/INFO]: Default game type: SURVIVAL
+[12:24:41] [Server thread/INFO]: Generating keypair
+[12:24:41] [Server thread/INFO]: Starting Minecraft server on *:25565
+[12:24:41] [Server thread/INFO]: Preparing level "world"
+[12:24:42] [Server thread/INFO]: Selecting global world spawn...
+[12:24:45] [Server thread/INFO]: Loading 0 persistent chunks...
+[12:24:45] [Server thread/INFO]: Preparing spawn area: 100%
+[12:24:45] [Server thread/INFO]: Time elapsed: 2890 ms
+[12:24:45] [Server thread/INFO]: Done (3.222s)! For help, type "help"
+[12:24:45] [Server thread/WARN]: Dedicated server took 15.174 seconds to load
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2450
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_7788
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_7789
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3898$class_3208
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5361
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8076
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2899
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2456
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_7782
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2534
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2454
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_55$class_56
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2532
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3981
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8038
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_11389
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1518
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2408
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4706
+[12:24:45] [Worker-ResourceReload-0/WARN]: Method overwrite conflict for removeIf in modernfix-common.mixins.json:bugfix.paper_chunk_patches.SortedArraySetMixin from mod modernfix, previously written by net.caffeinemc.mods.lithium.mixin.collections.chunk_tickets.SortedArraySetMixin. Skipping method.
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2405
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8790
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8074
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3853$class_4162
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4103$class_4216$1
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_10774$class_10775
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4103$class_4216$2
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2535$1
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3231
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2818$class_5564
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4243
+[12:24:45] [Server thread/INFO]: Stopping the server
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1890
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2818$class_5563
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5572
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6306
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5131
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8847
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3244$1
+[12:24:45] [Server thread/INFO]: Stopping server
+[12:24:45] [Server thread/INFO]: Saving players
+[12:24:45] [Server thread/INFO]: Saving worlds
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8608
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_9892
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4129
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2985
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2545
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1258
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3238
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_9136
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2543
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2826$class_6869
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8600
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4246
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_10243
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3962$class_3963
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3509
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.fabricmc.fabric.impl.networking.payload.PayloadHelper
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_10205
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3962$class_3964
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2658
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3962$class_3925
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3609$class_2249
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8931
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2550
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4010
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_11389$1
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4097
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_11389$2
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8858
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4096
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4095
+[12:24:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6030
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5945
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_9220
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3248
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_9223
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6032
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2674
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2474
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2552
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3959
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_11362
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8514$class_8516
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2408$class_7405
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_3495
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8702
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_6603
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_8704
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2447
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_5579$class_5580
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1950
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_1675
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4983
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_4103
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class net.minecraft.class_2913
+[12:24:45] [Worker-ResourceReload-0/INFO]: Force-loading class com.mojang.brigadier.context.ContextChain
+[12:24:45] [Worker-ResourceReload-0/WARN]: Cleared mixin data structures
+[12:24:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[12:24:45] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[12:24:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[12:24:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[12:24:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[12:24:45] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved

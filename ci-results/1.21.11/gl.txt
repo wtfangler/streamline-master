@@ -15,11 +15,11 @@ Extended renderer info (GLX_MESA_query_renderer):
     Max GLES[23] profile version: 3.2
 Memory info (GL_ATI_meminfo):
     VBO free memory - total: 0 MB, largest block: 0 MB
-    VBO free aux. memory - total: 14536 MB, largest block: 14536 MB
+    VBO free aux. memory - total: 14812 MB, largest block: 14812 MB
     Texture free memory - total: 0 MB, largest block: 0 MB
-    Texture free aux. memory - total: 14536 MB, largest block: 14536 MB
+    Texture free aux. memory - total: 14812 MB, largest block: 14812 MB
     Renderbuffer free memory - total: 0 MB, largest block: 0 MB
-    Renderbuffer free aux. memory - total: 14536 MB, largest block: 14536 MB
+    Renderbuffer free aux. memory - total: 14812 MB, largest block: 14812 MB
 Memory info (GL_NVX_gpu_memory_info):
     Dedicated video memory: 0 MB
     Total available memory: 15983 MB
@@ -39,8 +39,8 @@ OpenGL profile mask: compatibility profile
 OpenGL ES profile version string: OpenGL ES 3.2 Mesa 25.2.8-0ubuntu0.24.04.4
 OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20
 
-name of display: :100
-display: :100  screen: 0
+name of display: :99
+display: :99  screen: 0
 direct rendering: Yes
 Extended renderer info (GLX_MESA_query_renderer):
     Vendor: Mesa (0xffffffff)
@@ -56,11 +56,11 @@ Extended renderer info (GLX_MESA_query_renderer):
     Max GLES[23] profile version: 3.2
 Memory info (GL_ATI_meminfo):
     VBO free memory - total: 1069136 MB, largest block: 1069136 MB
-    VBO free aux. memory - total: 14519 MB, largest block: 14519 MB
+    VBO free aux. memory - total: 14795 MB, largest block: 14795 MB
     Texture free memory - total: 1069136 MB, largest block: 1069136 MB
-    Texture free aux. memory - total: 14519 MB, largest block: 14519 MB
+    Texture free aux. memory - total: 14795 MB, largest block: 14795 MB
     Renderbuffer free memory - total: 1069136 MB, largest block: 1069136 MB
-    Renderbuffer free aux. memory - total: 14519 MB, largest block: 14519 MB
+    Renderbuffer free aux. memory - total: 14795 MB, largest block: 14795 MB
 Memory info (GL_NVX_gpu_memory_info):
     Dedicated video memory: 1069136 MB
     Total available memory: 1085120 MB
