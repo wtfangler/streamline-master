@@ -14,8 +14,11 @@ with Intel UHD 620 graphics.
 - **Reproducible and auditable.** Each release is rebuilt byte for byte from lockfiles
   that pin the version and hash of every file. The source and the checksums are on
   [GitHub](https://github.com/wtfangler/streamline-master).
-- **Measured, not claimed.** Changes that cost frames have been taken out again (1.6.2
-  removed five mods that made 26.3 about 10% slower on a UHD 620 laptop). The repository
+- **Measured, not claimed.** On Minecraft 26.3, started side by side with Fabulously
+  Optimized on the same machine, the pack reaches the main menu 24% sooner, a playable
+  world 18% sooner and keeps 15% less memory (loading and memory only; frame rate needs
+  your hardware). Changes that cost frames have been taken out again: 1.6.2 removed five
+  mods that made 26.3 about 10% slower on a UHD 620 laptop. The repository
   ships a benchmark you can run in this pack and in any other, on your own hardware.
 - **Its own loading screen on 26.3**, drawn only while the game loads, so it costs
   nothing in play.

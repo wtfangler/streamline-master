@@ -64,18 +64,22 @@ One mod, Remove Reloading Screen, leaves; every other mod is the same as in 1.6.
   into a Fabric server with only its server-side mods; `release.py` and a release
   workflow for Modrinth; and a benchmark mod with `bench_setup.py`, which runs the same
   fixed route in this pack and in any other and compares the recordings.
-- **Started in CI, not yet measured on real hardware.** The `client` workflow installs
-  the pack like a launcher, generates a world, starts the game, joins and quits; it
-  passes (world ready after 26 s, 327 MB kept after a full GC, software rendering). A
-  server built from the pack starts in 18 s. Before release: repeat the 1.6.2
-  measurement on the UHD 620 laptop, or run the benchmark mod; only a difference above
-  ~10% counts.
+- **Started in CI and compared with Fabulously Optimized.** The `client` workflow installs
+  the pack like a launcher, generates a world, starts the game, joins and quits, and
+  starts a server built from the pack (ready in 19 s). Against Fabulously Optimized
+  15.0.0-beta.2 on the same runner (three alternating runs each, one world, identical JVM
+  arguments) 1.6.3 reached the main menu in 22.6 s vs 29.9 s (-24%), a playable world in
+  36.8 s vs 44.7 s (-18%), and kept 309 MB vs 364 MB after a full GC (-15%); each
+  difference is larger than the run-to-run spread. The runner renders in software, so
+  this says nothing about frame rate: before release, repeat the 1.6.2 measurement on the
+  UHD 620 laptop or run the benchmark mod there; only a difference above ~10% counts.
 - **Found while testing, not changed by this pack:** when Minecraft 26.3 cannot open an
   OpenGL window it falls back to its new Vulkan backend, and there Iris 1.11.7 calls
   OpenGL during start-up and the JVM aborts. Players whose OpenGL works never take that
   path. In CI, SDL3's GLX path could not open the window with the pack installed while
-  vanilla could; over EGL the pack starts. Linux players on X11 who see "Failed to create
-  window for OpenGL context" can try `SDL_VIDEO_FORCE_EGL=1`.
+  vanilla could, also without Ixeris and also with Sodium's no-error context off; over EGL
+  the pack starts. Which mod is involved is still open. Linux players on X11 who see
+  "Failed to create window for OpenGL context" can try `SDL_VIDEO_FORCE_EGL=1`.
 
 ---
 

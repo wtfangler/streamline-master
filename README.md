@@ -83,7 +83,9 @@ Fabulously Optimized for 26.3 next to this pack — three alternating runs each,
 one world, identical JVM arguments — and compares time to the main menu, time to
 a playable world and the heap kept after a full GC
 ([`ci-results/26.3/compare.md`](ci-results/26.3/compare.md)). It reports a
-difference only when it is larger than the spread between runs. The runner has
+difference only when it is larger than the spread between runs. Latest result,
+1.6.3 against Fabulously Optimized 15.0.0-beta.2: main menu 22.6 s vs 29.9 s,
+playable world 36.8 s vs 44.7 s, 309 MB vs 364 MB kept after a full GC. The runner has
 no GPU, so this covers loading and memory, never frame rate; frame rate needs
 your hardware and [`bench.py`](bench.py).
 

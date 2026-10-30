@@ -324,6 +324,16 @@
             frames, less memory and settings that suit the machine, so that is what the pack
             measures, and why it ships a benchmark you can run in any pack on your own hardware.
           </p>
+          <p class="bench-note just">
+            What can be compared without a GPU is compared on every change: CI starts this pack
+            and Fabulously Optimized 15.0.0-beta.2 on Minecraft&nbsp;26.3, three alternating runs
+            each, one world, identical JVM arguments. Streamline Master 1.6.3 reached the main
+            menu in <strong>22.6&nbsp;s</strong> against 29.9&nbsp;s, a playable world in
+            <strong>36.8&nbsp;s</strong> against 44.7&nbsp;s, and kept <strong>309&nbsp;MB</strong>
+            after a full garbage collection against 364&nbsp;MB: 24%, 18% and 15% less, each
+            larger than the spread between runs. Software rendering on a shared runner, so these are
+            loading and memory, not frame rate.
+          </p>
         </div>
       </section>
 
@@ -395,15 +405,15 @@
                   <button
                     type="button"
                     class="shot"
-                    data-full="assets/images/loader-world.webp"
-                    data-fallback="assets/images/loader-world.jpg"
-                    data-caption="World loading screen, Minecraft 26.3 (from the CI run)"
+                    data-full="assets/images/loader-start.webp"
+                    data-fallback="assets/images/loader-start.jpg"
+                    data-caption="Game start-up, Minecraft 26.3 (from the CI run)"
                   >
                     <picture>
-                      <source srcset="assets/images/loader-world-900.webp" type="image/webp" />
+                      <source srcset="assets/images/loader-start-900.webp" type="image/webp" />
                       <img
-                        src="assets/images/loader-world-900.jpg"
-                        alt="Streamline Master loading screen: violet SM mark, the pack name and a thin progress bar"
+                        src="assets/images/loader-start-900.jpg"
+                        alt="Streamline Master start-up screen: violet SM mark, the pack name and a thin progress bar"
                         width="900"
                         height="506"
                         loading="lazy"
