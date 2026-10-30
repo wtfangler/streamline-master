@@ -1,11 +1,9 @@
-[12:25:39] [main/INFO]: Loading Minecraft 26.3 with Fabric Loader 0.19.5
-[12:25:39] [main/INFO]: Mappings not present!
-[12:25:39] [main/WARN]: Warnings were found!
- - Mod 'Remove Reloading Screen' (rrls) 5.2.8+mc.26.3 recommends version 26.3.0 or later of forgeconfigapiport, which is missing!
-	 - You should install version 26.3.0 or later of forgeconfigapiport for the optimal experience.
+[12:39:04] [main/INFO]: Loading Minecraft 26.3 with Fabric Loader 0.19.5
+[12:39:04] [main/INFO]: Mappings not present!
+[12:39:04] [main/WARN]: Warnings were found!
  - Mod 'Fast Noise' (zfastnoise) 1.1.1+26.3 recommends any version of c2me, which is missing!
 	 - You should install any version of c2me for the optimal experience.
-[12:25:39] [main/INFO]: Loading 137 mods:
+[12:39:04] [main/INFO]: Loading 136 mods:
 	- almanac 1.26.10.1
 	- alternate-current 1.9.0
 	- asynclogger 2.2.2+26.1.2-fabric
@@ -121,7 +119,6 @@
 	- placeholder-api 3.2.0+26.3
 	- quick-pack 1.5.1
 	- reeses-sodium-options 2.2.5+mc26.3
-	- rrls 5.2.8+mc.26.3
 	- rsls 1.4.0
 	- slm_harness 0.0.1
 	- smoothgui 2.0.7
@@ -148,56 +145,56 @@
 	- zfastnoise 1.1.1+26.3
 	   \-- zfastnoise-ocl 1.0.0-beta.1+26.3
 	- zoomify 2.16.3+26.3
-[12:25:39] [main/INFO]: Successfully configured async logger context with [wrapSysOutSysErr=false, filtering.enabled=false, filtering.global=false]
-[12:25:39] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/streamline-master/streamline-master/.dev/fabric/sponge-mixin-0.17.4+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
-[12:25:39] [main/INFO]: Config version: 6
-[12:25:39] [main/WARN]: Reference map 'clumps.refmap.json' for clumps.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'emlib.refmap.json' for emlib.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'entityculling.refmap.mixins.json' for entityculling.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Iris detected. Force disabling sign text buffering optimization.
-[12:25:40] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'iris-fabric.refmap.json' for mixins.iris.fabric.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.vertexformat.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.bettermipmaps.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.compat.sodium.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.fixes.maxfpscrash.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/INFO]: Loaded configuration file for Lithium: 170 options available, 0 override(s) found.
-[12:25:40] [main/INFO]: Loaded configuration file for ModernFix 5.27.20-build.2: 67 options available, 3 override(s) found
-[12:25:40] [main/WARN]: Option 'mixin.perf.clear_mixin_classinfo' overriden (by user configuration) to 'true'
-[12:25:40] [main/WARN]: Option 'mixin.perf.deduplicate_location' overriden (by user configuration) to 'true'
-[12:25:40] [main/WARN]: Option 'mixin.bugfix.missing_block_entities' overriden (by user configuration) to 'true'
-[12:25:40] [main/INFO]: Applying Nashorn fix
-[12:25:40] [main/INFO]: Configuring Minecraft's max.bg.threads option with 1 threads
-[12:25:40] [main/WARN]: Reference map 'modernfix.refmap.json' for modernfix-fabric.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'modernfix.refmap.json' for modernfix-common.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'quick_pack.refmap.json' for quick-pack.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'reeses-sodium-options.refmap.json' for reeses-sodium-options.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'smoothgui.refmap.json' for smoothgui.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/INFO]: Loaded configuration file for Sodium: 37 options available, 1 override(s) found
-[12:25:40] [main/INFO]: Loaded configuration file for Sodium Extra: 26 options available, 0 override(s) found
-[12:25:40] [main/WARN]: Reference map 'yet_another_config_lib_v3.refmap.json' for yacl.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:40] [main/WARN]: Reference map 'yet_another_config_lib_v3.refmap.json' for yacl-fabric.mixins.json could not be read. If this is a development environment you can ignore this message
-[12:25:41] [main/WARN]: Mixin malte0811.ferritecore.mixin.threaddetec.PalettedContainerMixin is disabled automatically as lithium is installed
-[12:25:41] [main/WARN]: Error loading class: dev/emi/emi/screen/StackBatcher (java.lang.ClassNotFoundException: dev/emi/emi/screen/StackBatcher)
-[12:25:42] [main/WARN]: Force-disabling mixin 'features.render.world.sky.LevelRendererMixin' as rule 'mixin.features.render.world.sky' (added by mods [iris]) disables it and children
-[12:25:42] [main/INFO]: Searching for graphics cards...
-[12:25:42] [main/WARN]: Could not find any graphics adapters! Probably the device is not on a bus we can probe, or there are no devices supporting 3D acceleration.
-[12:25:42] [main/WARN]: Sodium has applied one or more workarounds to prevent crashes or other issues on your system: [NO_ERROR_CONTEXT_UNSUPPORTED]
-[12:25:42] [main/WARN]: This is not necessarily an issue, but it may result in certain features or optimizations being disabled. You can sometimes fix these issues by upgrading your graphics driver.
-[12:25:42] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
-[12:25:44] [Datafixer Bootstrap #0/INFO]: 307 Datafixer optimizations took 836 milliseconds
-[12:25:44] [main/INFO]: ModernFix reached bootstrap stage (6.571 s after launch)
-[12:25:46] [main/WARN]: Method overwrite conflict for getTemperature in modernfix-common.mixins.json:perf.remove_biome_temperature_cache.BiomeMixin from mod modernfix, previously written by net.caffeinemc.mods.lithium.mixin.world.temperature_cache.BiomeMixin. Skipping method.
-[12:25:50] [main/INFO]: Vanilla bootstrap took 5435 milliseconds
-[12:25:50] [Render thread/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
-[12:25:50] [Render thread/INFO]: Setting user: SLMTest
-[12:25:50] [Render thread/INFO]: Almanac Fabric config reloaded, cache cleared
-[12:25:50] [Render thread/INFO]: Almanac Fabric config initialized
-[12:25:50] [Render thread/INFO]: Almanac initialized
-[12:25:50] [Render thread/INFO]: Enabled 89 bug fixes: [MC-577, MC-4490, MC-7569, MC-8187, MC-30391, MC-35361, MC-46737, MC-46766, MC-57057, MC-79545, MC-80859, MC-82263, MC-84661, MC-88371, MC-89146, MC-90683, MC-93018, MC-93384, MC-94054, MC-100991, MC-105068, MC-115092, MC-116379, MC-118740, MC-119754, MC-121706, MC-121903, MC-122627, MC-123450, MC-127970, MC-131562, MC-132878, MC-133218, MC-134110, MC-136249, MC-139041, MC-143474, MC-147659, MC-153010, MC-155509, MC-158900, MC-159163, MC-160095, MC-165306, MC-165381, MC-168573, MC-170462, MC-176559, MC-176806, MC-177381, MC-179072, MC-183990, MC-187100, MC-188359, MC-197260, MC-200418, MC-201374, MC-202637, MC-206922, MC-210318, MC-211561, MC-215530, MC-215531, MC-217716, MC-221257, MC-223153, MC-224729, MC-226961, MC-227337, MC-231097, MC-231743, MC-232869, MC-237493, MC-242809, MC-245394, MC-251068, MC-263999, MC-264285, MC-264979, MC-267125, MC-267376, MC-268420, MC-268617, MC-271899, MC-272431, MC-280220, MC-297837, MC-298225, MC-298558]
-[12:25:50] [Render thread/INFO]: Successfully Debugify'd your game!
-[12:25:51] [Render thread/INFO]: ping & connect fast!
-[12:25:51] [Download-2/ERROR]: Failed to fetch user properties
+[12:39:05] [main/INFO]: Successfully configured async logger context with [wrapSysOutSysErr=false, filtering.enabled=false, filtering.global=false]
+[12:39:05] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/streamline-master/streamline-master/.dev/fabric/sponge-mixin-0.17.4+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
+[12:39:05] [main/INFO]: Config version: 6
+[12:39:05] [main/WARN]: Reference map 'clumps.refmap.json' for clumps.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'emlib.refmap.json' for emlib.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'entityculling.refmap.mixins.json' for entityculling.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Iris detected. Force disabling sign text buffering optimization.
+[12:39:05] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'iris-fabric.refmap.json' for mixins.iris.fabric.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.vertexformat.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.bettermipmaps.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.compat.sodium.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'iris.refmap.json' for mixins.iris.fixes.maxfpscrash.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/INFO]: Loaded configuration file for Lithium: 170 options available, 0 override(s) found.
+[12:39:05] [main/INFO]: Loaded configuration file for ModernFix 5.27.20-build.2: 67 options available, 3 override(s) found
+[12:39:05] [main/WARN]: Option 'mixin.perf.clear_mixin_classinfo' overriden (by user configuration) to 'true'
+[12:39:05] [main/WARN]: Option 'mixin.perf.deduplicate_location' overriden (by user configuration) to 'true'
+[12:39:05] [main/WARN]: Option 'mixin.bugfix.missing_block_entities' overriden (by user configuration) to 'true'
+[12:39:05] [main/INFO]: Applying Nashorn fix
+[12:39:05] [main/INFO]: Configuring Minecraft's max.bg.threads option with 1 threads
+[12:39:05] [main/WARN]: Reference map 'modernfix.refmap.json' for modernfix-fabric.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'modernfix.refmap.json' for modernfix-common.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'quick_pack.refmap.json' for quick-pack.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'reeses-sodium-options.refmap.json' for reeses-sodium-options.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'smoothgui.refmap.json' for smoothgui.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/INFO]: Loaded configuration file for Sodium: 37 options available, 1 override(s) found
+[12:39:05] [main/INFO]: Loaded configuration file for Sodium Extra: 26 options available, 0 override(s) found
+[12:39:05] [main/WARN]: Reference map 'yet_another_config_lib_v3.refmap.json' for yacl.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:05] [main/WARN]: Reference map 'yet_another_config_lib_v3.refmap.json' for yacl-fabric.mixins.json could not be read. If this is a development environment you can ignore this message
+[12:39:06] [main/WARN]: Mixin malte0811.ferritecore.mixin.threaddetec.PalettedContainerMixin is disabled automatically as lithium is installed
+[12:39:06] [main/WARN]: Error loading class: dev/emi/emi/screen/StackBatcher (java.lang.ClassNotFoundException: dev/emi/emi/screen/StackBatcher)
+[12:39:06] [main/WARN]: Force-disabling mixin 'features.render.world.sky.LevelRendererMixin' as rule 'mixin.features.render.world.sky' (added by mods [iris]) disables it and children
+[12:39:07] [main/INFO]: Searching for graphics cards...
+[12:39:07] [main/WARN]: Could not find any graphics adapters! Probably the device is not on a bus we can probe, or there are no devices supporting 3D acceleration.
+[12:39:07] [main/WARN]: Sodium has applied one or more workarounds to prevent crashes or other issues on your system: [NO_ERROR_CONTEXT_UNSUPPORTED]
+[12:39:07] [main/WARN]: This is not necessarily an issue, but it may result in certain features or optimizations being disabled. You can sometimes fix these issues by upgrading your graphics driver.
+[12:39:07] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+[12:39:09] [Datafixer Bootstrap #0/INFO]: 307 Datafixer optimizations took 806 milliseconds
+[12:39:09] [main/INFO]: ModernFix reached bootstrap stage (6.093 s after launch)
+[12:39:11] [main/WARN]: Method overwrite conflict for getTemperature in modernfix-common.mixins.json:perf.remove_biome_temperature_cache.BiomeMixin from mod modernfix, previously written by net.caffeinemc.mods.lithium.mixin.world.temperature_cache.BiomeMixin. Skipping method.
+[12:39:14] [main/INFO]: Vanilla bootstrap took 4826 milliseconds
+[12:39:15] [Render thread/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+[12:39:15] [Render thread/INFO]: Setting user: SLMTest
+[12:39:15] [Render thread/INFO]: Almanac Fabric config reloaded, cache cleared
+[12:39:15] [Render thread/INFO]: Almanac Fabric config initialized
+[12:39:15] [Render thread/INFO]: Almanac initialized
+[12:39:15] [Render thread/INFO]: Enabled 89 bug fixes: [MC-577, MC-4490, MC-7569, MC-8187, MC-30391, MC-35361, MC-46737, MC-46766, MC-57057, MC-79545, MC-80859, MC-82263, MC-84661, MC-88371, MC-89146, MC-90683, MC-93018, MC-93384, MC-94054, MC-100991, MC-105068, MC-115092, MC-116379, MC-118740, MC-119754, MC-121706, MC-121903, MC-122627, MC-123450, MC-127970, MC-131562, MC-132878, MC-133218, MC-134110, MC-136249, MC-139041, MC-143474, MC-147659, MC-153010, MC-155509, MC-158900, MC-159163, MC-160095, MC-165306, MC-165381, MC-168573, MC-170462, MC-176559, MC-176806, MC-177381, MC-179072, MC-183990, MC-187100, MC-188359, MC-197260, MC-200418, MC-201374, MC-202637, MC-206922, MC-210318, MC-211561, MC-215530, MC-215531, MC-217716, MC-221257, MC-223153, MC-224729, MC-226961, MC-227337, MC-231097, MC-231743, MC-232869, MC-237493, MC-242809, MC-245394, MC-251068, MC-263999, MC-264285, MC-264979, MC-267125, MC-267376, MC-268420, MC-268617, MC-271899, MC-272431, MC-280220, MC-297837, MC-298225, MC-298558]
+[12:39:15] [Render thread/INFO]: Successfully Debugify'd your game!
+[12:39:15] [Render thread/INFO]: ping & connect fast!
+[12:39:15] [Download-2/ERROR]: Failed to fetch user properties
 com.mojang.authlib.exceptions.InvalidCredentialsException: Status: 401
 	at knot//com.mojang.authlib.exceptions.MinecraftClientHttpException.toAuthenticationException(MinecraftClientHttpException.java:70)
 	at knot//com.mojang.authlib.services.MinecraftServicesUserApiService.fetchProperties(MinecraftServicesUserApiService.java:168)
@@ -213,34 +210,33 @@ Caused by: MinecraftClientHttpException[type=HTTP_ERROR, status=401, response=Er
 	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.get(MinecraftClient.java:65)
 	at knot//com.mojang.authlib.services.MinecraftServicesUserApiService.fetchProperties(MinecraftServicesUserApiService.java:118)
 	... 5 more
-[12:25:51] [Render thread/INFO]: Compression will use libdeflate (Linux x86_64), encryption will use OpenSSL 3.x.x (Linux x86_64)
-[12:25:51] [Render thread/INFO]: Ksyxis: Ready to remove unneeded chunks. (platform: fabric, version: 1.4.5, mixin: 0.8.7)
-[12:25:51] [Render thread/INFO]: LetMeDespawn initializing on Fabric (production)
-[12:25:51] [Render thread/INFO]: Packet Fixer 3.3.6 Fabric has been initialized!
-[12:25:51] [Render thread/INFO]: Building config cache from user defined config file...
-[12:25:51] [Render thread/INFO]: Collecting API Entrypoint's...
-[12:25:51] [Render thread/INFO]: Registering alt renderers via each collected entrypoint...
-[12:25:52] [Render thread/INFO]: [Indigo] Different rendering plugin detected; not applying Indigo.
-[12:25:52] [Render thread/INFO]: [FastQuit] Initialized
-[12:25:52] [Render thread/INFO]: Loaded config fzzy_config:keybinds in 11ms
-[12:25:52] [Render thread/INFO]: Krypton is now accelerating your Minecraft client's networking stack 🚀
-[12:25:52] [Render thread/INFO]: Note that Krypton is most effective on servers, not the client.
-[12:25:52] [Render thread/INFO]: Loaded config :particle_core_config in 2ms
-[12:25:52] [Render thread/INFO]: Config service: org.redlance.dima_dencep.mods.rrls.config.impl.FallbackConfigImpl
-[12:25:52] [Render thread/INFO]: [STDOUT]: Attempting to invoke putenv("ALSOFT_CONF=cache/rsls-alsoft-1801458748816791901.conf")
+[12:39:15] [Render thread/INFO]: Compression will use libdeflate (Linux x86_64), encryption will use OpenSSL 3.x.x (Linux x86_64)
+[12:39:15] [Render thread/INFO]: Ksyxis: Ready to remove unneeded chunks. (platform: fabric, version: 1.4.5, mixin: 0.8.7)
+[12:39:15] [Render thread/INFO]: LetMeDespawn initializing on Fabric (production)
+[12:39:15] [Render thread/INFO]: Packet Fixer 3.3.6 Fabric has been initialized!
+[12:39:15] [Render thread/INFO]: Building config cache from user defined config file...
+[12:39:15] [Render thread/INFO]: Collecting API Entrypoint's...
+[12:39:15] [Render thread/INFO]: Registering alt renderers via each collected entrypoint...
+[12:39:16] [Render thread/INFO]: [Indigo] Different rendering plugin detected; not applying Indigo.
+[12:39:16] [Render thread/INFO]: [FastQuit] Initialized
+[12:39:16] [Render thread/INFO]: Loaded config fzzy_config:keybinds in 16ms
+[12:39:16] [Render thread/INFO]: Krypton is now accelerating your Minecraft client's networking stack 🚀
+[12:39:16] [Render thread/INFO]: Note that Krypton is most effective on servers, not the client.
+[12:39:16] [Render thread/INFO]: Loaded config :particle_core_config in 3ms
+[12:39:17] [Render thread/INFO]: [STDOUT]: Attempting to invoke putenv("ALSOFT_CONF=cache/rsls-alsoft-9239012757997119962.conf")
 [ALSOFT] (EE) Could not query RTKit: No such file or directory (2)
-[12:25:52] [Render thread/INFO]: false, Linux, 
-[12:25:53] [Render thread/INFO]: [SSPB] Broken dirt path lighting is best dirt path lighting lol
-[12:25:53] [Render thread/INFO]: [STDOUT]: [TRender] Initializing Client...
-[12:25:53] [Render thread/INFO]: Deserializing YACLConfig from '/home/runner/work/streamline-master/streamline-master/game/config/yacl.json5'
-[12:25:53] [main/INFO]: Setting exclusive fullscreen to true by default, as the user is not on Windows and the language cannot be guessed.
-[12:25:53] [Render thread/INFO]: Backend library: LWJGL version 3.4.3-snapshot
-[12:25:53] [Render thread/INFO]: SDL [SYSTEM]: App name: Minecraft
-[12:25:53] [Render thread/INFO]: SDL [SYSTEM]: App version: 26.3
-[12:25:53] [Render thread/INFO]: SDL [SYSTEM]: App ID: com.mojang.minecraft
-[12:25:53] [Render thread/INFO]: SDL [SYSTEM]: SDL revision: SDL-3.4.14--128-NOTFOUND
-[12:25:53] [ForkJoinPool.commonPool-worker-1/WARN]: [Iris Update Check] This version doesn't have an update index, skipping.
-[12:25:53] [Render thread/ERROR]: Failed to create backend OpenGL
+[12:39:17] [Render thread/INFO]: false, Linux, 
+[12:39:17] [Render thread/INFO]: [SSPB] Broken dirt path lighting is best dirt path lighting lol
+[12:39:17] [Render thread/INFO]: [STDOUT]: [TRender] Initializing Client...
+[12:39:17] [Render thread/INFO]: Deserializing YACLConfig from '/home/runner/work/streamline-master/streamline-master/game/config/yacl.json5'
+[12:39:17] [main/INFO]: Setting exclusive fullscreen to true by default, as the user is not on Windows and the language cannot be guessed.
+[12:39:17] [Render thread/INFO]: Backend library: LWJGL version 3.4.3-snapshot
+[12:39:17] [Render thread/INFO]: SDL [SYSTEM]: App name: Minecraft
+[12:39:17] [Render thread/INFO]: SDL [SYSTEM]: App version: 26.3
+[12:39:17] [Render thread/INFO]: SDL [SYSTEM]: App ID: com.mojang.minecraft
+[12:39:17] [Render thread/INFO]: SDL [SYSTEM]: SDL revision: SDL-3.4.14--128-NOTFOUND
+[12:39:17] [ForkJoinPool.commonPool-worker-1/WARN]: [Iris Update Check] This version doesn't have an update index, skipping.
+[12:39:17] [Render thread/ERROR]: Failed to create backend OpenGL
 com.mojang.renderpearl.api.device.BackendCreationException: Failed to create window for OpenGL context: Couldn't find matching GLX visual
 	at knot//com.mojang.renderpearl.backend.opengl.GlDevice.<init>(GlDevice.java:83)
 	at knot//com.mojang.renderpearl.backend.opengl.GlBackend.createDevice(GlBackend.java:68)
@@ -249,11 +245,11 @@ com.mojang.renderpearl.api.device.BackendCreationException: Failed to create win
 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
-[12:25:53] [Render thread/INFO]: Enabling optional FeatureSet [Wireframe]
-[12:25:53] [Render thread/INFO]: Enabling optional FeatureSet [EXT MultiDraw]
-[12:25:53] [Render thread/INFO]: Optional FeatureSet [NV Diagnostic Checkpoint] not supported
-[12:25:53] [Render thread/INFO]: Enabling optional FeatureSet [Calibrated Timestamps]
-[12:25:53] [Render thread/INFO]: Optional FeatureSet [AMD Buffer Marker] not supported
+[12:39:17] [Render thread/INFO]: Enabling optional FeatureSet [Calibrated Timestamps]
+[12:39:17] [Render thread/INFO]: Enabling optional FeatureSet [Wireframe]
+[12:39:17] [Render thread/INFO]: Optional FeatureSet [AMD Buffer Marker] not supported
+[12:39:17] [Render thread/INFO]: Enabling optional FeatureSet [EXT MultiDraw]
+[12:39:17] [Render thread/INFO]: Optional FeatureSet [NV Diagnostic Checkpoint] not supported
 FATAL ERROR in native method: [LWJGL] Thread[#3,Render thread,5,main]: No context is current or a function that is not available in the current context was called. The JVM will abort execution.
 	at org.lwjgl.opengl.GL11C.nglGetIntegerv(Native Method)
 	at org.lwjgl.opengl.GL11C.glGetInteger(GL11C.java:521)
@@ -267,8 +263,8 @@ FATAL ERROR in native method: [LWJGL] Thread[#3,Render thread,5,main]: No contex
 	at com.mojang.blaze3d.systems.RenderSystem.initRenderer(RenderSystem.java:248)
 	at net.minecraft.client.Minecraft.<init>(Minecraft.java:557)
 	at net.minecraft.client.main.Main.main(Main.java:278)
-	at java.lang.invoke.LambdaForm$DMH/0x00000000811a8800.invokeStaticInit(java.base@25.0.5/LambdaForm$DMH)
-	at java.lang.invoke.LambdaForm$MH/0x0000000081264800.invokeExact_MT(java.base@25.0.5/LambdaForm$MH)
+	at java.lang.invoke.LambdaForm$DMH/0x000000004d1a8800.invokeStaticInit(java.base@25.0.5/LambdaForm$DMH)
+	at java.lang.invoke.LambdaForm$MH/0x000000004d264800.invokeExact_MT(java.base@25.0.5/LambdaForm$MH)
 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
