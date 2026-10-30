@@ -1,9 +1,9 @@
 # Server built from the pack
 
-**PASS** — ready in 12.1 s, exit 0
+**PASS** — ready in 22.0 s, exit 0
 
 ```
-[11:30:46] [main/INFO]: Loading 70 mods:
+[11:34:24] [main/INFO]: Loading 70 mods:
 ```
 
 ## Errors and warnings worth reading (0)
