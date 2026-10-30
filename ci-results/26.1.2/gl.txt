@@ -15,14 +15,14 @@ Extended renderer info (GLX_MESA_query_renderer):
     Max GLES[23] profile version: 3.2
 Memory info (GL_ATI_meminfo):
     VBO free memory - total: 31 MB, largest block: 31 MB
-    VBO free aux. memory - total: 14637 MB, largest block: 14637 MB
+    VBO free aux. memory - total: 14726 MB, largest block: 14726 MB
     Texture free memory - total: 31 MB, largest block: 31 MB
-    Texture free aux. memory - total: 14637 MB, largest block: 14637 MB
+    Texture free aux. memory - total: 14726 MB, largest block: 14726 MB
     Renderbuffer free memory - total: 31 MB, largest block: 31 MB
-    Renderbuffer free aux. memory - total: 14637 MB, largest block: 14637 MB
+    Renderbuffer free aux. memory - total: 14726 MB, largest block: 14726 MB
 Memory info (GL_NVX_gpu_memory_info):
-    Dedicated video memory: 407347 MB
-    Total available memory: 423331 MB
+    Dedicated video memory: 542515 MB
+    Total available memory: 558499 MB
     Currently available dedicated video memory: 31 MB
 OpenGL vendor string: Mesa
 OpenGL renderer string: llvmpipe (LLVM 20.1.2, 256 bits)
@@ -56,14 +56,14 @@ Extended renderer info (GLX_MESA_query_renderer):
     Max GLES[23] profile version: 3.2
 Memory info (GL_ATI_meminfo):
     VBO free memory - total: 31 MB, largest block: 31 MB
-    VBO free aux. memory - total: 14602 MB, largest block: 14602 MB
+    VBO free aux. memory - total: 14709 MB, largest block: 14709 MB
     Texture free memory - total: 31 MB, largest block: 31 MB
-    Texture free aux. memory - total: 14602 MB, largest block: 14602 MB
+    Texture free aux. memory - total: 14709 MB, largest block: 14709 MB
     Renderbuffer free memory - total: 31 MB, largest block: 31 MB
-    Renderbuffer free aux. memory - total: 14602 MB, largest block: 14602 MB
+    Renderbuffer free aux. memory - total: 14709 MB, largest block: 14709 MB
 Memory info (GL_NVX_gpu_memory_info):
-    Dedicated video memory: 1984307 MB
-    Total available memory: 2000291 MB
+    Dedicated video memory: 4294074164 MB
+    Total available memory: 4294090148 MB
     Currently available dedicated video memory: 31 MB
 OpenGL vendor string: Mesa
 OpenGL renderer string: llvmpipe (LLVM 20.1.2, 256 bits)
