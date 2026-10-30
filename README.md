@@ -113,6 +113,7 @@ python tune.py <instance> --gpu      # JVM args, heap and GPU for a Prism instan
 python tune.py <instance> --preset potato   # lower options.txt for weaker hardware
 python bench.py a.csv --vs b.csv     # avg / 1% low / stutter from PresentMon captures
 python server/build_server.py "dist/Streamline Master 26.3.mrpack" my_server --ram 4G
+python bench_setup.py list                  # instances the benchmark can go into (or: bench.cmd)
 python release.py 26.3 --channel beta       # dry run of a Modrinth release
 ```
 

@@ -12,16 +12,23 @@ ustawia gracza w trybie obserwatora na stałej wysokości nad spawnem, a potem:
 klatki zapisuje do `slm-bench/*.csv` i sam zamyka grę. Nie działa, dopóki w folderze gry
 nie ma `slm-bench.txt`, więc w normalnej grze nic nie robi.
 
+Na Windowsie najprościej dwuklikiem w `bench.cmd`: pokaże Twoje instancje, zapyta o dwie
+nazwy, zainstaluje, poczeka, aż uruchomisz obie, i porówna wyniki. Ręcznie:
+
 ```
-python bench_setup.py install <instancja SLM> --label SLM
-python bench_setup.py install <instancja FO> --label FO
+python bench_setup.py list
+python bench_setup.py install "Streamline Master" --label SLM
+python bench_setup.py install "Fabulously" --label FO
 ```
+
+Instancję podajesz nazwą z `list` (wystarczy jej jednoznaczny fragment) albo pełną
+ścieżką folderu w cudzysłowie. Obie muszą być na Minecrafcie 26.3.
 
 Uruchom każdą instancję raz (ok. 2 minut, gra zamyka się sama), potem:
 
 ```
-python bench_setup.py compare <instancja SLM> <instancja FO>
-python bench_setup.py remove <instancja SLM>
+python bench_setup.py compare "Streamline Master" "Fabulously"
+python bench_setup.py remove "Streamline Master"
 ```
 
 `compare` bierze najnowsze nagranie każdej sceny z obu instancji i liczy je `bench.py`
