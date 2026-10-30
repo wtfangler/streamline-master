@@ -1,0 +1,169 @@
+# classes
+net.minecraft.client.gui.screens.ConnectScreen
+net.minecraft.client.gui.screens.GenericMessageScreen
+net.minecraft.client.gui.screens.LevelLoadingScreen
+net.minecraft.client.gui.screens.LoadingDotsText
+net.minecraft.client.gui.screens.LoadingOverlay
+net.minecraft.client.gui.screens.ProgressScreen
+net.minecraft.client.gui.screens.dialog.DialogConnectionAccess
+net.minecraft.client.gui.screens.worldselection.FileFixerProgressScreen
+
+Compiled from "ConnectScreen.java"
+public class net.minecraft.client.gui.screens.ConnectScreen extends net.minecraft.client.gui.screens.Screen {
+  private static final java.util.concurrent.atomic.AtomicInteger UNIQUE_THREAD_ID;
+  private static final org.slf4j.Logger LOGGER;
+  private static final long NARRATION_DELAY_MS;
+  public static final net.minecraft.network.chat.Component ABORT_CONNECTION;
+  public static final net.minecraft.network.chat.Component UNKNOWN_HOST_MESSAGE;
+  private volatile net.minecraft.network.Connection connection;
+  private io.netty.channel.ChannelFuture channelFuture;
+  private volatile boolean aborted;
+  private final net.minecraft.client.gui.screens.Screen parent;
+  private net.minecraft.network.chat.Component status;
+  private long lastNarration;
+  private final net.minecraft.network.chat.Component connectFailedTitle;
+  private net.minecraft.client.gui.screens.ConnectScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.network.chat.Component);
+  public static void startConnecting(net.minecraft.client.gui.screens.Screen, net.minecraft.client.Minecraft, net.minecraft.client.multiplayer.resolver.ServerAddress, net.minecraft.client.multiplayer.ServerData, boolean, net.minecraft.client.multiplayer.TransferState);
+  private void connect(net.minecraft.client.Minecraft, net.minecraft.client.multiplayer.resolver.ServerAddress, net.minecraft.client.multiplayer.ServerData, net.minecraft.client.multiplayer.TransferState);
+  private void updateStatus(net.minecraft.network.chat.Component);
+  public void tick();
+  public boolean shouldCloseOnEsc();
+  protected void init();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  private void lambda$init$0(net.minecraft.client.gui.components.Button);
+  static {};
+}
+
+Compiled from "GenericMessageScreen.java"
+public class net.minecraft.client.gui.screens.GenericMessageScreen extends net.minecraft.client.gui.screens.Screen {
+  private net.minecraft.client.gui.components.FocusableTextWidget textWidget;
+  public net.minecraft.client.gui.screens.GenericMessageScreen(net.minecraft.network.chat.Component);
+  protected void init();
+  protected void repositionElements();
+  public boolean shouldCloseOnEsc();
+  protected boolean shouldNarrateNavigation();
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+
+Compiled from "LevelLoadingScreen.java"
+public class net.minecraft.client.gui.screens.LevelLoadingScreen extends net.minecraft.client.gui.screens.Screen {
+  private static final net.minecraft.network.chat.Component DOWNLOADING_TERRAIN_TEXT;
+  private static final net.minecraft.network.chat.Component READY_TO_PLAY_TEXT;
+  private static final long NARRATION_DELAY_MS;
+  private static final int PROGRESS_BAR_WIDTH;
+  private net.minecraft.client.multiplayer.LevelLoadTracker loadTracker;
+  private float smoothedProgress;
+  private long lastNarration;
+  private net.minecraft.client.gui.screens.LevelLoadingScreen$Reason reason;
+  private net.minecraft.client.renderer.texture.TextureAtlasSprite cachedNetherPortalSprite;
+  private static final it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.world.level.chunk.status.ChunkStatus> COLORS;
+  public net.minecraft.client.gui.screens.LevelLoadingScreen(net.minecraft.client.multiplayer.LevelLoadTracker, net.minecraft.client.gui.screens.LevelLoadingScreen$Reason);
+  public void update(net.minecraft.client.multiplayer.LevelLoadTracker, net.minecraft.client.gui.screens.LevelLoadingScreen$Reason);
+  public boolean shouldCloseOnEsc();
+  protected boolean shouldNarrateNavigation();
+  protected void updateNarratedWidget(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void tick();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  private void drawProgressBar(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int, float);
+  public static void extractChunksForRendering(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int, net.minecraft.server.level.progress.ChunkLoadStatusView);
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  private net.minecraft.client.renderer.texture.TextureAtlasSprite getNetherPortalSprite();
+  public void onClose();
+  public boolean isPauseScreen();
+  private static void lambda$static$0(it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap);
+  static {};
+}
+
+Compiled from "LoadingDotsText.java"
+public class net.minecraft.client.gui.screens.LoadingDotsText {
+  private static final java.lang.String[] FRAMES;
+  private static final long INTERVAL_MS;
+  public net.minecraft.client.gui.screens.LoadingDotsText();
+  public static java.lang.String get(long);
+  static {};
+}
+
+Compiled from "LoadingOverlay.java"
+public class net.minecraft.client.gui.screens.LoadingOverlay extends net.minecraft.client.gui.screens.Overlay {
+  public static final net.minecraft.resources.Identifier MOJANG_STUDIOS_LOGO_LOCATION;
+  private static final int LOGO_BACKGROUND_COLOR;
+  private static final int LOGO_BACKGROUND_COLOR_DARK;
+  private static final java.util.function.IntSupplier BRAND_BACKGROUND;
+  private static final int LOGO_SCALE;
+  private static final float LOGO_QUARTER_FLOAT;
+  private static final int LOGO_QUARTER;
+  private static final int LOGO_HALF;
+  private static final float LOGO_OVERLAP;
+  private static final float SMOOTHING;
+  public static final long FADE_OUT_TIME;
+  public static final long FADE_IN_TIME;
+  private final net.minecraft.client.Minecraft minecraft;
+  private final net.minecraft.server.packs.resources.ReloadInstance reload;
+  private final java.util.function.Consumer<java.util.Optional<java.lang.Throwable>> onFinish;
+  private final boolean fadeIn;
+  private float currentProgress;
+  private long fadeOutStart;
+  private long fadeInStart;
+  public net.minecraft.client.gui.screens.LoadingOverlay(net.minecraft.client.Minecraft, net.minecraft.server.packs.resources.ReloadInstance, java.util.function.Consumer<java.util.Optional<java.lang.Throwable>>, boolean);
+  public static void registerTextures(net.minecraft.client.renderer.texture.TextureManager);
+  private static int replaceAlpha(int, int);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void tick();
+  private boolean isReadyToFadeOut();
+  private void extractProgressBar(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int, float);
+  private static int lambda$static$0();
+  static {};
+}
+
+Compiled from "ProgressScreen.java"
+public class net.minecraft.client.gui.screens.ProgressScreen extends net.minecraft.client.gui.screens.Screen implements net.minecraft.util.ProgressListener {
+  private net.minecraft.network.chat.Component header;
+  private net.minecraft.network.chat.Component stage;
+  private int progress;
+  private boolean stop;
+  private final boolean clearScreenAfterStop;
+  public net.minecraft.client.gui.screens.ProgressScreen(boolean);
+  public boolean shouldCloseOnEsc();
+  protected boolean shouldNarrateNavigation();
+  public void progressStartNoAbort(net.minecraft.network.chat.Component);
+  public void progressStart(net.minecraft.network.chat.Component);
+  public void progressStage(net.minecraft.network.chat.Component);
+  public void progressStagePercentage(int);
+  public void stop();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+
+Compiled from "DialogConnectionAccess.java"
+public interface net.minecraft.client.gui.screens.dialog.DialogConnectionAccess {
+  public abstract void disconnect(net.minecraft.network.chat.Component);
+  public abstract void runCommand(java.lang.String, net.minecraft.client.gui.screens.Screen);
+  public abstract void openDialog(net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog>, net.minecraft.client.gui.screens.Screen);
+  public abstract void sendCustomAction(net.minecraft.resources.Identifier, java.util.Optional<net.minecraft.nbt.Tag>);
+  public abstract net.minecraft.server.ServerLinks serverLinks();
+}
+
+Compiled from "FileFixerProgressScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.FileFixerProgressScreen extends net.minecraft.client.gui.screens.Screen {
+  private static final int PROGRESS_BAR_WIDTH;
+  private static final int PROGRESS_BAR_HEIGHT;
+  private static final int LINE_SPACING;
+  private static final int SECTION_SPACING;
+  private static final net.minecraft.network.chat.Component SCANNING;
+  private final net.minecraft.util.worldupdate.UpgradeProgress upgradeProgress;
+  private net.minecraft.client.gui.components.Button cancelButton;
+  public net.minecraft.client.gui.screens.worldselection.FileFixerProgressScreen(net.minecraft.util.worldupdate.UpgradeProgress);
+  protected void init();
+  public boolean shouldCloseOnEsc();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  private void extractTitle(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  private void extractProgress(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  private void extractProgressBar(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  private void extractTypeText(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  private void extractTypeProgress(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  private void extractFileStats(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int);
+  private void extractScanning(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  private void extractFileFixerCount(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int);
+  private void lambda$init$0(net.minecraft.client.gui.components.Button);
+  static {};
+}
+
