@@ -47,6 +47,13 @@ jobs:
           - { mc: "1.21.11", java: "21", harness: false }
     env:
       MC: ${{ matrix.mc }}
+      LIBGL_ALWAYS_SOFTWARE: "1"
+      # 26.3 opens its window through SDL3 (26.2 and older use GLFW and ignore this).
+      SDL_VIDEO_DRIVER: x11
+      MESA_GL_VERSION_OVERRIDE: "4.6"
+      MESA_GLSL_VERSION_OVERRIDE: "460"
+      # No sound card on the runner: OpenAL's null device instead of a failed open.
+      ALSOFT_DRIVERS: "null"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -122,15 +129,6 @@ jobs:
       - name: Start the client
         id: run
         continue-on-error: true
-        env:
-          LIBGL_ALWAYS_SOFTWARE: "1"
-          SDL_VIDEO_DRIVER: x11
-          # 26.3 asks for a newer OpenGL context than llvmpipe advertises by default; without
-          # this it falls back to Vulkan, where Iris 1.11.7 calls OpenGL and aborts the JVM.
-          MESA_GL_VERSION_OVERRIDE: "4.6"
-          MESA_GLSL_VERSION_OVERRIDE: "460"
-          # No sound card on the runner: OpenAL's null device instead of a failed open.
-          ALSOFT_DRIVERS: "null"
         run: |
           mkdir -p .mod-cache
           ln -sfn "$PWD/.mod-cache" mod-cache
@@ -138,34 +136,30 @@ jobs:
             python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC" \
               --mc "$MC" --timeout 900 ${{ matrix.harness && ' ' || '--no-harness' }}
 
-      - name: Diagnostic re-run without Ixeris (26.3 only, if the client failed)
-        id: noixeris
+      # When 26.3 fails: is it the pack or the runner? A vanilla control (Fabric Loader and the
+      # harness, no pack mods), then the full pack with SDL3 on EGL instead of GLX.
+      - name: Diagnostic - vanilla 26.3 on this runner
         if: matrix.mc == '26.3' && steps.run.outcome == 'failure'
         continue-on-error: true
         run: |
           xvfb-run -a -s "-screen 0 1280x720x24" \
-            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC/without-ixeris" \
-              --mc "$MC" --timeout 600 --no-shots --drop-mod Ixeris
+            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC/diag-vanilla" \
+              --mc "$MC" --timeout 600 --no-shots --drop-mod ""
+
+      - name: Diagnostic - full pack, SDL3 on EGL
+        if: matrix.mc == '26.3' && steps.run.outcome == 'failure'
+        continue-on-error: true
+        env:
+          SDL_VIDEO_FORCE_EGL: "1"
+        run: |
+          xvfb-run -a -s "-screen 0 1280x720x24" \
+            python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC/diag-egl" \
+              --mc "$MC" --timeout 600 --no-shots
 
       - name: Start a server built from the pack
         id: server
         continue-on-error: true
         run: python ci/run_server.py "out/Streamline Master $MC.mrpack" --work srv --out "ci-results/$MC"
-
-      - name: Commit results back to the branch
-        if: always()
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "ci-results/$MC"
-          if [ "$MC" = "26.3" ]; then git add SHA256SUMS overrides-26.3/mods bench/jar; fi
-          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
-          git commit -m "CI: $MC client run (client ${{ steps.run.outcome }}, server ${{ steps.server.outcome }}) [skip ci]"
-          for i in 1 2 3 4; do
-            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
-            sleep $((i * 5))
-          done
-          exit 1
 
       - name: Build the benchmark mod
         id: benchbuild
@@ -180,8 +174,22 @@ jobs:
         run: |
           xvfb-run -a -s "-screen 0 1280x720x24" \
             python ci/run_client.py "out/Streamline Master $MC.mrpack" --dev .dev --game game --out "ci-results/$MC/bench" \
-              --mc "$MC" --timeout 900 --bench bench/jar/slm_bench-*.jar \
-              ${{ steps.run.outcome == 'failure' && '--drop-mod Ixeris' || '' }}
+              --mc "$MC" --timeout 900 --bench bench/jar/slm_bench-*.jar
+
+      - name: Commit results back to the branch
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "ci-results/$MC"
+          if [ "$MC" = "26.3" ]; then git add SHA256SUMS overrides-26.3/mods; if [ -d bench/jar ]; then git add bench/jar; fi; fi
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "CI: $MC client run (client ${{ steps.run.outcome }}, server ${{ steps.server.outcome }}) [skip ci]"
+          for i in 1 2 3 4; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
 
       - name: Fail if the client or the server did not pass
         if: steps.run.outcome != 'success' || steps.server.outcome != 'success'
